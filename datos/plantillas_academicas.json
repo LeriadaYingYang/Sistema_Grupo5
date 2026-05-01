@@ -1,0 +1,10 @@
+[
+    {
+        "id_plantilla": 1,
+        "id_carrera": 1,
+        "nombre_carrera": "sistema",
+        "nombre_plantilla": "modulo",
+        "descripcion": "primer ciclo de las ctividades de los alumnos ç",
+        "estado": "Activo"
+    }
+]

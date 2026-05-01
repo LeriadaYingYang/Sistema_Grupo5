@@ -7,7 +7,10 @@ from admin_sistema.login_admin import login_admin
 def mostrar_menu_principal():
     print("""
 ==================================================
-SISTEMA DE GESTIÓN ACADÉMICA Y ADMINISTRATIVA
+                      IISEM
+==================================================
+==================================================
+  SISTEMA DE GESTIÓN ACADÉMICA Y ADMINISTRATIVA
 ==================================================
 
 MENÚ PRINCIPAL
@@ -25,7 +28,6 @@ def main():
     while True:
         mostrar_menu_principal()
         opcion = input("Seleccione una opción: ")
-
         if opcion == "1":
             login_director()
 
@@ -51,7 +53,5 @@ def main():
 
         else:
             print("\nOpción inválida. Intente nuevamente.")
-
-print("Bienvenido al sistema de la IISEM")
-mostrar_menu_principal()
-main()
+if __name__ == "__main__":
+    main()

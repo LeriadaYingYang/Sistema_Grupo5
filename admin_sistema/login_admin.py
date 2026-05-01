@@ -3,4 +3,4 @@ def login_admin():
     usuario = input("Usuario: ")
     password = input("Contraseña: ")
 
-    print("\nValidando acceso del administrador...")
+    print("\nValidando acceso del administrador")

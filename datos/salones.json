@@ -1,0 +1,10 @@
+[
+    {
+        "id_salon": 1,
+        "nombre_salon": "A1",
+        "turno": "mañana",
+        "id_carrera": 2,
+        "nombre_carrera": "cocinca",
+        "estado": "Activo"
+    }
+]
