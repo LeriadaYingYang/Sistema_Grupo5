@@ -1,13 +1,13 @@
 [
     {
+        "id_curso": 1,
         "id_unidad": 1,
         "id_plantilla": 1,
         "id_carrera": 1,
         "nombre_carrera": "sistema",
-        "nombre_plantilla": "modulo",
         "nombre_unidad": "computo",
-        "descripcion": "ds",
-        "orden": 1,
+        "nombre_curso": "2",
+        "descripcion": "",
         "estado": "Activo"
     }
 ]

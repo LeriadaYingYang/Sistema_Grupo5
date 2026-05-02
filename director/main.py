@@ -2,6 +2,12 @@ from director.carreras.registrar_carrera import registrar_carrera
 from director.salones.registrar_salon import registrar_salon
 from director.plantillas.crear_plantilla import crear_plantilla
 from director.unidades.registrar_unidad import registrar_unidad
+from director.cursos.registrar_curso import registrar_curso
+from director.notas.crear_tipo_nota import crear_tipo_nota
+from director.profesores.main import menu_profesores
+from director.alumnos.main import menu_alumnos
+from director.alumnos.datos_alumnos.ver_datos_alumnos import menu_ver_datos_alumnos
+from director.profesores.datos_profesores.ver_datos_profesores import menu_ver_datos_profesores
 
 def menu_director():
     while True:
@@ -16,8 +22,8 @@ def menu_director():
 4. Registrar módulos o unidades por carrera
 5. Registrar cursos por módulo o unidad
 6. Crear tipos de notas por unidad
-7. Asignar profesores a cursos
-8. Asignar alumnos a carreras y salones
+7. Crear y Asignar profesores a cursos
+8. Crear y Asignar alumnos a carreras y salones
 9. Ver datos de alumnos
 10. Ver datos de profesores
 11. Ver notas por unidad o módulo
@@ -41,24 +47,18 @@ def menu_director():
             crear_plantilla()
         elif opcion == "4":
             registrar_unidad()
-
         elif opcion == "5":
-            print("\nRegistrar cursos por módulo o unidad")
-
+            registrar_curso()
         elif opcion == "6":
-            print("\nCrear tipos de notas por unidad")
-
+            crear_tipo_nota()
         elif opcion == "7":
-            print("\nAsignar profesores a cursos")
-
+            menu_profesores()
         elif opcion == "8":
-            print("\nAsignar alumnos a carreras y salones")
-
+            menu_alumnos()
         elif opcion == "9":
-            print("\nVer datos de alumnos")
-
+            menu_ver_datos_alumnos()
         elif opcion == "10":
-            print("\nVer datos de profesores")
+            menu_ver_datos_profesores()
 
         elif opcion == "11":
             print("\nVer notas por unidad o módulo")

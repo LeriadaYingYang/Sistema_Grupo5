@@ -3,4 +3,4 @@ def login_profesor():
     usuario = input("Usuario: ")
     password = input("Contraseña: ")
 
-    print("\nValidando acceso de profesor...")
+    print("\nValidando acceso de profesores...")

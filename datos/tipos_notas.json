@@ -1,0 +1,11 @@
+[
+    {
+        "id_tipo_nota": 1,
+        "id_unidad": 1,
+        "nombre_unidad": "computo",
+        "nombre_carrera": "sistema",
+        "nombre_nota": "ssa",
+        "porcentaje": 20.0,
+        "estado": "Activo"
+    }
+]
