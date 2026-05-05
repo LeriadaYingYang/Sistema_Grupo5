@@ -2,7 +2,6 @@ from basedatos_json import leer_json, guardar_json, generar_id
 
 RUTA_PROFESORES = "datos/profesores.json"
 
-
 def crear_profesor():#registra un nuevo profesor en el archivo profesores.json.
 
     print("\n====================================")
@@ -24,8 +23,7 @@ def crear_profesor():#registra un nuevo profesor en el archivo profesores.json.
         "dni": dni,
         "correo": correo,
         "celular": celular,
-        "estado": "Activo"
-    }
+        "estado": "Activo"}
 
     profesores.append(nuevo_profesor)
     guardar_json(RUTA_PROFESORES, profesores)

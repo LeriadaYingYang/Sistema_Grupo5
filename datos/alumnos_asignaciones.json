@@ -1,1 +1,56 @@
-[]
+[
+    {
+        "id_asignacion_alumno": 1,
+        "id_alumno": 1,
+        "nombre_alumno": "daniel francis",
+        "dni": "221",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "estado": "Activo"
+    },
+    {
+        "id_asignacion_alumno": 2,
+        "id_alumno": 3,
+        "nombre_alumno": "luis sarsd",
+        "dni": "122",
+        "id_plantilla": 2,
+        "nombre_plantilla": "2026",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "estado": "Activo"
+    },
+    {
+        "id_asignacion_alumno": 3,
+        "id_alumno": 4,
+        "nombre_alumno": "trysi ",
+        "dni": "2121",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "estado": "Activo"
+    },
+    {
+        "id_asignacion_alumno": 4,
+        "id_alumno": 6,
+        "nombre_alumno": "jhordan kol picaso",
+        "dni": "545",
+        "id_plantilla": 3,
+        "nombre_plantilla": "malla 2026",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "id_salon": 2,
+        "nombre_salon": "salon A5",
+        "turno": "NOCHE",
+        "estado": "Activo"
+    }
+]

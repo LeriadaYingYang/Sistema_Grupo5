@@ -1,6 +1,7 @@
 from director.alumnos.crear_alumno import crear_alumno
 from director.alumnos.asignar_alumno import asignar_alumno
-
+from director.alumnos.ver_datos_alumnos import menu_ver_datos_alumnos
+from director.alumnos.editar_alumno import editar_alumno
 
 def menu_alumnos():
     while True:
@@ -11,7 +12,9 @@ def menu_alumnos():
 
 1. Crear alumno
 2. Asignar alumno a carrera y salón
-3. Volver al menú director
+3. Ver datos de alumnos
+4. Editar alumno
+5. Volver al menu de director
 """)
 
         opcion = input("Seleccione una opción: ")
@@ -23,8 +26,13 @@ def menu_alumnos():
             asignar_alumno()
 
         elif opcion == "3":
-            print("\nVolviendo al menú director...")
-            break
+            menu_ver_datos_alumnos()
 
+        elif opcion == "4":
+            editar_alumno()
+
+        elif opcion == "5":
+            print("\nVolviendo al menú director.")
+            break
         else:
             print("Opción inválida.")

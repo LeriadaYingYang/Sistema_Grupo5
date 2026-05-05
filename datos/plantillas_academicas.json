@@ -2,9 +2,25 @@
     {
         "id_plantilla": 1,
         "id_carrera": 1,
-        "nombre_carrera": "sistema",
-        "nombre_plantilla": "modulo",
-        "descripcion": "primer ciclo de las ctividades de los alumnos ç",
+        "nombre_carrera": "sistemas",
+        "nombre_plantilla": "malla 2025",
+        "descripcion": "",
+        "estado": "Activo"
+    },
+    {
+        "id_plantilla": 2,
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "nombre_plantilla": "2026",
+        "descripcion": "ds",
+        "estado": "Activo"
+    },
+    {
+        "id_plantilla": 3,
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_plantilla": "malla 2026",
+        "descripcion": "malla recien creada",
         "estado": "Activo"
     }
 ]

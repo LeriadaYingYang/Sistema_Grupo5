@@ -24,8 +24,7 @@ def crear_alumno():#registra un alumno con sus datos personales.
         "dni": dni,
         "correo": correo,
         "celular": celular,
-        "estado": "Activo"
-    }
+        "estado": "Activo"}
 
     alumnos.append(nuevo_alumno)
     guardar_json(RUTA_ALUMNOS, alumnos)

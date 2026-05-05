@@ -1,1 +1,20 @@
-[]
+[
+    {
+        "id_profesor": 1,
+        "nombres": "jose",
+        "apellidos": "robert",
+        "dni": "1221",
+        "correo": "2121",
+        "celular": "2121",
+        "estado": "Activo"
+    },
+    {
+        "id_profesor": 2,
+        "nombres": "roberto",
+        "apellidos": "sanchez",
+        "dni": "232321",
+        "correo": "34324",
+        "celular": "2321312",
+        "estado": "Activo"
+    }
+]

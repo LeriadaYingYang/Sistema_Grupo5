@@ -3,21 +3,15 @@ from basedatos_json import leer_json
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 
+def obtener_asignacion(alumno_id, asignaciones):#busca la asignación activa de un alumno.
 
-def obtener_asignacion(alumno_id, asignaciones):
-    """
-    Busca la asignación activa de un alumno.
-    """
     for asignacion in asignaciones:
         if asignacion["id_alumno"] == alumno_id and asignacion["estado"] == "Activo":
             return asignacion
     return None
 
+def mostrar_alumno(alumno, asignacion):#muestra los datos de un alumno de forma ordenada.
 
-def mostrar_alumno(alumno, asignacion):
-    """
-    Muestra los datos de un alumno de forma ordenada.
-    """
     print("\n-----------------------------")
     print(f"ID: {alumno['id_alumno']}")
     print(f"Nombre: {alumno['nombres']} {alumno['apellidos']}")
@@ -33,11 +27,8 @@ def mostrar_alumno(alumno, asignacion):
         print("Carrera: No asignada")
         print("Salón: No asignado")
 
+def ver_todos_alumnos(alumnos, asignaciones):#muestra todos los alumnos activos.
 
-def ver_todos_alumnos(alumnos, asignaciones):
-    """
-    Muestra todos los alumnos activos.
-    """
     encontrados = 0
 
     for alumno in alumnos:
@@ -49,11 +40,7 @@ def ver_todos_alumnos(alumnos, asignaciones):
     if encontrados == 0:
         print("No hay alumnos activos registrados.")
 
-
-def ver_por_carrera_y_salon(alumnos, asignaciones):
-    """
-    Primero muestra carreras, luego salones, y finalmente alumnos del salón elegido.
-    """
+def ver_por_carrera_y_salon(alumnos, asignaciones):#primero muestra carreras, luego salones, y finalmente alumnos del salón elegido.
 
     carreras = []
 
@@ -61,8 +48,7 @@ def ver_por_carrera_y_salon(alumnos, asignaciones):
         if asignacion["estado"] == "Activo":
             carrera = {
                 "id_carrera": asignacion["id_carrera"],
-                "nombre_carrera": asignacion["nombre_carrera"]
-            }
+                "nombre_carrera": asignacion["nombre_carrera"]}
 
             if carrera not in carreras:
                 carreras.append(carrera)
@@ -88,8 +74,7 @@ def ver_por_carrera_y_salon(alumnos, asignaciones):
             salon = {
                 "id_salon": asignacion["id_salon"],
                 "nombre_salon": asignacion["nombre_salon"],
-                "turno": asignacion["turno"]
-            }
+                "turno": asignacion["turno"]}
 
             if salon not in salones:
                 salones.append(salon)
@@ -103,8 +88,7 @@ def ver_por_carrera_y_salon(alumnos, asignaciones):
         print(
             f"ID: {salon['id_salon']} | "
             f"Salón: {salon['nombre_salon']} | "
-            f"Turno: {salon['turno']}"
-        )
+            f"Turno: {salon['turno']}")
 
     try:
         id_salon = int(input("\nIngrese ID de salón: "))
@@ -129,11 +113,8 @@ def ver_por_carrera_y_salon(alumnos, asignaciones):
     if encontrados == 0:
         print("No hay alumnos en ese salón.")
 
+def buscar_por_nombre(alumnos, asignaciones):#busca alumnos por nombre o apellido.
 
-def buscar_por_nombre(alumnos, asignaciones):
-    """
-    Busca alumnos por nombre o apellido.
-    """
     texto = input("Ingrese nombre o apellido a buscar: ").lower()
     encontrados = 0
 
@@ -148,11 +129,8 @@ def buscar_por_nombre(alumnos, asignaciones):
     if encontrados == 0:
         print("No se encontraron alumnos con ese nombre.")
 
+def buscar_por_dni(alumnos, asignaciones):#busca un alumno por DNI exacto.
 
-def buscar_por_dni(alumnos, asignaciones):
-    """
-    Busca un alumno por DNI exacto.
-    """
     dni = input("Ingrese DNI del alumno: ")
     encontrado = False
 
@@ -166,11 +144,7 @@ def buscar_por_dni(alumnos, asignaciones):
     if not encontrado:
         print("No se encontró un alumno con ese DNI.")
 
-
-def menu_ver_datos_alumnos():
-    """
-    Submenú para consultar datos de alumnos.
-    """
+def menu_ver_datos_alumnos():#submenú para consultar datos de alumnos.
 
     while True:
         alumnos = leer_json(RUTA_ALUMNOS)
@@ -203,7 +177,7 @@ def menu_ver_datos_alumnos():
             buscar_por_dni(alumnos, asignaciones)
 
         elif opcion == "5":
-            print("\nVolviendo al menú director...")
+            print("\nVolviendo al menú director")
             break
 
         else:

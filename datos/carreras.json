@@ -1,16 +1,16 @@
 [
     {
         "id_carrera": 1,
-        "nombre": "sistema",
-        "descripcion": "computo general",
-        "duracion_meses": 2,
+        "nombre": "sistemas",
+        "descripcion": "computacion",
+        "duracion_meses": 12,
         "estado": "Activo"
     },
     {
         "id_carrera": 2,
-        "nombre": "cocinca",
-        "descripcion": "master chef",
-        "duracion_meses": 2,
+        "nombre": "Administracion ",
+        "descripcion": "administracion de empresas",
+        "duracion_meses": 12,
         "estado": "Activo"
     }
 ]
