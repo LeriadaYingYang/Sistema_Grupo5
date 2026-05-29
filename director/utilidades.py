@@ -1,3 +1,5 @@
+import os# limpia la pantalla de la consola
+
 def imprimir_titulo(texto):  # muestra un título centrado con marcos
     ancho = 40
 
@@ -5,5 +7,12 @@ def imprimir_titulo(texto):  # muestra un título centrado con marcos
     print(texto.center(ancho))
     print("-" * ancho)
 
-def pausa():  # espera que el usuario presione enter
-    input("\nPresione Enter para continuar...")
+def imprimir_menu(opciones):  #muestra una lista de opciones numeradas
+    for numero, opcion in enumerate(opciones, start=1):
+        print(f"{numero}. {opcion}")
+
+def pausa():  #espera que el usuario presione enter
+    input("\nPresione Enter para continuar")
+
+def limpiar_pantalla():# limpia la pantalla de la consola
+    os.system("cls" if os.name == "nt" else "clear")

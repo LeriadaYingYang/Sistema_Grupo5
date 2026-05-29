@@ -1,5 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
-from director.utilidades import imprimir_titulo, pausa
+from director.utilidades import imprimir_titulo
 RUTA_CARRERAS = "datos/carreras.json"
 
 def registrar_carrera():  #registra una nueva carrera académica

@@ -2,18 +2,13 @@ from director.profesores.crear_profesor import crear_profesor
 from director.profesores.asignar_profesor import asignar_profesor
 from director.profesores.ver_datos_profesores import menu_ver_datos_profesores
 from director.profesores.editar_profesor import editar_profesor
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_profesores():  #muestra el menú principal para administrar profesores
     while True:
         imprimir_titulo("GESTIÓN DE PROFESORES")
-        print("""
-1. Crear profesor
-2. Asignar profesor a salón
-3. Ver datos de profesores
-4. Editar datos de profesores
-5. Volver al menú director
-""")
+        imprimir_menu(["Crear Profesor", "Asignar Profesor a Salon", "Ver datos de Profesores",
+                       "Editar Datos de Profesor", "Volver"])
 
         opcion = input("Seleccione una opción: ")  #solicita la opción que desea ejecutar el usuario
         if opcion == "1":  #abre el registro para crear un nuevo profesor

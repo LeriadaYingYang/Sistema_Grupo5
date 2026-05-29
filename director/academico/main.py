@@ -3,19 +3,14 @@ from director.academico.salones import registrar_salon, ver_salones
 from director.academico.plantilla import crear_plantilla, ver_plantillas
 from director.academico.unidades import registrar_unidad, ver_unidades
 from director.academico.modulos import registrar_modulo, ver_modulos
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_academico():  #muestra el menú principal académico
     while True:
         imprimir_titulo("GESTIÓN ACADÉMICA")
-        print("""
-1. Carreras
-2. Salones
-3. Plantilla académica
-4. Unidades / ciclos
-5. Módulos
-6. Volver al menú director
-""")
+        imprimir_menu(["Carreras", "Salones", "Plantilla Académica", "Unidades / Ciclos",
+                       "Modulos","Volver"])
+
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #abre el menú de carreras
             menu_carreras()
@@ -36,11 +31,7 @@ def menu_academico():  #muestra el menú principal académico
 def menu_carreras():  #muestra el menú de carreras
     while True:
         imprimir_titulo("CARRERAS")
-        print("""
-1. Registrar carrera
-2. Ver carreras
-3. Volver
-""")
+        imprimir_menu(["Registrar carrera", "Ver carrera", "Volver"])
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #registra una nueva carrera
             registrar_carrera()
@@ -54,11 +45,7 @@ def menu_carreras():  #muestra el menú de carreras
 def menu_salones():  #muestra el menú de salones
     while True:
         imprimir_titulo("SALONES")
-        print("""
-1. Registrar salón
-2. Ver salones
-3. Volver
-""")
+        imprimir_menu(["Crear salon", "Ver salon", "Volver"])
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #registra un nuevo salón
             registrar_salon()
@@ -72,11 +59,7 @@ def menu_salones():  #muestra el menú de salones
 def menu_plantillas():  #muestra el menú de plantillas académicas
     while True:
         imprimir_titulo("PLANTILLA ACADÉMICA")
-        print("""
-1. Crear plantilla
-2. Ver plantillas
-3. Volver
-""")
+        imprimir_menu(["Crear plantilla", "Ver plantilla", "Volver"])
         opcion = input("Seleccione una opción: ")  # solicita una opción al usuario
         if opcion == "1":  #crea una nueva plantilla académica
             crear_plantilla()
@@ -90,11 +73,8 @@ def menu_plantillas():  #muestra el menú de plantillas académicas
 def menu_unidades():  #muestra el menú de unidades o ciclos
     while True:
         imprimir_titulo("UNIDADES / CICLOS")
-        print("""
-1. Registrar unidad o ciclo
-2. Ver unidades
-3. Volver
-""")
+        imprimir_menu(["Registrar unidades o Ciclo", "Ver unidades", "Volver"])
+
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #registra una nueva unidad o ciclo
             registrar_unidad()
@@ -108,11 +88,7 @@ def menu_unidades():  #muestra el menú de unidades o ciclos
 def menu_modulos():  #muestra el menú de módulos
     while True:
         imprimir_titulo("MÓDULOS")
-        print("""
-1. Registrar módulo
-2. Ver módulos
-3. Volver
-""")
+        imprimir_menu(["Crear modulo", "Ver modulo", "Volver"])
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #registra un nuevo módulo
             registrar_modulo()
