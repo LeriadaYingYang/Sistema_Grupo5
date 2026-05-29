@@ -1,0 +1,24 @@
+[
+    {
+        "id_profesor_salon": 1,
+        "id_profesor": 1,
+        "nombre_profesor": "jose robert",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "estado": "Activo"
+    },
+    {
+        "id_profesor_salon": 2,
+        "id_profesor": 2,
+        "nombre_profesor": "roberto sanchez",
+        "id_salon": 2,
+        "nombre_salon": "salon A5",
+        "turno": "NOCHE",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "estado": "Activo"
+    }
+]
