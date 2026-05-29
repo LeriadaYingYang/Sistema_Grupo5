@@ -52,5 +52,14 @@
         "correo": "jhorda@",
         "celular": "321321345",
         "estado": "Activo"
+    },
+    {
+        "id_alumno": 7,
+        "nombres": "valeria bianca",
+        "apellidos": "castilla",
+        "dni": "123",
+        "correo": "valeri.gmail.com",
+        "celular": "12232",
+        "estado": "Activo"
     }
 ]

@@ -3,14 +3,12 @@ from director.academico.salones import registrar_salon, ver_salones
 from director.academico.plantilla import crear_plantilla, ver_plantillas
 from director.academico.unidades import registrar_unidad, ver_unidades
 from director.academico.modulos import registrar_modulo, ver_modulos
+from director.utilidades import imprimir_titulo
 
-def menu_academico():
+def menu_academico():  #muestra el menú principal académico
     while True:
+        imprimir_titulo("GESTIÓN ACADÉMICA")
         print("""
-====================================
-        GESTIÓN ACADÉMICA
-====================================
-
 1. Carreras
 2. Salones
 3. Plantilla académica
@@ -18,158 +16,109 @@ def menu_academico():
 5. Módulos
 6. Volver al menú director
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
+        if opcion == "1":  #abre el menú de carreras
             menu_carreras()
-
-        elif opcion == "2":
+        elif opcion == "2":  #abre el menú de salones
             menu_salones()
-
-        elif opcion == "3":
+        elif opcion == "3":  #abre el menú de plantillas académicas
             menu_plantillas()
-
-        elif opcion == "4":
+        elif opcion == "4":  #abre el menú de unidades o ciclos
             menu_unidades()
-
-        elif opcion == "5":
+        elif opcion == "5":  #abre el menú de módulos
             menu_modulos()
-
-        elif opcion == "6":
+        elif opcion == "6":  #regresa al menú del director
             print("\nVolviendo al menú director")
             break
-
-        else:
+        else:  # muestra mensaje si la opción no existe
             print("Opción inválida.")
 
-def menu_carreras():
+def menu_carreras():  #muestra el menú de carreras
     while True:
+        imprimir_titulo("CARRERAS")
         print("""
-====================================
-            CARRERAS
-====================================
-
 1. Registrar carrera
 2. Ver carreras
 3. Volver
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
+        if opcion == "1":  #registra una nueva carrera
             registrar_carrera()
-
-        elif opcion == "2":
+        elif opcion == "2":  #muestra las carreras registradas
             ver_carreras()
-
-        elif opcion == "3":
+        elif opcion == "3":  #vuelve al menú académico
             break
-
-        else:
+        else:  #muestra mensaje si la opción no existe
             print("Opción inválida.")
 
-def menu_salones():
+def menu_salones():  #muestra el menú de salones
     while True:
+        imprimir_titulo("SALONES")
         print("""
-====================================
-            SALONES
-====================================
-
 1. Registrar salón
 2. Ver salones
 3. Volver
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
+        if opcion == "1":  #registra un nuevo salón
             registrar_salon()
-
-        elif opcion == "2":
+        elif opcion == "2":  #muestra los salones registrados
             ver_salones()
-
-        elif opcion == "3":
+        elif opcion == "3":  #vuelve al menú académico
             break
-
-        else:
+        else:  #muestra mensaje si la opción no existe
             print("Opción inválida.")
 
-def menu_plantillas():
+def menu_plantillas():  #muestra el menú de plantillas académicas
     while True:
+        imprimir_titulo("PLANTILLA ACADÉMICA")
         print("""
-====================================
-        PLANTILLA ACADÉMICA
-====================================
-
 1. Crear plantilla
 2. Ver plantillas
 3. Volver
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  # solicita una opción al usuario
+        if opcion == "1":  #crea una nueva plantilla académica
             crear_plantilla()
-
-        elif opcion == "2":
+        elif opcion == "2":  # muestra las plantillas registradas
             ver_plantillas()
-
-        elif opcion == "3":
+        elif opcion == "3":  # vuelve al menú académico
             break
-
-        else:
+        else:  #muestra mensaje si la opción no existe
             print("Opción inválida.")
 
-def menu_unidades():
+def menu_unidades():  #muestra el menú de unidades o ciclos
     while True:
+        imprimir_titulo("UNIDADES / CICLOS")
         print("""
-====================================
-        UNIDADES / CICLOS
-====================================
-
 1. Registrar unidad o ciclo
 2. Ver unidades
 3. Volver
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
+        if opcion == "1":  #registra una nueva unidad o ciclo
             registrar_unidad()
-
-        elif opcion == "2":
+        elif opcion == "2":  #muestra las unidades registradas
             ver_unidades()
-
-        elif opcion == "3":
+        elif opcion == "3":  #vuelve al menú académico
             break
-
-        else:
+        else:  #muestra mensaje si la opción no existe
             print("Opción inválida.")
 
-def menu_modulos():
+def menu_modulos():  #muestra el menú de módulos
     while True:
+        imprimir_titulo("MÓDULOS")
         print("""
-====================================
-            MÓDULOS
-====================================
-
 1. Registrar módulo
 2. Ver módulos
 3. Volver
 """)
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
+        if opcion == "1":  #registra un nuevo módulo
             registrar_modulo()
-
-        elif opcion == "2":
+        elif opcion == "2":  #muestra los módulos registrados
             ver_modulos()
-
-        elif opcion == "3":
+        elif opcion == "3":  #vuelve al menú académico
             break
-
-        else:
+        else:  #muestra mensaje si la opción no existe
             print("Opción inválida.")
-

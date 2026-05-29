@@ -2,22 +2,15 @@ from basedatos_json import leer_json, guardar_json, generar_id
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
-
-def crear_alumno():#registra un alumno con sus datos personales.
-
-    print("\n====================================")
-    print("          REGISTRAR ALUMNO")
-    print("====================================")
-
-    alumnos = leer_json(RUTA_ALUMNOS)
-
-    nombres = input("Nombres: ")
-    apellidos = input("Apellidos: ")
-    dni = input("DNI: ")
-    correo = input("Correo: ")
-    celular = input("Celular: ")
-
-    nuevo_alumno = {
+def crear_alumno():  #registra un alumno con sus datos personales
+    print("\n--- REGISTRAR ALUMNO ---")
+    alumnos = leer_json(RUTA_ALUMNOS)  #carga los alumnos registrados
+    nombres = input("Nombres: ")  #solicita los nombres del alumno
+    apellidos = input("Apellidos: ")  #solicita los apellidos del alumno
+    dni = input("DNI: ")  #solicita el dni del alumno
+    correo = input("Correo: ")  #solicita el correo del alumno
+    celular = input("Celular: ")  #solicita el celular del alumno
+    nuevo_alumno = {  #crea el diccionario con los datos del nuevo alumno
         "id_alumno": generar_id(alumnos, "id_alumno"),
         "nombres": nombres,
         "apellidos": apellidos,
@@ -25,9 +18,7 @@ def crear_alumno():#registra un alumno con sus datos personales.
         "correo": correo,
         "celular": celular,
         "estado": "Activo"}
-
-    alumnos.append(nuevo_alumno)
-    guardar_json(RUTA_ALUMNOS, alumnos)
-
+    alumnos.append(nuevo_alumno)  # agrega el alumno a la lista
+    guardar_json(RUTA_ALUMNOS,alumnos) # guarda la lista actualizada en el archivo json
     print("\nAlumno registrado correctamente.")
     print(f"ID alumno generado: {nuevo_alumno['id_alumno']}")
