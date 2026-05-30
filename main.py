@@ -1,6 +1,6 @@
 from director.login_director import login_director
 from secretaria.login_secretaria import login_secretaria
-from profesor.login_profesor import login_profesor
+from Profesor.login_profesor import login_profesor
 from alumno.login_alumno import login_alumno
 from admin_sistema.login_admin import login_admin
 from director.utilidades import imprimir_titulo, imprimir_menu, limpiar_pantalla
