@@ -3,4 +3,4 @@ def login_secretaria():
     usuario = input("Usuario: ")
     password = input("Contraseña: ")
 
-    print("\nValidando acceso de secretaria...")
+    print("\nValidando acceso de secretaria...")  
