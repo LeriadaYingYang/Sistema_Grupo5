@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_UNIDADES = "datos/unidades.json"
 RUTA_MODULOS = "datos/modulos.json"
@@ -23,13 +24,13 @@ def tablilla_ya_existe(tablillas, id_unidad, id_modulo):  #verifica si la tablil
     return False
 
 def mostrar_carreras(carreras):  #muestra las carreras disponibles
-    print("\n--- CARRERAS DISPONIBLES ---")
+    imprimir_titulo("CARRERAS DISPONIBLES")
     for carrera in carreras:
         if carrera["estado"] == "Activo":
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
 
 def mostrar_plantillas(plantillas, id_carrera):  #muestra plantillas de la carrera
-    print("\n--- PLANTILLAS DE LA CARRERA ---")
+    imprimir_titulo("PLANTILLAS DE LA CARRERA")
     encontrados = 0
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo" and plantilla["id_carrera"] == id_carrera:
@@ -39,7 +40,7 @@ def mostrar_plantillas(plantillas, id_carrera):  #muestra plantillas de la carre
         print("No hay plantillas para esta carrera.")
 
 def mostrar_salones(salones, id_carrera):  #muestra salones de la carrera
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     encontrados = 0
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -49,7 +50,7 @@ def mostrar_salones(salones, id_carrera):  #muestra salones de la carrera
         print("No hay salones para esta carrera.")
 
 def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra unidades disponibles
-    print("\n--- UNIDADES DISPONIBLES ---")
+    imprimir_titulo("UNIDADES DISPONIBLES")
     encontrados = 0
     for unidad in unidades:
         if (
@@ -62,7 +63,7 @@ def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra unidades dispo
         print("No hay unidades para ese salón y plantilla.")
 
 def mostrar_modulos_por_unidad(modulos, id_unidad):  #muestra módulos de la unidad
-    print("\n--- MÓDULOS DE LA UNIDAD ---")
+    imprimir_titulo("MÓDULOS DE LA UNIDAD")
     encontrados = 0
     for modulo in modulos:
         if modulo["estado"] == "Activo" and modulo["id_unidad"] == id_unidad:
@@ -89,7 +90,7 @@ def pedir_notas_tablilla():  #solicita las notas que tendrá la tablilla
     return notas
 
 def crear_tablilla_notas():  #crea una tablilla de notas para un módulo
-    print("\n--- CREAR TABLILLA DE NOTAS ---")
+    imprimir_titulo("CREAR TABLILLA DE NOTAS")
     carreras = leer_json(RUTA_CARRERAS)
     plantillas = leer_json(RUTA_PLANTILLAS)
     salones = leer_json(RUTA_SALONES)

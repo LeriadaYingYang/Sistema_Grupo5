@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json
+from director.utilidades import imprimir_titulo
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
@@ -32,7 +33,7 @@ def elegir_alumno(encontrados):  #permite seleccionar un alumno de la lista enco
     if len(encontrados) == 0:
         print("No se encontraron alumnos.")
         return None
-    print("\n--- ALUMNOS ENCONTRADOS ---")
+    imprimir_titulo("ALUMNOS ENCONTRADOS")
     for alumno in encontrados:
         mostrar_alumno(alumno)
     try:

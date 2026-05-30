@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_CARRERAS = "datos/carreras.json"
@@ -12,19 +13,19 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
             print(f"ID: {plantilla['id_plantilla']} | Carrera: {plantilla['nombre_carrera']} | Plantilla: {plantilla['nombre_plantilla']}")
 
 def mostrar_carreras(carreras, id_carrera_plantilla):  #muestra la carrera de la plantilla
-    print("\n--- CARRERA DE LA PLANTILLA ---")
+    imprimir_titulo("CARRERA DE LA PLANTILLA")
     for carrera in carreras:
         if carrera["estado"] == "Activo" and carrera["id_carrera"] == id_carrera_plantilla:
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra los salones de la carrera
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     encontrados = 0
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -64,7 +65,7 @@ def pedir_detalle_horario():  #solicita los días y horarios
     return dias_horas
 
 def configurar_horarios():  #configura horarios para una plantilla y salón
-    print("\n--- CONFIGURAR HORARIOS ---")
+    imprimir_titulo("CONFIGURAR HORARIOS")
     plantillas = leer_json(RUTA_PLANTILLAS)
     carreras = leer_json(RUTA_CARRERAS)
     salones = leer_json(RUTA_SALONES)

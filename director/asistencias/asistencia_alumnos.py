@@ -1,5 +1,6 @@
 from datetime import datetime
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
@@ -15,13 +16,13 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
             print(f"ID: {plantilla['id_plantilla']} | Carrera: {plantilla['nombre_carrera']} | Plantilla: {plantilla['nombre_plantilla']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra los salones de una carrera
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     encontrados = 0
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -37,7 +38,7 @@ def obtener_horario(horarios, id_plantilla, id_salon):  #obtiene el horario de u
     return None
 
 def mostrar_horario(horario):  #muestra el detalle del horario
-    print("\n--- HORARIO DEL SALÓN ---")
+    imprimir_titulo("HORARIO DEL SALÓN")
     for dia in horario["dias_horas"]:
         print(f"{dia['orden']}. {dia['dia']} | {dia['hora_inicio']} - {dia['hora_fin']}")
 
@@ -81,7 +82,7 @@ def pedir_estado_asistencia(nombre_alumno):  #solicita el estado de asistencia
             print("Opción inválida.")
 
 def registrar_asistencia_alumnos():  #registra la asistencia de alumnos
-    print("\n--- REGISTRAR ASISTENCIA ALUMNOS ---")
+    imprimir_titulo("REGISTRAR ASISTENCIA ALUMNOS")
     plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas
     salones = leer_json(RUTA_SALONES)  #carga los salones
     horarios = leer_json(RUTA_HORARIOS)  #carga los horarios
@@ -140,7 +141,8 @@ def registrar_asistencia_alumnos():  #registra la asistencia de alumnos
     if len(alumnos_salon) == 0:
         print("No hay alumnos asignados a este salón.")
         return
-    print("\n--- REGISTRO DE ASISTENCIA ---")
+
+    imprimir_titulo("REGISTRO DE ASISTENCIA")
     for alumno in alumnos_salon:
         if asistencia_ya_registrada(asistencias, alumno["id_alumno"], fecha, horario["id_horario"], orden_dia):
             print(f"\n{alumno['nombres']} {alumno['apellidos']} ya tiene asistencia registrada.")

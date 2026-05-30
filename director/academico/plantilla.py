@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_CARRERAS = "datos/carreras.json"
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
@@ -10,13 +11,15 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def crear_plantilla():  #crea una nueva plantilla académica para una carrera
-    print("\n--- CREAR PLANTILLA ACADÉMICA ---")
+    imprimir_titulo("CREAR PLANTILLA ACADÉMICA")
+
     carreras = leer_json(RUTA_CARRERAS)  #carga las carreras registradas
     plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
     if len(carreras) == 0:  #valida si existen carreras registradas
         print("Primero debe registrar carreras.")
         return
-    print("\n--- CARRERAS DISPONIBLES ---")
+
+    imprimir_titulo("CARRERAS DISPONIBLES")
     for carrera in carreras:  #recorre la lista de carreras
         if carrera["estado"] == "Activo":  #muestra solo carreras activas
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
@@ -44,7 +47,7 @@ def crear_plantilla():  #crea una nueva plantilla académica para una carrera
     print(f"ID generado: {nueva_plantilla['id_plantilla']}")
 
 def ver_plantillas():  #muestra las plantillas académicas registradas
-    print("\n--- LISTA DE PLANTILLAS ---")
+    imprimir_titulo("LISTA DE  PLANILLAS")
     plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
     if len(plantillas) == 0:  #valida si no existen plantillas registradas
         print("No hay plantillas registradas.")

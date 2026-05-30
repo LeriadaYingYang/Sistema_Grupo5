@@ -1,4 +1,5 @@
 from basedatos_json import leer_json
+from director.utilidades import imprimir_titulo
 
 RUTA_ASISTENCIA_ALUMNOS = "datos/asistencia_alumnos.json"
 RUTA_ALUMNOS = "datos/alumnos.json"
@@ -13,7 +14,7 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
             print(
@@ -22,7 +23,7 @@ def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles
                 f"Plantilla: {plantilla['nombre_plantilla']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra los salones de la carrera
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
             print(
@@ -46,7 +47,7 @@ def buscar_alumno_aproximado_en_asistencias(asistencias):  #busca alumnos por no
     if len(encontrados) == 0:
         print("No se encontraron alumnos.")
         return None
-    print("\n--- ALUMNOS ENCONTRADOS ---")
+    imprimir_titulo("ALUMNOS ENCONTRADOS")
     for alumno in encontrados:
         print(
             f"ID: {alumno['id_alumno']} | "
@@ -114,7 +115,7 @@ def ver_por_alumno():  #muestra asistencia de un alumno
     alumno = buscar_alumno_aproximado_en_asistencias(asistencias)
     if alumno is None:
         return
-    print("\n--- ASISTENCIA DEL ALUMNO ---")
+    imprimir_titulo("ASISTENCIA DEL ALUMNO")
     encontrados = 0
     for asistencia in asistencias:
         if asistencia["estado"] == "Activo" and asistencia["id_alumno"] == alumno["id_alumno"]:
@@ -133,7 +134,7 @@ def ver_por_salon():  #muestra asistencia por salón
         print("No hay asistencias para ese salón.")
         return
     fecha = input("\nFiltrar por fecha YYYY-MM-DD (ENTER para ver todas): ").strip()
-    print("\n--- ASISTENCIAS DEL SALÓN ---")
+    imprimir_titulo("ASISTENCIAS DEL SALÓN")
     encontrados = 0
     for asistencia in asistencias_filtradas:
         if fecha == "" or asistencia["fecha"] == fecha:
@@ -165,7 +166,7 @@ def ver_por_fecha():  #muestra asistencia por fecha
             asistencia
             for asistencia in asistencias_fecha
             if asistencia["id_alumno"] == alumno["id_alumno"]]
-    print("\n--- ASISTENCIAS POR FECHA ---")
+    imprimir_titulo("ASISTENCIAS POR FECHA")
     for asistencia in asistencias_fecha:
         imprimir_asistencia(asistencia)
 
@@ -187,7 +188,7 @@ def ver_resumen_porcentaje():  # muestra resumen de asistencia
             asistencia
             for asistencia in asistencias_filtradas
             if asistencia["id_alumno"] == alumno["id_alumno"]]
-    print("\n--- RESUMEN DE ASISTENCIA ---")
+    imprimir_titulo("RESUMEN DE ASISTENCIA")
     resumen = {}
     for asistencia in asistencias_filtradas:
         if asistencia["estado"] != "Activo":

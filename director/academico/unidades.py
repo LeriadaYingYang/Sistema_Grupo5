@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_SALONES = "datos/salones.json"
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
@@ -11,7 +12,7 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_carreras_desde_salones(salones):  #muestra las carreras disponibles a partir de los salones
-    print("\n--- CARRERAS DISPONIBLES ---")
+    imprimir_titulo("CARRERAS DISPONIBLES")
     carreras_mostradas = []  #almacena las carreras ya mostradas
     for salon in salones:
         if salon["estado"] == "Activo":
@@ -25,7 +26,7 @@ def mostrar_carreras_desde_salones(salones):  #muestra las carreras disponibles 
                     f"Carrera: {carrera['nombre_carrera']}")
 
 def mostrar_plantillas_por_carrera(plantillas, id_carrera):  #muestra las plantillas de una carrera
-    print("\n--- PLANTILLAS DE LA CARRERA ---")
+    imprimir_titulo("PLANTILLA DE LA CARRERA")
     encontrados = 0  #cuenta cuántas plantillas fueron encontradas
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo" and plantilla["id_carrera"] == id_carrera:
@@ -45,7 +46,7 @@ def salon_ya_tiene_unidades(unidades, id_salon, id_plantilla):  #verifica si un 
     return False
 
 def mostrar_salones_disponibles(salones,unidades,id_carrera,id_plantilla):  #muestra los salones que aún no tienen unidades registradas
-    print("\n--- SALONES DISPONIBLES SIN UNIDADES ---")
+    imprimir_titulo("SALONES DISPONIBLES SIN UNIDADES")
     encontrados = 0  #cuenta cuántos salones están disponibles
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -63,7 +64,7 @@ def mostrar_salones_disponibles(salones,unidades,id_carrera,id_plantilla):  #mue
             "Todos ya tienen unidades para esta plantilla.")
 
 def registrar_unidad():  #registra unidades o ciclos para un salón y plantilla
-    print("\n--- REGISTRAR UNIDADES / CICLOS ---")
+    imprimir_titulo("REGISTRAR UNIDADES / CICLOS")
     salones = leer_json(RUTA_SALONES)  #carga los salones registrados
     plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
     unidades = leer_json(RUTA_UNIDADES)  #carga las unidades registradas
@@ -133,7 +134,7 @@ def registrar_unidad():  #registra unidades o ciclos para un salón y plantilla
     print("\nUnidades/ciclos registrados correctamente.")
 
 def ver_unidades():  #muestra las unidades registradas
-    print("\n--- VER UNIDADES / CICLOS ---")
+    imprimir_titulo("VER UNIDADES / CICLOS")
     salones = leer_json(RUTA_SALONES)  #carga los salones registrados
     plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
     unidades = leer_json(RUTA_UNIDADES)  #carga las unidades registradas
@@ -159,7 +160,7 @@ def ver_unidades():  #muestra las unidades registradas
     if plantilla is None or plantilla["id_carrera"] != id_carrera:
         print("Plantilla no válida.")
         return
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
             print(
@@ -175,7 +176,7 @@ def ver_unidades():  #muestra las unidades registradas
     if salon is None or salon["id_carrera"] != id_carrera:
         print("Salón no válido.")
         return
-    print("\n--- UNIDADES DEL SALÓN Y PLANTILLA ---")
+    imprimir_titulo("UNIDADES DEL SALON Y PLANTILLA")
     encontrados = 0  #cuenta las unidades encontradas
     for unidad in unidades:
         if (unidad["estado"] == "Activo"

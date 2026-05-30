@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json
+from director.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 
@@ -33,7 +34,7 @@ def elegir_profesor(encontrados):  #permite elegir qué profesor se editará de 
     if len(encontrados) == 0:
         print("No se encontraron profesores.")
         return None
-    print("\n--- PROFESORES ENCONTRADOS ---")
+    imprimir_titulo("PROFESORES ENCONTRADOS")
     for profesor in encontrados:
         mostrar_profesor(profesor)
     try:
@@ -87,7 +88,7 @@ Profesor seleccionado:
 
 
 def editar_profesor():  #busca un profesor y guarda los cambios realizados en sus datos
-    print("\n--- EDITAR DATOS DE PROFESOR ---")
+    imprimir_titulo("EDITAR DATOS DE PROFESOR")
     profesores = leer_json(RUTA_PROFESORES)  # carga la lista de profesores registrados
     if len(profesores) == 0:
         print("No hay profesores registrados.")

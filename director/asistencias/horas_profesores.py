@@ -1,5 +1,6 @@
 from datetime import datetime
 from basedatos_json import leer_json
+from director.utilidades import imprimir_titulo
 
 RUTA_ASISTENCIA_PROFESORES = "datos/asistencia_profesores.json"
 
@@ -11,7 +12,7 @@ def obtener_unicos(lista):  #elimina elementos repetidos
     return resultado
 
 def mostrar_profesores(asistencias):  #muestra profesores con asistencia registrada
-    print("\n--- PROFESORES CON ASISTENCIA ---")
+    imprimir_titulo("PROFESORES CON ASISTENCIA")
     profesores = []
     for asistencia in asistencias:
         if asistencia["estado"] == "Activo":
@@ -31,7 +32,7 @@ def filtrar_por_profesor(asistencias, id_profesor):  #filtra por profesor
         and a["id_profesor"] == id_profesor]
 
 def mostrar_plantillas(asistencias):  #muestra plantillas registradas
-    print("\n--- PLANTILLAS REGISTRADAS ---")
+    imprimir_titulo("PLANTILLAS REGISTRADAS")
     plantillas = []
     for a in asistencias:
         plantilla = {
@@ -49,7 +50,7 @@ def filtrar_por_plantilla(asistencias, id_plantilla):  #filtra por plantilla
         if a["id_plantilla"] == id_plantilla]
 
 def mostrar_salones(asistencias):  #muestra salones registrados
-    print("\n--- SALONES REGISTRADOS ---")
+    imprimir_titulo("SALONES REGISTRADOS")
     salones = []
     for a in asistencias:
         salon = {
@@ -69,7 +70,7 @@ def filtrar_por_salon(asistencias, id_salon):  #filtra por salón
         if a["id_salon"] == id_salon]
 
 def mostrar_modulos(asistencias):  #muestra módulos registrados
-    print("\n--- MÓDULOS REGISTRADOS ---")
+    imprimir_titulo("MÓDULOS REGISTRADOS")
     modulos = []
     for a in asistencias:
         modulo = {
@@ -124,8 +125,8 @@ def ver_por_dia(asistencias):  #muestra horas por día
     fechas = obtener_fechas_registradas(asistencias)
     if len(fechas) == 0:
         print("No hay fechas registradas.")
-        return
-    print("\n--- FECHAS REGISTRADAS ---")
+        return""
+    imprimir_titulo("FECHAS REGISTRADAS")
     for i, fecha in enumerate(fechas, start=1):
         print(f"{i}. {fecha}")
     try:
@@ -152,7 +153,8 @@ def ver_por_semana(asistencias):  #muestra horas por semana
     if len(meses) == 0:
         print("No hay meses registrados.")
         return
-    print("\n--- MESES REGISTRADOS ---")
+
+    imprimir_titulo("MESES REGISTRADOS")
     for i, mes in enumerate(meses, start=1):
         print(f"{i}. {mes}")
     try:
@@ -171,7 +173,7 @@ def ver_por_semana(asistencias):  #muestra horas por semana
             if semana not in semanas:
                 semanas.append(semana)
     semanas = sorted(semanas)
-    print("\n--- SEMANAS CON REGISTROS ---")
+    imprimir_titulo("SEMANAS CON REGISTROS")
     for semana in semanas:
         print(f"{semana}. Semana {semana}")
     try:
@@ -196,7 +198,7 @@ def ver_por_mes(asistencias):  #muestra horas por mes
     if len(meses) == 0:
         print("No hay meses registrados.")
         return
-    print("\n--- MESES REGISTRADOS ---")
+    imprimir_titulo("MESES REGISTRADOS")
     for i, mes in enumerate(meses, start=1):
         print(f"{i}. {mes}")
     try:
@@ -215,7 +217,7 @@ def ver_por_mes(asistencias):  #muestra horas por mes
     mostrar_detalle(resultado)
 
 def ver_horas_profesores():  #muestra reportes de horas trabajadas
-    print("\n--- HORAS TRABAJADAS DE PROFESORES ---")
+    imprimir_titulo("HORAS TRABAJADAS DE PROFESORES")
     asistencias = leer_json(RUTA_ASISTENCIA_PROFESORES)
     if len(asistencias) == 0:
         print("No hay asistencias de profesores registradas.")

@@ -12,7 +12,6 @@ def mostrar_menu_principal():
 
 def main():
     while True:
-        limpiar_pantalla()
         mostrar_menu_principal()
         opcion = input("Seleccione una opción: ")
         if opcion == "1":
@@ -31,7 +30,7 @@ def main():
             login_admin()
 
         elif opcion == "6":
-            print("\nSaliendo del sistema...")
+            print("\nSaliendo del sistema")
             break
 
         else:

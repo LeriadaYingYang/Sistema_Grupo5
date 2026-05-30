@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
@@ -13,7 +14,7 @@ def buscar_por_id(lista, campo_id, valor_id):  # busca un registro activo utiliz
     return None
 
 def mostrar_plantillas(plantillas):  # muestra las plantillas disponibles para asignar cargos extras
-    print("\n--- PLANTILLAS ---")
+    imprimir_titulo("PLANTILLAS")
 
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
@@ -23,7 +24,7 @@ def mostrar_plantillas(plantillas):  # muestra las plantillas disponibles para a
                 f"Carrera: {plantilla['nombre_carrera']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra los salones que pertenecen a la carrera seleccionada
-    print("\n--- SALONES ---")
+    imprimir_titulo("SALONES")
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
             print(
@@ -32,7 +33,7 @@ def mostrar_salones(salones, id_carrera):  #muestra los salones que pertenecen a
                 f"Turno: {salon['turno']}")
 
 def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):  # muestra los alumnos asignados al salón seleccionado
-    print("\n--- ALUMNOS DEL SALÓN ---")
+    imprimir_titulo("ALUMNOS DEL SALÓN")
     encontrados = 0
     for asignacion in asignaciones:
         if asignacion["estado"] == "Activo" and asignacion["id_salon"] == id_salon:

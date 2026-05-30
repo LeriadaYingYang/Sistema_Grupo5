@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_CARRERAS = "datos/carreras.json"
@@ -11,7 +12,7 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo utiliza
     return None
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas académicas disponibles para seleccionar
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
 
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
@@ -21,7 +22,7 @@ def mostrar_plantillas(plantillas):  #muestra las plantillas académicas disponi
                 f"Plantilla: {plantilla['nombre_plantilla']}")
 
 def mostrar_carreras(carreras, id_carrera):  #muestra la carrera asociada a la plantilla elegida
-    print("\n--- CARRERA DE LA PLANTILLA ---")
+    imprimir_titulo("CARRERA DE LA PLANTILLA")
     for carrera in carreras:
         if carrera["estado"] == "Activo" and carrera["id_carrera"] == id_carrera:
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
@@ -61,7 +62,7 @@ def pedir_frecuencia():  #permite seleccionar la frecuencia de cobro del cargo
             print("Opción inválida.")
 
 def crear_cargo_oficial():  #registra un cargo oficial que será utilizado en los pagos de alumnos
-    print("\n--- CREAR CARGO OFICIAL ---")
+    imprimir_titulo("CREAR CARGO OFICIAL")
     plantillas = leer_json(RUTA_PLANTILLAS)
     carreras = leer_json(RUTA_CARRERAS)
     cargos = leer_json(RUTA_CARGOS_OFICIALES)
@@ -118,7 +119,7 @@ def crear_cargo_oficial():  #registra un cargo oficial que será utilizado en lo
     print("\nCargo oficial creado correctamente.")
 
 def ver_cargos_oficiales():  # muestra todos los cargos oficiales registrados en el sistema
-    print("\n--- CARGOS OFICIALES ---")
+    imprimir_titulo("CARGOS OFICIALES")
     cargos = leer_json(RUTA_CARGOS_OFICIALES)
     if len(cargos) == 0:
         print("No hay cargos oficiales creados.")
@@ -135,7 +136,7 @@ def ver_cargos_oficiales():  # muestra todos los cargos oficiales registrados en
         print(f"Estado: {cargo['estado']}")
 
 def modificar_cargo_oficial():  # permite editar datos de un cargo oficial existente
-    print("\n--- MODIFICAR CARGO OFICIAL ---")
+    imprimir_titulo("MODIFICAR CARGO OFICIAL")
     cargos = leer_json(RUTA_CARGOS_OFICIALES)
     if len(cargos) == 0:
         print("No hay cargos oficiales creados.")

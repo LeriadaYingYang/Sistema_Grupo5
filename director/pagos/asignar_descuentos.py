@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
@@ -26,7 +27,7 @@ def calcular_monto_final(monto, descuento):  #calcula el monto final luego de ap
 
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles para asignar descuentos
-    print("\n--- PLANTILLAS ---")
+    imprimir_titulo("PLANTILLAS")
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo":
             print(
@@ -35,7 +36,7 @@ def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles para as
                 f"Carrera: {plantilla['nombre_carrera']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra los salones de la carrera seleccionada
-    print("\n--- SALONES ---")
+    imprimir_titulo("SALONES")
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
             print(
@@ -45,7 +46,7 @@ def mostrar_salones(salones, id_carrera):  #muestra los salones de la carrera se
 
 
 def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):  #muestra los alumnos asignados al salón seleccionado
-    print("\n--- ALUMNOS DEL SALÓN ---")
+    imprimir_titulo("ALUMNOS DEL SALÓN")
     encontrados = 0
     for asignacion in asignaciones:
         if asignacion["estado"] == "Activo" and asignacion["id_salon"] == id_salon:
@@ -64,7 +65,7 @@ def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):  #muestra los alumno
 
 
 def mostrar_cargos_oficiales(cargos, id_plantilla, id_carrera):  #muestra los cargos oficiales disponibles para aplicar descuentos
-    print("\n--- CARGOS OFICIALES ---")
+    imprimir_titulo("CARGOS OFICIALES")
     encontrados = 0
     for cargo in cargos:
         if (
@@ -81,7 +82,7 @@ def mostrar_cargos_oficiales(cargos, id_plantilla, id_carrera):  #muestra los ca
         print("No hay cargos oficiales para esta plantilla y carrera.")
 
 def mostrar_descuentos(descuentos):  # muestra los descuentos y convenios disponibles
-    print("\n--- DESCUENTOS / CONVENIOS ---")
+    imprimir_titulo("DESCUENTOS / CONVENIOS")
     for descuento in descuentos:
         if descuento["estado"] == "Activo":
             print(
@@ -100,7 +101,7 @@ def descuento_ya_asignado(asignaciones, id_alumno, id_cargo_oficial):  # verific
     return False
 
 def asignar_descuento_alumno():  #asigna un descuento o convenio a un alumno para un cargo oficial específico
-    print("\n--- ASIGNAR DESCUENTO / CONVENIO ---")
+    imprimir_titulo("ASIGNAR DESCUENTO / CONVENIO")
     plantillas = leer_json(RUTA_PLANTILLAS)
     salones = leer_json(RUTA_SALONES)
     alumnos = leer_json(RUTA_ALUMNOS)

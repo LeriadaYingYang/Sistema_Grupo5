@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_DESCUENTOS = "datos/descuentos_convenios.json"
 
@@ -18,7 +19,7 @@ def pedir_tipo_descuento():  #permite seleccionar si el descuento será por porc
             print("Opción inválida.")
 
 def crear_descuento_convenio():  #registra un descuento o convenio para aplicar posteriormente a cargos oficiales
-    print("\n--- CREAR DESCUENTO O CONVENIO ---")
+    imprimir_titulo("CREAR DESCUENTO O CONVENIO")
 
     descuentos = leer_json(RUTA_DESCUENTOS)
     nombre = input("Nombre del descuento/convenio: ")
