@@ -3,19 +3,14 @@ from director.asistencias.asistencia_alumnos import registrar_asistencia_alumnos
 from director.asistencias.asistencia_profesores import registrar_asistencia_profesores
 from director.asistencias.ver_asistencia_alumnos import menu_ver_asistencia_alumnos
 from director.asistencias.horas_profesores import ver_horas_profesores
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_asistencias():  #muestra el menú principal de gestión de asistencias
     while True:
         imprimir_titulo("GESTIÓN DE ASISTENCIAS")
-        print("""
-1. Configurar horarios
-2. Registrar asistencia de alumnos
-3. Registrar asistencia de profesores
-4. Ver asistencia de alumnos
-5. Ver horas trabajadas de profesores
-6. Volver al menú director
-""")
+        imprimir_menu(["Configurar Horarios", "Registrar Asistencia de Alumnos", "Registrar Asistencia de Profesores",
+                       "Ver Asistencia de Alumnos", "Ver Horas Trabajadas de Profesores","Volver"])
+
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #abre la configuración de horarios
             configurar_horarios()

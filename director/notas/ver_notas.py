@@ -1,4 +1,5 @@
 from basedatos_json import leer_json
+from director.utilidades import imprimir_titulo
 
 RUTA_NOTAS = "datos/notas_alumnos.json"
 RUTA_CARRERAS = "datos/carreras.json"
@@ -33,13 +34,13 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_carreras(carreras):  #muestra las carreras disponibles
-    print("\n--- CARRERAS DISPONIBLES ---")
+    imprimir_titulo("CARRERAS DISPONIBLES")
     for carrera in carreras:
         if carrera["estado"] == "Activo":
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
 
 def mostrar_plantillas(plantillas, id_carrera):  #muestra plantillas de la carrera
-    print("\n--- PLANTILLAS DE LA CARRERA ---")
+    imprimir_titulo("PLANTILLAS DE LA CARRERA")
     encontrados = 0
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo" and plantilla["id_carrera"] == id_carrera:
@@ -49,7 +50,7 @@ def mostrar_plantillas(plantillas, id_carrera):  #muestra plantillas de la carre
         print("No hay plantillas para esta carrera.")
 
 def mostrar_salones(salones, id_carrera):  #muestra salones de la carrera
-    print("\n--- SALONES DE LA CARRERA ---")
+    imprimir_titulo("SALONES DE LA CARRERA")
     encontrados = 0
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -59,7 +60,7 @@ def mostrar_salones(salones, id_carrera):  #muestra salones de la carrera
         print("No hay salones para esta carrera.")
 
 def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra unidades del salón
-    print("\n--- UNIDADES DEL SALÓN ---")
+    imprimir_titulo("UNIDADES DEL SALÓN")
     encontrados = 0
     for unidad in unidades:
         if (

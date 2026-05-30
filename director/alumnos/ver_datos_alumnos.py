@@ -1,4 +1,5 @@
 from basedatos_json import leer_json
+from director.utilidades import imprimir_titulo
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
@@ -46,7 +47,7 @@ def ver_por_carrera_y_salon(alumnos,asignaciones):  #muestra alumnos filtrados p
     if len(carreras) == 0:
         print("No hay alumnos asignados a carreras.")
         return
-    print("\n--- CARRERAS CON ALUMNOS ---")
+    imprimir_titulo("CARRERAS CON ALUMNOS")
     for carrera in carreras:
         print(f"ID: {carrera['id_carrera']} | "
             f"Carrera: {carrera['nombre_carrera']}")
@@ -76,7 +77,7 @@ def ver_por_carrera_y_salon(alumnos,asignaciones):  #muestra alumnos filtrados p
         print("Debe ingresar un número.")
         return
     encontrados = 0  #cuenta los alumnos encontrados
-    print("\n--- ALUMNOS DEL SALÓN ---")
+    imprimir_titulo("ALUMNOS DEL SALÓN")
     for alumno in alumnos:
         if alumno["estado"] != "Activo":
             continue

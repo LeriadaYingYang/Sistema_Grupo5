@@ -4,21 +4,13 @@ from director.academico.main import menu_academico
 from director.notas.main import menu_notas
 from director.asistencias.main import menu_asistencias
 from director.pagos.main import menu_pagos
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_director():  #muestra el menú principal del director y permite acceder a todos los módulos del sistema
     while True:
         imprimir_titulo("MENÚ DIRECTOR")
-
-        print("""
-1. Gestión académica
-2. Gestión de profesores
-3. Gestión de alumnos
-4. Gestión de notas
-5. Gestión de asistencias
-6. Gestión de pagos
-7. Cerrar sesión
-""")
+        imprimir_menu(["Gestión académica", "Gestión de profesores", "Gestión de alumnos",
+                      "Gestión de notas","Gestión de asistencias", "Gestión de pagos", "Cerrar sesión"])
 
         opcion = input("Seleccione una opción: ")  #xsolicita la opción que desea ejecutar el director
         if opcion == "1":  #abre el módulo académico para gestionar carreras, plantillas, módulos y salones

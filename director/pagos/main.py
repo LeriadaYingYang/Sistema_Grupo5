@@ -3,23 +3,16 @@ from director.pagos.descuentos import crear_descuento_convenio
 from director.pagos.asignar_descuentos import asignar_descuento_alumno
 from director.pagos.cargos_extras import menu_cargos_extras
 from director.pagos.resumen_pagos import menu_resumen_pagos
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 
 def menu_pagos():  #muestra el menú principal de gestión de pagos
     while True:
         imprimir_titulo("GESTIÓN DE PAGOS - DIRECTOR")
-
-        print("""
-1. Crear cargo oficial por plantilla y carrera
-2. Ver cargos oficiales creados
-3. Modificar cargo oficial
-4. Crear descuento o convenio
-5. Asignar descuento/convenio a alumno
-6. Crear cargo extra general
-7. Ver resumen de pagos y deudas
-8. Volver al menú director
-""")
+        imprimir_menu(["Crear Cargo Oficial Por Plantilla Y Carrera", "Ver Cargos Oficiales Creados",
+                      "Modificar Cargo Oficial", "Crear Descuento O Convenio", "Asignar Descuento/Convenio A Alumno",
+                      "Crear Cargo Extra General", "Ver Resumen De Pagos Y Deudas", "Volver Al Menú Director"])
+        imprimir_menu([])
 
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #crea un cargo oficial

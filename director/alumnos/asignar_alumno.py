@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_CARRERAS = "datos/carreras.json"
@@ -7,7 +8,7 @@ RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 
 def mostrar_alumnos_no_asignados(alumnos, asignaciones):  #muestra alumnos activos que aún no tienen asignación
-    print("\n--- ALUMNOS DISPONIBLES NO ASIGNADOS ---")
+    imprimir_titulo("ALUMNOS DISPONIBLES NO ASIGNADOS")
     encontrados = 0  #cuenta los alumnos disponibles
     for alumno in alumnos:
         if alumno["estado"] != "Activo":
@@ -26,7 +27,7 @@ def mostrar_alumnos_no_asignados(alumnos, asignaciones):  #muestra alumnos activ
         print("Todos los alumnos ya están asignados.")
 
 def mostrar_plantillas(plantillas):  #muestra las plantillas activas disponibles
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
     for p in plantillas:
         if p["estado"] == "Activo":
             print(f"ID: {p['id_plantilla']} | "
@@ -34,13 +35,13 @@ def mostrar_plantillas(plantillas):  #muestra las plantillas activas disponibles
                 f"{p['nombre_carrera']}")
 
 def mostrar_carreras(carreras):  #muestra las carreras activas disponibles
-    print("\n--- CARRERAS DISPONIBLES ---")
+    imprimir_titulo("CARRERAS DISPONIBLES")
     for carrera in carreras:
         if carrera["estado"] == "Activo":
             print(f"ID: {carrera['id_carrera']} | Carrera: {carrera['nombre']}")
 
 def mostrar_salones_por_carrera(salones, id_carrera):  #muestra los salones activos de una carrera
-    print("\n--- SALONES DISPONIBLES PARA ESTA CARRERA ---")
+    imprimir_titulo("SALONES DISPONIBLES PARA ESTA CARRERA")
     hay_salones = False  #indica si existen salones para la carrera
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
@@ -64,7 +65,7 @@ def alumno_ya_asignado(asignaciones, id_alumno):  #verifica si un alumno ya tien
     return False
 
 def asignar_alumno():  #asigna un alumno a una plantilla, carrera y salón
-    print("\n--- ASIGNAR ALUMNO A CARRERA Y SALÓN ---")
+    imprimir_titulo("ASIGNAR ALUMNO A CARRERA Y SALÓN")
     alumnos = leer_json(RUTA_ALUMNOS)  #carga los alumnos registrados
     carreras = leer_json(RUTA_CARRERAS)  #carga las carreras registradas
     salones = leer_json(RUTA_SALONES)  #carga los salones registrados

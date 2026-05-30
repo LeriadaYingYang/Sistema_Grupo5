@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 RUTA_SALONES = "datos/salones.json"
@@ -11,14 +12,14 @@ def buscar_por_id(lista, campo_id, valor_id):  # busca un registro activo utiliz
     return None
 
 def mostrar_profesores(profesores):  # muestra los profesores activos disponibles para asignar
-    print("\n--- PROFESORES DISPONIBLES ---")
+    imprimir_titulo("PROFESORES DISPONIBLES")
 
     for profesor in profesores:
         if profesor["estado"] == "Activo":
             print(f"ID: {profesor['id_profesor']} | {profesor['nombres']} {profesor['apellidos']}")
 
 def mostrar_salones(salones):  # muestra los salones activos donde se puede asignar un profesor
-    print("\n--- SALONES DISPONIBLES ---")
+    imprimir_titulo("SALONES DISPONIBLES")
     for salon in salones:
         if salon["estado"] == "Activo":
             print(
@@ -39,7 +40,7 @@ def ya_existe_asignacion(asignaciones, id_profesor, id_salon):  # verifica si el
 
 
 def asignar_profesor():  # asigna un profesor registrado a un salón disponible
-    print("\n--- ASIGNAR PROFESOR A SALÓN ---")
+    imprimir_titulo("ASIGNAR PROFESOR A SALÓN")
     profesores = leer_json(RUTA_PROFESORES)  #carga los profesores registrados
     salones = leer_json(RUTA_SALONES)  #carga los salones registrados
     asignaciones = leer_json(RUTA_PROFESORES_SALONES)  #carga asignaciones existentes

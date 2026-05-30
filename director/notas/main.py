@@ -1,18 +1,12 @@
 from director.notas.crear_tablilla import crear_tablilla_notas
 from director.notas.registrar_modificar_notas import registrar_modificar_notas
 from director.notas.ver_notas import ver_notas_por_unidad
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_notas():  #muestra el menú principal de gestión de notas
     while True:
         imprimir_titulo("GESTIÓN DE NOTAS")
-
-        print("""
-1. Crear tablilla de notas
-2. Registrar o modificar notas
-3. Ver notas
-4. Volver al menú director
-""")
+        imprimir_menu(["Crear Tablilla de Notas", "Registrar o Modificar Notas", "Ver Notas","Volver"])
 
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #crea la tablilla de notas

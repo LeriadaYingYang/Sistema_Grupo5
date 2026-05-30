@@ -1,9 +1,10 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 
 def crear_profesor():  #registra un nuevo profesor y guarda sus datos personales en el sistema
-    print("\n--- REGISTRAR PROFESOR ---")
+    imprimir_titulo("REGISTRAR PROFESOR")
     profesores = leer_json(RUTA_PROFESORES)  #carga la lista actual de profesores registrados
     nombres = input("Nombres: ")
     apellidos = input("Apellidos: ")

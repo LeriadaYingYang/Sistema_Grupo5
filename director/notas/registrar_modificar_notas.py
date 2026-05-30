@@ -1,4 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_UNIDADES = "datos/unidades.json"
 RUTA_MODULOS = "datos/modulos.json"
@@ -17,25 +18,25 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_carreras(carreras):  #muestra carreras disponibles
-    print("\n--- CARRERAS ---")
+    imprimir_titulo("CARRERAS")
     for carrera in carreras:
         if carrera["estado"] == "Activo":
             print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
 
 def mostrar_plantillas(plantillas, id_carrera):  #muestra plantillas de la carrera
-    print("\n--- PLANTILLAS ---")
+    imprimir_titulo("PLANTILLAS")
     for plantilla in plantillas:
         if plantilla["estado"] == "Activo" and plantilla["id_carrera"] == id_carrera:
             print(f"ID: {plantilla['id_plantilla']} | {plantilla['nombre_plantilla']}")
 
 def mostrar_salones(salones, id_carrera):  #muestra salones de la carrera
-    print("\n--- SALONES ---")
+    imprimir_titulo("SALONES")
     for salon in salones:
         if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
             print(f"ID: {salon['id_salon']} | {salon['nombre_salon']} | {salon['turno']}")
 
 def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra unidades disponibles
-    print("\n--- UNIDADES ---")
+    imprimir_titulo("UNIDADES")
     for unidad in unidades:
         if (
             unidad["estado"] == "Activo"
@@ -44,13 +45,13 @@ def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra unidades dispo
             print(f"ID: {unidad['id_unidad']} | {unidad['nombre_unidad']}")
 
 def mostrar_modulos(modulos, id_unidad):  #muestra módulos de la unidad
-    print("\n--- MÓDULOS ---")
+    imprimir_titulo("MÓDULOS")
     for modulo in modulos:
         if modulo["estado"] == "Activo" and modulo["id_unidad"] == id_unidad:
             print(f"ID: {modulo['id_modulo']} | {modulo['nombre_modulo']}")
 
 def mostrar_alumnos_por_salon(alumnos, asignaciones, id_salon):  #muestra alumnos del salón
-    print("\n--- ALUMNOS DEL SALÓN ---")
+    imprimir_titulo("ALUMNOS DEL SALÓN")
     for asignacion in asignaciones:
         if asignacion["estado"] == "Activo" and asignacion["id_salon"] == id_salon:
             alumno = buscar_por_id(alumnos, "id_alumno", asignacion["id_alumno"])
@@ -123,7 +124,8 @@ def registrar_modificar_notas():  #registra o modifica notas de alumnos
     asignaciones = leer_json(RUTA_ASIGNACIONES)
     tablillas = leer_json(RUTA_TABLILLAS)
     notas = leer_json(RUTA_NOTAS)
-    print("\n--- REGISTRAR / MODIFICAR NOTAS ---")
+
+    imprimir_titulo("REGISTRAR / MODIFICAR NOTAS")
     mostrar_carreras(carreras)
     id_carrera = int(input("ID carrera: "))
     mostrar_plantillas(plantillas, id_carrera)
@@ -147,7 +149,7 @@ def registrar_modificar_notas():  #registra o modifica notas de alumnos
     if registro is None:
         registro = crear_registro(notas, alumno, unidad, modulo, tablilla)
     while True:
-        print("\n--- NOTAS ---")
+        imprimir_titulo("NOTAS")
         for nota in registro["notas"]:
             valor = nota["nota"] if nota["nota"] != "" else "Sin nota"
             print(f"{nota['orden']}. {nota['nombre_nota']} -> {valor}")

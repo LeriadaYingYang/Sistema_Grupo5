@@ -1,5 +1,6 @@
 from datetime import datetime
 from basedatos_json import leer_json, guardar_json, generar_id
+from director.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 RUTA_PROFESORES_SALONES = "datos/profesores_salones.json"
@@ -15,7 +16,7 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
     return None
 
 def mostrar_profesores(profesores):  #muestra los profesores disponibles
-    print("\n--- PROFESORES DISPONIBLES ---")
+    imprimir_titulo("PROFESORES DISPONIBLES")
     for profesor in profesores:
         if profesor["estado"] == "Activo":
             print(f"ID: {profesor['id_profesor']} | {profesor['nombres']} {profesor['apellidos']}")
@@ -28,7 +29,7 @@ def obtener_asignaciones_profesor(asignaciones, id_profesor):  #obtiene las asig
     return resultado
 
 def mostrar_plantillas_del_profesor(plantillas, asignaciones_profesor):  #muestra plantillas del profesor
-    print("\n--- PLANTILLAS DISPONIBLES ---")
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
     ids_carrera = []
     for asignacion in asignaciones_profesor:
         if asignacion["id_carrera"] not in ids_carrera:
@@ -42,7 +43,7 @@ def mostrar_plantillas_del_profesor(plantillas, asignaciones_profesor):  #muestr
         print("No hay plantillas disponibles para este profesor.")
 
 def mostrar_salones_profesor_por_plantilla(asignaciones_profesor, plantilla):  #muestra salones del profesor
-    print("\n--- SALONES DEL PROFESOR ---")
+    imprimir_titulo("SALONES DEL PROFESOR")
     encontrados = 0
     for asignacion in asignaciones_profesor:
         if asignacion["id_carrera"] == plantilla["id_carrera"]:
@@ -61,7 +62,7 @@ def obtener_horario(horarios, id_plantilla, id_salon):  #obtiene el horario del 
     return None
 
 def mostrar_modulos(modulos, id_plantilla, id_salon):  #muestra los módulos disponibles
-    print("\n--- MÓDULOS DISPONIBLES ---")
+    imprimir_titulo("MÓDULOS DISPONIBLES")
     encontrados = 0
     for modulo in modulos:
         if (modulo["estado"] == "Activo"
@@ -73,7 +74,7 @@ def mostrar_modulos(modulos, id_plantilla, id_salon):  #muestra los módulos dis
         print("No hay módulos registrados para esta plantilla y salón.")
 
 def mostrar_horario(horario):  #muestra el horario del salón
-    print("\n--- HORARIO DEL SALÓN ---")
+    imprimir_titulo("HORARIO DEL SALÓN")
     for dia in horario["dias_horas"]:
         print(f"{dia['orden']}. {dia['dia']} | {dia['hora_inicio']} - {dia['hora_fin']}")
 
@@ -100,7 +101,7 @@ def calcular_horas(hora_entrada, hora_salida):  #calcula horas trabajadas
         return 0
 
 def registrar_asistencia_profesores():  #registra la asistencia de profesores
-    print("\n--- REGISTRAR ASISTENCIA PROFESORES ---")
+    imprimir_titulo("REGISTRAR ASISTENCIA PROFESORES")
     profesores = leer_json(RUTA_PROFESORES)
     asignaciones = leer_json(RUTA_PROFESORES_SALONES)
     plantillas = leer_json(RUTA_PLANTILLAS)

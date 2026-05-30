@@ -1,9 +1,9 @@
 from basedatos_json import leer_json, guardar_json, generar_id
-from director.utilidades import imprimir_titulo, pausa
+from director.utilidades import imprimir_titulo
 RUTA_CARRERAS = "datos/carreras.json"
 
 def registrar_carrera():  #registra una nueva carrera académica
-    print("\n--- REGISTRAR CARRERA ---")
+    imprimir_titulo("REGISTRAR CARRERA")
     carreras = leer_json(RUTA_CARRERAS)  #carga la lista de carreras desde el archivo json
     nombre = input("Nombre de la carrera: ")  #solicita el nombre de la carrera
     descripcion = input("Descripción: ")  #solicita la descripción de la carrera
