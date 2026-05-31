@@ -1,0 +1,22 @@
+[
+    {
+        "id_certificado": 1,
+        "id_alumno": 8,
+        "nombre_alumno": "Alex Gabriel Montoya Rodriguez",
+        "dni": "456",
+        "tipo_certificado": "conducta",
+        "carrera": "sistemas",
+        "salon": "s2",
+        "estado": "Emitido"
+    },
+    {
+        "id_certificado": 2,
+        "id_alumno": 4,
+        "nombre_alumno": "trysi ",
+        "dni": "2121",
+        "tipo_certificado": "estudios",
+        "carrera": "sistemas",
+        "salon": "s2",
+        "estado": "Anulado"
+    }
+]

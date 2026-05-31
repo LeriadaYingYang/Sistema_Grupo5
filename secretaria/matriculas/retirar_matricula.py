@@ -135,7 +135,7 @@ def reactivar_matricula():
         return
     matricula["estado"] = "Activa"
     guardar_json(RUTA_MATRICULAS,matriculas)
-    print("Matrícula reactivada correctamente.")
+    print("=== MATRÍCULA REACTIVADA CORRECTAMENTE ===")
 
 def menu_retirar_matricula():
     while True:

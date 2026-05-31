@@ -130,13 +130,13 @@ def menu_ver_datos_alumnos():  # Muestra el menú para consultar alumnos
         alumnos = leer_json(RUTA_ALUMNOS)  # Carga los alumnos registrados
         asignaciones = leer_json(RUTA_ASIGNACIONES)  # Carga las asignaciones registradas
         print("""
---- VER DATOS DE ALUMNOS ---
+=== VER DATOS DE ALUMNOS ===
 
 1. Ver todos los alumnos
 2. Ver alumnos por carrera y salón
 3. Buscar alumno por nombre
 4. Buscar alumno por DNI
-5. Volver al menú de secretaría
+5. Volver
 """)
 
         opcion = input("Seleccionar una opción: ")  #Solicita una opción al usuario

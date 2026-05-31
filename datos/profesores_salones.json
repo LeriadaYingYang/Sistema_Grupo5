@@ -20,5 +20,16 @@
         "id_carrera": 2,
         "nombre_carrera": "Administracion ",
         "estado": "Activo"
+    },
+    {
+        "id_profesor_salon": 3,
+        "id_profesor": 3,
+        "nombre_profesor": "Carlos Hugo Vera Fernandez",
+        "id_salon": 2,
+        "nombre_salon": "salon A5",
+        "turno": "NOCHE",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "estado": "Activo"
     }
 ]

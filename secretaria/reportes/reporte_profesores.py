@@ -7,16 +7,17 @@ def obtener_profesores():
     return leer_json(RUTA_PROFESORES)
 
 def mostrar_profesor(profesor):
-    print(f"ID: "
-        f"{profesor['id_profesor']} | "
-        f"{profesor['nombres']} "
-        f"{profesor['apellidos']} | "
+    print(
+        f"ID: "
+        f"{profesor.get('id_profesor', 'N/A')} | "
+        f"{profesor.get('nombres', '')} "
+        f"{profesor.get('apellidos', '')} | "
         f"DNI: "
-        f"{profesor['dni']} | "
+        f"{profesor.get('dni', 'No registrado')} | "
         f"Especialidad: "
-        f"{profesor['especialidad']} | "
+        f"{profesor.get('especialidad', 'No registrada')} | "
         f"Estado: "
-        f"{profesor['estado']}")
+        f"{profesor.get('estado', 'Desconocido')}")
 
 def buscar_profesor_por_id(profesores,id_profesor):
     for profesor in profesores:
@@ -67,7 +68,7 @@ def reporte_por_especialidad():
     especialidad = input("Ingresar especialidad: ").lower()
     encontrados = 0
     for profesor in profesores:
-        if (profesor["especialidad"].lower() == especialidad):
+        if (profesor.get("especialidad", "").lower() == especialidad):
             mostrar_profesor(profesor)
             encontrados += 1
     if encontrados == 0:
@@ -128,7 +129,7 @@ def estadisticas_profesores():
     for profesor in profesores:
         if profesor["estado"] == "Activo": activos += 1
         elif profesor["estado"] == "Inactivo": inactivos += 1
-        especialidad = profesor["especialidad"]
+        especialidad = profesor.get("especialidad", "No registrada")
         if especialidad in especialidades:
             especialidades[especialidad] += 1
         else:

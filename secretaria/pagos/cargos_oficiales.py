@@ -200,7 +200,7 @@ Cargo seleccionado:
             print("Opción inválida.")
             continue
         guardar_json(RUTA_CARGOS_OFICIALES, cargos)  # Guarda inmediatamente los cambios realizados
-        print("\nCargo actualizado correctamente.")
+        print("\n=== CARGO ACTUALIZADO CORRECTAMENTE ===")
         continuar = input("¿Desea modificar otro dato del mismo cargo? (si/no): ").lower()
         if continuar != "si":
             break

@@ -86,7 +86,7 @@ def asignar_profesor():  # Asigna un profesor registrado a un salón disponible
         "estado": "Activo"}
     asignaciones.append(nueva_asignacion)  #Agrega la nueva asignación del profesor al salón
     guardar_json(RUTA_PROFESORES_SALONES, asignaciones)  #Guarda la asignación en el archivo json
-    print("\nProfesor asignado correctamente.")
+    print("\n=== PROFESOR ASIGNADO CORRECTAMENTE ===")
     print(f"Profesor: {nueva_asignacion['nombre_profesor']}")
     print(f"Carrera: {nueva_asignacion['nombre_carrera']}")
     print(f"Salón: {nueva_asignacion['nombre_salon']}")

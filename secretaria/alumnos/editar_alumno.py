@@ -91,8 +91,7 @@ def editar_alumno():  #Permite buscar y editar datos de un alumno
         print("No hay alumnos registrados.")
         return
     print("""
-Buscar alumno por:
-
+---- Buscar alumno por:
 1. Nombre o apellido
 2. DNI
 3. Volver""")

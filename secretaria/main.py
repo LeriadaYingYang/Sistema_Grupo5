@@ -4,7 +4,7 @@ from secretaria.pagos.main import menu_pagos
 from secretaria.reportes.main import menu_reportes
 from secretaria.matriculas.main import menu_matriculas
 from secretaria.documentos.main import menu_documentos
-from director.utilidades import imprimir_titulo, imprimir_menu
+from secretaria.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_secretaria():  #Muestra el menú principal de secretaría
     while True:

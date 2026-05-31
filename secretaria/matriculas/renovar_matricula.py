@@ -144,7 +144,7 @@ def actualizar_estado_renovacion():
         return
     matricula["estado"] = estados[opcion]
     guardar_json(RUTA_MATRICULAS,matriculas)
-    print("Estado actualizado correctamente.")
+    print("=== ESTADO ACTUALIZADO CORRECTAMENTE ===")
 
 def menu_renovar_matricula():
     while True:

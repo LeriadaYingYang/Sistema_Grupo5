@@ -159,7 +159,7 @@ def actualizar_estado():
         return
     solicitud["estado"] = estados[opcion]
     guardar_json(RUTA_SOLICITUDES,solicitudes)
-    print("Estado actualizado correctamente.")
+    print("=== ESTADO ACTUALIZADO CORRECTAMENTE ===")
 
 def buscar_solicitud_por_id():
     imprimir_titulo("=== BUSCAR SOLICITUD ===")

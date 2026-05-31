@@ -22,5 +22,17 @@
         "frecuencia": "Único",
         "fecha_limite": "20 de junio",
         "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 3,
+        "id_plantilla": 3,
+        "nombre_plantilla": "malla 2026",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_cargo": "Test",
+        "monto": 100.0,
+        "frecuencia": "Único",
+        "fecha_limite": "Día 15 de cada mes",
+        "estado": "Activo"
     }
 ]

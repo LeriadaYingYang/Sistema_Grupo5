@@ -1,0 +1,13 @@
+[
+    {
+        "id_solicitud": 1,
+        "id_alumno": 1,
+        "nombre_alumno": "daniel jara",
+        "dni": "221",
+        "tipo_solicitud": "Cambio de salón",
+        "descripcion": "cambiar de salón",
+        "carrera": "sistemas",
+        "salon": "s2",
+        "estado": "Rechazada"
+    }
+]

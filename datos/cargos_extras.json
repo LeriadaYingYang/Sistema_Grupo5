@@ -14,5 +14,52 @@
         "id_alumno": 1,
         "nombre_alumno": "daniel francis",
         "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 2,
+        "nombre": "3",
+        "monto": 50.0,
+        "aplica_a": "Carrera",
+        "id_plantilla": 3,
+        "nombre_plantilla": "malla 2026",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "id_salon": null,
+        "nombre_salon": null,
+        "id_alumno": null,
+        "nombre_alumno": null,
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 3,
+        "nombre": "Cargo test",
+        "monto": 60.0,
+        "aplica_a": "Salón",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_alumno": null,
+        "nombre_alumno": null,
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 4,
+        "nombre": "cargo trysi",
+        "monto": 20.0,
+        "aplica_a": "Alumno",
+        "id_plantilla": 2,
+        "nombre_plantilla": "2026",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_alumno": 4,
+        "nombre_alumno": "trysi ",
+        "estado": "Activo"
     }
 ]

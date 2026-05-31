@@ -11,10 +11,10 @@ def menu_pagos():  #Muestra el menú principal de gestión de pagos
         imprimir_titulo("=== GESTIÓN DE PAGOS - SECRETARÍA ===")
         imprimir_menu(["Crear Cargo Oficial Por Plantilla Y Carrera", "Ver Cargos Oficiales Creados",
                     "Modificar Cargo Oficial", "Crear Descuento O Convenio", "Asignar Descuento/Convenio A Alumno",
-                    "Crear Cargo Extra General", "Ver Resumen De Pagos Y Deudas", "Volver Al Menú Director"])
+                    "Crear Cargo Extra General", "Ver Resumen De Pagos Y Deudas", "Volver"])
         imprimir_menu([])
 
-        opcion = input("Seleccionar  una opción: ")  #Solicita una opción al usuario
+        opcion = input("Seleccionar una opción: ")  #Solicita una opción al usuario
         if opcion == "1":  #Crea un cargo oficial
             crear_cargo_oficial()
         elif opcion == "2":  #Muestra los cargos oficiales creados

@@ -41,5 +41,5 @@ def crear_descuento_convenio():  #Registra un descuento o convenio para aplicar 
         "estado": "Activo"}
     descuentos.append(nuevo_descuento)  # Agrega el descuento a la lista de descuentos registrados
     guardar_json(RUTA_DESCUENTOS, descuentos)  # Guarda permanentemente el descuento en el archivo json
-    print("\nDescuento/convenio creado correctamente.")
+    print("\n=== DESCUENTO/CONVENIO CREADO CORRECTAMENTE ===")
     print("Este descuento solo aplica a cargos oficiales.")

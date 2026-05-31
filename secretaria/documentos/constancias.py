@@ -144,7 +144,7 @@ def anular_constancia():
         return
     constancia["estado"] = "Anulada"
     guardar_json(RUTA_CONSTANCIAS,constancias)
-    print("Constancia anulada correctamente.")
+    print("=== CONSTANCIA ANULADA CORRECTAMENTE ===")
 
 def menu_constancias():
     while True:

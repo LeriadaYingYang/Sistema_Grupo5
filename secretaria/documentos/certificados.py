@@ -126,7 +126,7 @@ def anular_certificado():
         return
     certificado["estado"] = "Anulado"
     guardar_json(RUTA_CERTIFICADOS,certificados)
-    print("Certificado anulado correctamente.")
+    print("== CERTIFICADO ANULADO CORRECTAMENTE ===")
 
 def menu_certificados():
     while True:

@@ -20,5 +20,27 @@
         "valor_descuento": 20.0,
         "monto_final": 330.0,
         "estado": "Activo"
+    },
+    {
+        "id_descuento_alumno": 2,
+        "id_alumno": 8,
+        "nombre_alumno": "Alex Gabriel Montoya Rodriguez",
+        "dni": "456",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "mesnualidad",
+        "monto_original": 350.0,
+        "id_descuento": 2,
+        "nombre_descuento": "Descuento test",
+        "tipo_descuento": "Porcentaje",
+        "valor_descuento": 10.0,
+        "monto_final": 315.0,
+        "estado": "Activo"
     }
 ]
