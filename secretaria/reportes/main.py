@@ -4,6 +4,11 @@ from secretaria.reportes.reporte_pagos import menu_reporte_pagos
 from secretaria.reportes.reporte_profesores import menu_reporte_profesores
 from secretaria.utilidades import imprimir_titulo,imprimir_menu
 
+#===========================================
+# Archivo: main.py -> reportes
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_reportes(): #Muestra el menú principal de reportes
     while True:
         imprimir_titulo("=== GESTIÓN DE REPORTES ===")

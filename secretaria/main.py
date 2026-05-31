@@ -6,6 +6,11 @@ from secretaria.matriculas.main import menu_matriculas
 from secretaria.documentos.main import menu_documentos
 from secretaria.utilidades import imprimir_titulo, imprimir_menu
 
+#===========================================
+# Archivo: main.py -> Secretaria
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_secretaria():  #Muestra el menú principal de secretaría
     while True:
         imprimir_titulo("=== MENÚ SECRETARÍA ===")

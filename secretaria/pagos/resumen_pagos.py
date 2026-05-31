@@ -1,6 +1,11 @@
 from basedatos_json import leer_json
 from director.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: resumen_pagos.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
 RUTA_ALUMNOS = "datos/alumnos.json"

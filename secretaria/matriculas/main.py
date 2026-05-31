@@ -4,6 +4,11 @@ from secretaria.matriculas.renovar_matricula import menu_renovar_matricula
 from secretaria.matriculas.retirar_matricula import menu_retirar_matricula
 from secretaria.utilidades import imprimir_titulo,imprimir_menu
 
+#===========================================
+# Archivo: main.py -> matriculas
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_matriculas(): #Muestra el menú principal de matrículas
     while True:
         imprimir_titulo("=== GESTIÓN DE MATRÍCULAS ===")

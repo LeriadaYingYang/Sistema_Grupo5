@@ -1,6 +1,11 @@
 from basedatos_json import leer_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: reporte_alumnos.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_ALUMNOS = "datos/alumnos.json"
 
 def obtener_alumnos(): # Obtiene la lista de alumnos desde el archivo JSON

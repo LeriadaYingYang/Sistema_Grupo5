@@ -4,6 +4,11 @@ from secretaria.alumnos.ver_datos_alumnos import menu_ver_datos_alumnos
 from secretaria.alumnos.editar_alumno import editar_alumno
 from secretaria.utilidades import imprimir_titulo, imprimir_menu
 
+#===========================================
+# Archivo: main.py -> alumnos
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_alumnos():  #muestra el menú principal de gestión de alumnos
     while True:
         imprimir_titulo("=== GESTIÓN DE ALUMNOS ===")

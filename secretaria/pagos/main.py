@@ -5,6 +5,11 @@ from secretaria.pagos.cargos_extra import menu_cargos_extras
 from secretaria.pagos.resumen_pagos import menu_resumen_pagos
 from secretaria.utilidades import imprimir_titulo, imprimir_menu
 
+#===========================================
+# Archivo: main.py -> pagos
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 
 def menu_pagos():  #Muestra el menú principal de gestión de pagos
     while True:

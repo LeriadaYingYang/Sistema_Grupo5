@@ -1,6 +1,11 @@
 from basedatos_json import leer_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: ver_datos_alumnos.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 

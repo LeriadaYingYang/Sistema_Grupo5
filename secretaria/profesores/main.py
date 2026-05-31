@@ -4,6 +4,11 @@ from secretaria.profesores.ver_datos_profesores import menu_ver_datos_profesores
 from secretaria.profesores.editar_profesor import editar_profesor
 from secretaria.utilidades import imprimir_titulo, imprimir_menu
 
+#===========================================
+# Archivo: main.py -> profesores
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_profesores():  #Muestra el menú principal para administrar profesores
     while True:
         imprimir_titulo("=== GESTIÓN DE PROFESORES ===")

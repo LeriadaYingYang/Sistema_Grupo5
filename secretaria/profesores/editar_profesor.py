@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: editar_profesor.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PROFESORES = "datos/profesores.json"
 
 def mostrar_profesor(profesor):  #Muestra los datos principales del profesor encontrado

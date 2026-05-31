@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: cargos_oficiales.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_CARRERAS = "datos/carreras.json"
 RUTA_CARGOS_OFICIALES = "datos/cargos_oficiales.json"

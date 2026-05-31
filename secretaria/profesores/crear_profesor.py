@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: crear_profesor.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PROFESORES = "datos/profesores.json"
 
 def crear_profesor():  #Registra un nuevo profesor y guarda sus datos personales en el sistema

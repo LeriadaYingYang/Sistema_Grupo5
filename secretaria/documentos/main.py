@@ -4,6 +4,11 @@ from secretaria.documentos.historial_academico import menu_historial_academico
 from secretaria.documentos.solicitudes import menu_solicitudes
 from secretaria.utilidades import imprimir_titulo,imprimir_menu
 
+#===========================================
+# Archivo: main.py -> documentos
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def menu_documentos(): #Muestra el menú principal de documentos
     while True:
         imprimir_titulo("=== GESTIÓN DE DOCUMENTOS ===")

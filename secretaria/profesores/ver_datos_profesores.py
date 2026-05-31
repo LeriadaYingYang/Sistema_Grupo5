@@ -3,6 +3,11 @@ from basedatos_json import leer_json
 RUTA_PROFESORES = "datos/profesores.json"
 RUTA_ASIGNACIONES = "datos/profesores_salones.json"
 
+#===========================================
+# Archivo: ver_datos_profesores.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 def obtener_asignaciones_profesor(id_profesor, asignaciones):  #Obtiene todas las asignaciones activas de un profesor
     resultado = []
 

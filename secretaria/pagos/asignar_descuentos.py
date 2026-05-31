@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: asignar_descuentos.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
 RUTA_ALUMNOS = "datos/alumnos.json"

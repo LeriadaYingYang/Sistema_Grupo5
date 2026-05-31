@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: crear_alumno.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_ALUMNOS = "datos/alumnos.json"
 
 def crear_alumno():  #Registra un alumno con sus datos personales

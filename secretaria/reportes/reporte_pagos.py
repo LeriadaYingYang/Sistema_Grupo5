@@ -1,6 +1,11 @@
 from basedatos_json import leer_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: reporte_pagos.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_PAGOS = "datos/pagos.json"
 
 def obtener_pagos(): # Obtiene la lista de pagos registrados

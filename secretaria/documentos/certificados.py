@@ -1,6 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: certificados.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CERTIFICADOS = "datos/certificados.json"

@@ -1,6 +1,11 @@
 from basedatos_json import leer_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: reporte_matriculas.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_MATRICULAS = "datos/matriculas.json"
 
 def obtener_matriculas(): # Obtiene la lista de matrículas registradas

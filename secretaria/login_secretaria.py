@@ -1,5 +1,9 @@
 from secretaria.main import menu_secretaria
-from director.utilidades import limpiar_pantalla
+
+#===========================================
+# Archivo: login_secretaria.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
 
 def login_secretaria():
     print("\n=== BIENVENIDO A LA IISEM INGRESE SUS DATOS ===")

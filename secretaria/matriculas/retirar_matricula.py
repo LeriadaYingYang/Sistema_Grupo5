@@ -1,6 +1,11 @@
 from basedatos_json import leer_json,guardar_json
 from secretaria.utilidades import imprimir_titulo
 
+#===========================================
+# Archivo: retirar_matricula.py
+# Participante: Fabrizio Ortega (secretaría)
+#===========================================
+
 RUTA_MATRICULAS = "datos/matriculas.json"
 
 def buscar_matricula(matriculas,id_matricula): # Busca una matrícula según su ID
