@@ -1,384 +1,158 @@
 from basedatos_json import leer_json
-
-from secretaria.utilidades import (
-    imprimir_titulo
-)
-
-
-# =========================================================
-# RUTAS
-# =========================================================
+from secretaria.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 
-
-# =========================================================
-# FUNCIONES AUXILIARES
-# =========================================================
-
 def obtener_profesores():
-
-    return leer_json(
-        RUTA_PROFESORES
-    )
-
+    return leer_json(RUTA_PROFESORES)
 
 def mostrar_profesor(profesor):
-
-    print(
-        f"ID: "
+    print(f"ID: "
         f"{profesor['id_profesor']} | "
-
         f"{profesor['nombres']} "
         f"{profesor['apellidos']} | "
-
         f"DNI: "
         f"{profesor['dni']} | "
-
         f"Especialidad: "
         f"{profesor['especialidad']} | "
-
         f"Estado: "
-        f"{profesor['estado']}"
-    )
+        f"{profesor['estado']}")
 
-
-def buscar_profesor_por_id(
-    profesores,
-    id_profesor
-):
-
+def buscar_profesor_por_id(profesores,id_profesor):
     for profesor in profesores:
-
-        if (
-            profesor["id_profesor"]
-            == id_profesor
-        ):
-
+        if (profesor["id_profesor"] == id_profesor):
             return profesor
-
     return None
 
-
-# =========================================================
-# REPORTES GENERALES
-# =========================================================
-
 def reporte_general_profesores():
-
-    imprimir_titulo(
-        "=== REPORTE GENERAL PROFESORES ==="
-    )
-
+    imprimir_titulo("=== REPORTE GENERAL PROFESORES ===")
     profesores = obtener_profesores()
-
     if len(profesores) == 0:
-
         print("No existen profesores.")
         return
-
     for profesor in profesores:
-
         mostrar_profesor(profesor)
-
-    print(
-        f"\nTotal profesores: "
-        f"{len(profesores)}"
-    )
-
-
-# =========================================================
-# REPORTES POR ESTADO
-# =========================================================
+    print(f"\nTotal profesores: "
+        f"{len(profesores)}")
 
 def reporte_profesores_activos():
-
-    imprimir_titulo(
-        "=== PROFESORES ACTIVOS ==="
-    )
-
+    imprimir_titulo("=== PROFESORES ACTIVOS ===")
     profesores = obtener_profesores()
-
     encontrados = 0
-
     for profesor in profesores:
-
         if profesor["estado"] == "Activo":
-
             mostrar_profesor(profesor)
-
             encontrados += 1
-
     if encontrados == 0:
         print("No existen profesores activos.")
-
-    print(
-        f"\nTotal activos: "
-        f"{encontrados}"
-    )
-
+    print(f"\nTotal activos: "
+        f"{encontrados}")
 
 def reporte_profesores_inactivos():
-
-    imprimir_titulo(
-        "=== PROFESORES INACTIVOS ==="
-    )
-
+    imprimir_titulo("=== PROFESORES INACTIVOS ===")
     profesores = obtener_profesores()
-
     encontrados = 0
-
     for profesor in profesores:
-
         if profesor["estado"] == "Inactivo":
-
             mostrar_profesor(profesor)
-
             encontrados += 1
-
     if encontrados == 0:
         print("No existen profesores inactivos.")
-
-    print(
-        f"\nTotal inactivos: "
-        f"{encontrados}"
-    )
-
-
-# =========================================================
-# REPORTES POR ESPECIALIDAD
-# =========================================================
+    print(f"\nTotal inactivos: "
+        f"{encontrados}")
 
 def reporte_por_especialidad():
-
-    imprimir_titulo(
-        "=== REPORTE ESPECIALIDAD ==="
-    )
-
+    imprimir_titulo("=== REPORTE ESPECIALIDAD ===")
     profesores = obtener_profesores()
-
-    especialidad = input(
-        "Ingresar especialidad: "
-    ).lower()
-
+    especialidad = input("Ingresar especialidad: ").lower()
     encontrados = 0
-
     for profesor in profesores:
-
-        if (
-            profesor["especialidad"]
-            .lower() == especialidad
-        ):
-
+        if (profesor["especialidad"].lower() == especialidad):
             mostrar_profesor(profesor)
-
             encontrados += 1
-
     if encontrados == 0:
         print("No existen registros.")
-
-    print(
-        f"\nTotal encontrados: "
-        f"{encontrados}"
-    )
-
-
-# =========================================================
-# BÚSQUEDAS
-# =========================================================
+    print(f"\nTotal encontrados: "
+        f"{encontrados}")
 
 def buscar_por_id():
-
-    imprimir_titulo(
-        "=== BUSCAR PROFESOR ==="
-    )
-
+    imprimir_titulo("=== BUSCAR PROFESOR ===")
     profesores = obtener_profesores()
 
+# Captura de ID con validación de número entero
     try:
-
-        id_profesor = int(
-            input(
-                "Ingresar ID profesor: "
-            )
-        )
-
+        id_profesor = int(input("Ingresar ID profesor: "))
     except ValueError:
         print("Debe ingresar un número.")
         return
-
-    profesor = buscar_profesor_por_id(
-        profesores,
-        id_profesor
-    )
-
+    profesor = buscar_profesor_por_id(profesores,id_profesor)
     if profesor is None:
-
         print("Profesor no encontrado.")
         return
-
-    imprimir_titulo(
-        "=== DATOS PROFESOR ==="
-    )
-
+    imprimir_titulo("=== DATOS PROFESOR ===")
     for clave, valor in profesor.items():
-
         print(f"{clave}: {valor}")
 
-
 def buscar_por_dni():
-
-    imprimir_titulo(
-        "=== BUSCAR POR DNI ==="
-    )
-
+    imprimir_titulo("=== BUSCAR POR DNI ===")
     profesores = obtener_profesores()
-
-    dni = input(
-        "Ingresar DNI: "
-    )
-
+    dni = input("Ingresar DNI: ")
     encontrados = 0
-
     for profesor in profesores:
-
         if profesor["dni"] == dni:
-
             mostrar_profesor(profesor)
-
             encontrados += 1
-
     if encontrados == 0:
         print("No se encontraron resultados.")
-
 
 def buscar_por_nombre():
-
-    imprimir_titulo(
-        "=== BUSCAR POR NOMBRE ==="
-    )
-
+    imprimir_titulo("=== BUSCAR POR NOMBRE ===")
     profesores = obtener_profesores()
-
-    texto = input(
-        "Ingresar nombre/apellido: "
-    ).lower()
-
+    texto = input("Ingresar nombre/apellido: ").lower()
     encontrados = 0
-
     for profesor in profesores:
-
-        nombre_completo = (
-
-            f"{profesor['nombres']} "
-            f"{profesor['apellidos']}"
-
-        ).lower()
-
+        nombre_completo = (f"{profesor['nombres']} "f"{profesor['apellidos']}").lower()
         if texto in nombre_completo:
-
             mostrar_profesor(profesor)
-
             encontrados += 1
-
     if encontrados == 0:
         print("No se encontraron resultados.")
 
-
-# =========================================================
-# ESTADÍSTICAS
-# =========================================================
-
 def estadisticas_profesores():
-
-    imprimir_titulo(
-        "=== ESTADÍSTICAS PROFESORES ==="
-    )
-
+    imprimir_titulo("=== ESTADÍSTICAS PROFESORES ===")
     profesores = obtener_profesores()
-
     total = len(profesores)
-
     activos = 0
     inactivos = 0
-
     especialidades = {}
-
     for profesor in profesores:
-
-        if profesor["estado"] == "Activo":
-
-            activos += 1
-
-        elif profesor["estado"] == "Inactivo":
-
-            inactivos += 1
-
+        if profesor["estado"] == "Activo": activos += 1
+        elif profesor["estado"] == "Inactivo": inactivos += 1
         especialidad = profesor["especialidad"]
-
         if especialidad in especialidades:
-
             especialidades[especialidad] += 1
-
         else:
-
             especialidades[especialidad] = 1
-
     print(f"Total profesores: {total}")
     print(f"Activos: {activos}")
     print(f"Inactivos: {inactivos}")
-
-    imprimir_titulo(
-        "=== ESPECIALIDADES ==="
-    )
-
+    imprimir_titulo("=== ESPECIALIDADES ===")
     for especialidad, cantidad in especialidades.items():
-
-        print(
-            f"{especialidad}: "
-            f"{cantidad}"
-        )
-
-
-# =========================================================
-# REPORTES ORDENADOS
-# =========================================================
+        print(f"{especialidad}: "
+            f"{cantidad}")
 
 def reporte_ordenado_apellidos():
-
-    imprimir_titulo(
-        "=== REPORTE ORDENADO ==="
-    )
-
+    imprimir_titulo("=== REPORTE ORDENADO ===")
     profesores = obtener_profesores()
-
-    ordenados = sorted(
-
-        profesores,
-
-        key=lambda profesor:
-        profesor["apellidos"]
-
-    )
-
+    ordenados = sorted(profesores,key=lambda profesor:profesor["apellidos"])
     for profesor in ordenados:
-
         mostrar_profesor(profesor)
 
-
-# =========================================================
-# MENU INTERNO
-# =========================================================
-
 def menu_reporte_profesores():
-
     while True:
-
-        imprimir_titulo(
-            "=== REPORTES PROFESORES ==="
-        )
-
+        imprimir_titulo("=== REPORTES PROFESORES ===")
         print("""
+
 1. Reporte general
 2. Profesores activos
 3. Profesores inactivos
@@ -389,83 +163,21 @@ def menu_reporte_profesores():
 8. Estadísticas
 9. Reporte ordenado
 10. Volver
+
 """)
-
-        opcion = input(
-            "Seleccione una opción: "
-        )
-
+        opcion = input("Seleccionar una opción: ")
         match opcion:
-
-            # =============================================
-            # REPORTES
-            # =============================================
-
-            case "1":
-
-                reporte_general_profesores()
-
-            case "2":
-
-                reporte_profesores_activos()
-
-            case "3":
-
-                reporte_profesores_inactivos()
-
-            # =============================================
-            # FILTROS
-            # =============================================
-
-            case "4":
-
-                reporte_por_especialidad()
-
-            # =============================================
-            # BÚSQUEDAS
-            # =============================================
-
-            case "5":
-
-                buscar_por_id()
-
-            case "6":
-
-                buscar_por_dni()
-
-            case "7":
-
-                buscar_por_nombre()
-
-            # =============================================
-            # ESTADÍSTICAS
-            # =============================================
-
-            case "8":
-
-                estadisticas_profesores()
-
-            # =============================================
-            # ORDENAMIENTO
-            # =============================================
-
-            case "9":
-
-                reporte_ordenado_apellidos()
-
-            # =============================================
-            # SALIR
-            # =============================================
-
+            case "1":reporte_general_profesores()
+            case "2":reporte_profesores_activos()
+            case "3":reporte_profesores_inactivos()
+            case "4":reporte_por_especialidad()
+            case "5":buscar_por_id()
+            case "6":buscar_por_dni()
+            case "7":buscar_por_nombre()
+            case "8":estadisticas_profesores()
+            case "9":reporte_ordenado_apellidos()
             case "10":
-
-                print("Regresando...")
+                print("Regresando a reportes...")
                 break
-
-            # =============================================
-            # ERROR
-            # =============================================
-
             case _:
-
                 print("Opción inválida.")

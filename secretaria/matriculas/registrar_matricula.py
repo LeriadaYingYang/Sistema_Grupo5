@@ -1,5 +1,5 @@
-from basedatos_json import (leer_json,guardar_json,generar_id)
-from secretaria.utilidades import (imprimir_titulo)
+from basedatos_json import leer_json,guardar_json,generar_id
+from secretaria.utilidades import imprimir_titulo
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_MATRICULAS = "datos/matriculas.json"
