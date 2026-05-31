@@ -4,7 +4,7 @@ from secretaria.utilidades import imprimir_titulo
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_MATRICULAS = "datos/matriculas.json"
 
-def mostrar_alumnos(alumnos):
+def mostrar_alumnos(alumnos): # Muestra la lista de alumnos activos
     imprimir_titulo("=== ALUMNOS DISPONIBLES ===")
     encontrados = 0
     for alumno in alumnos:
@@ -17,25 +17,25 @@ def mostrar_alumnos(alumnos):
     if encontrados == 0:
         print("No hay alumnos activos.")
 
-def buscar_alumno(alumnos,id_alumno):
+def buscar_alumno(alumnos,id_alumno): # Busca un alumno activo según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"] == id_alumno and alumno["estado"] == "Activo"):
             return alumno
     return None
 
-def buscar_matricula(matriculas,id_matricula):
+def buscar_matricula(matriculas,id_matricula): # Busca una matrícula según su ID
     for matricula in matriculas:
         if (matricula["id_matricula"] == id_matricula):
             return matricula
     return None
 
-def verificar_matricula_activa(matriculas,id_alumno):
+def verificar_matricula_activa(matriculas,id_alumno): # Verifica si el alumno tiene matrícula activa
     for matricula in matriculas:
         if (matricula["id_alumno"] == id_alumno and matricula["estado"] == "Activa"):
             return matricula
     return None
 
-def seleccionar_carrera():
+def seleccionar_carrera(): # Permite seleccionar una carrera
     print("""
 
 === CARRERAS DISPONIBLES ===
@@ -57,7 +57,7 @@ def seleccionar_carrera():
     }
     return carreras.get(opcion)
 
-def seleccionar_turno():
+def seleccionar_turno(): # Permite seleccionar un turno
     print("""
 
 === TURNOS DISPONIBLES ===
@@ -78,7 +78,7 @@ def seleccionar_turno():
     }
     return turnos.get(opcion)
 
-def seleccionar_salon():
+def seleccionar_salon(): # Permite seleccionar un salón
     print("""
 
 === SALONES DISPONIBLES ===
@@ -100,7 +100,7 @@ def seleccionar_salon():
     }
     return salones.get(opcion)
 
-def mostrar_matriculas():
+def mostrar_matriculas(): # Muestra todas las matrículas registradas
     imprimir_titulo("=== LISTA MATRÍCULAS ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     if len(matriculas) == 0:
@@ -116,7 +116,7 @@ def mostrar_matriculas():
             f"Estado: "
             f"{matricula['estado']}")
 
-def mostrar_matriculas_activas():
+def mostrar_matriculas_activas(): # Muestra únicamente las matrículas activas
     imprimir_titulo("=== MATRÍCULAS ACTIVAS ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     encontrados = 0
@@ -129,7 +129,7 @@ def mostrar_matriculas_activas():
     if encontrados == 0:
         print("No existen matrículas activas.")
 
-def registrar_matricula():
+def registrar_matricula(): # Registra una nueva matrícula
     imprimir_titulo("=== REGISTRAR MATRÍCULA ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     matriculas = leer_json(RUTA_MATRICULAS)
@@ -169,7 +169,7 @@ def registrar_matricula():
     periodo = input("Ingresar periodo académico: ")
     ciclo = input("Ingresar ciclo: ")
 
-    nueva_matricula = {
+    nueva_matricula = { # Crea el registro de la nueva matrícula
         "id_matricula":generar_id(matriculas,"id_matricula"),
         "id_alumno":alumno["id_alumno"],
         "nombre_alumno":f"{alumno['nombres']} "f"{alumno['apellidos']}",
@@ -181,7 +181,7 @@ def registrar_matricula():
         "ciclo":ciclo,
         "estado":"Activa"
     }
-    matriculas.append(nueva_matricula)
+    matriculas.append(nueva_matricula) # Guarda la nueva matrícula registrada
     guardar_json(RUTA_MATRICULAS,matriculas)
     imprimir_titulo("=== MATRÍCULA REGISTRADA ===")
     print(f"ID: "f"{nueva_matricula['id_matricula']}")
@@ -189,7 +189,7 @@ def registrar_matricula():
     print(f"Carrera: "f"{nueva_matricula['carrera']}")
     print(f"Estado: "f"{nueva_matricula['estado']}")
 
-def buscar_matricula_por_id():
+def buscar_matricula_por_id(): # Busca y muestra una matrícula por ID
     imprimir_titulo("=== BUSCAR MATRÍCULA ===")
     matriculas = leer_json(RUTA_MATRICULAS)
 
@@ -207,7 +207,7 @@ def buscar_matricula_por_id():
     for clave, valor in matricula.items():
         print(f"{clave}: {valor}")
 
-def actualizar_estado_matricula():
+def actualizar_estado_matricula(): # Actualiza el estado de una matrícula
     imprimir_titulo("=== ACTUALIZAR ESTADO ===")
     matriculas = leer_json(RUTA_MATRICULAS)
 
@@ -237,11 +237,11 @@ def actualizar_estado_matricula():
     if opcion not in estados:
         print("Opción inválida.")
         return
-    matricula["estado"] = estados[opcion]
+    matricula["estado"] = estados[opcion] # Modifica y guarda el nuevo estado
     guardar_json(RUTA_MATRICULAS,matriculas)
     print("Estado actualizado correctamente.")
 
-def menu_registrar_matricula():
+def menu_registrar_matricula(): # Muestra y gestiona el menú de matrículas
     while True:
         imprimir_titulo("=== MENU MATRÍCULAS ===")
         print("1. Registrar matrícula")

@@ -4,26 +4,26 @@ from secretaria.utilidades import imprimir_titulo
 RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_MATRICULAS = "datos/matriculas.json"
 
-def buscar_matricula_por_id(matriculas,id_matricula):
+def buscar_matricula_por_id(matriculas,id_matricula): # Busca una matrícula según su ID
     for matricula in matriculas:
         if (matricula["id_matricula"] == id_matricula):
             return matricula
     return None
 
-def buscar_matricula_por_alumno(matriculas,id_alumno):
+def buscar_matricula_por_alumno(matriculas,id_alumno): # Obtiene todas las matrículas de un alumno
     encontrados = []
     for matricula in matriculas:
         if (matricula["id_alumno"]== id_alumno):
             encontrados.append(matricula)
     return encontrados
 
-def buscar_alumno_por_id(alumnos,id_alumno):
+def buscar_alumno_por_id(alumnos,id_alumno): # Busca un alumno según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"]== id_alumno):
             return alumno
     return None
 
-def buscar_por_dni(alumnos):
+def buscar_por_dni(alumnos): # Busca alumnos mediante DNI
     dni = input("Ingresar DNI: ")
     encontrados = []
     for alumno in alumnos:
@@ -31,7 +31,7 @@ def buscar_por_dni(alumnos):
             encontrados.append(alumno)
     return encontrados
 
-def buscar_por_nombre(alumnos):
+def buscar_por_nombre(alumnos): # Busca alumnos por nombre o apellido
     texto = input("Ingresar nombre/apellido: ").lower()
     encontrados = []
     for alumno in alumnos:
@@ -40,7 +40,7 @@ def buscar_por_nombre(alumnos):
             encontrados.append(alumno)
     return encontrados
 
-def mostrar_alumnos(alumnos):
+def mostrar_alumnos(alumnos): # Muestra la lista de alumnos encontrados
     imprimir_titulo("=== ALUMNOS ENCONTRADOS ===")
     if len(alumnos) == 0:
         print("No se encontraron alumnos.")
@@ -51,12 +51,12 @@ def mostrar_alumnos(alumnos):
             f"{alumno['apellidos']} | "
             f"DNI: {alumno['dni']}")
 
-def mostrar_matricula(matricula):
+def mostrar_matricula(matricula): # Muestra todos los datos de una matrícula
     imprimir_titulo("=== DATOS DE MATRÍCULA ===")
     for clave, valor in matricula.items():
         print(f"{clave}: {valor}")
 
-def mostrar_historial_matriculas(matriculas):
+def mostrar_historial_matriculas(matriculas): # Muestra el historial de matrículas
     imprimir_titulo("=== HISTORIAL DE MATRÍCULAS ===")
     if len(matriculas) == 0:
         print("No existen matrículas.")
@@ -67,7 +67,7 @@ def mostrar_historial_matriculas(matriculas):
             f"Carrera: "f"{matricula['carrera']} | "
             f"Estado: "f"{matricula['estado']}")
 
-def consultar_por_id():
+def consultar_por_id(): # Consulta una matrícula mediante ID
     imprimir_titulo("=== CONSULTAR MATRÍCULA ===")
     matriculas = leer_json(RUTA_MATRICULAS)
 
@@ -83,7 +83,7 @@ def consultar_por_id():
         return
     mostrar_matricula(matricula)
 
-def consultar_por_alumno():
+def consultar_por_alumno(): # Consulta el historial de matrículas de un alumno
     imprimir_titulo("=== CONSULTAR POR ALUMNO ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     matriculas = leer_json(RUTA_MATRICULAS)
@@ -104,19 +104,19 @@ def consultar_por_alumno():
         f"{alumno['apellidos']}")
     mostrar_historial_matriculas(historial)
 
-def consultar_por_dni():
+def consultar_por_dni(): # Consulta alumnos mediante DNI
     imprimir_titulo("=== CONSULTAR POR DNI ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     encontrados = buscar_por_dni(alumnos)
     mostrar_alumnos(encontrados)
 
-def consultar_por_nombre():
+def consultar_por_nombre(): # Consulta alumnos mediante nombre
     imprimir_titulo("=== CONSULTAR POR NOMBRE ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     encontrados = buscar_por_nombre(alumnos)
     mostrar_alumnos(encontrados)
 
-def mostrar_matriculas_activas():
+def mostrar_matriculas_activas(): # Muestra las matrículas activas registradas
     imprimir_titulo("=== MATRÍCULAS ACTIVAS ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     encontrados = 0
@@ -132,7 +132,7 @@ def mostrar_matriculas_activas():
     if encontrados == 0:
         print("No existen matrículas activas.")
 
-def menu_consultar_matricula():
+def menu_consultar_matricula(): # Muestra y gestiona el menú de consultas de matrícula
     while True:
         imprimir_titulo("=== CONSULTAR MATRÍCULA ===")
         print("1. Consultar por ID")

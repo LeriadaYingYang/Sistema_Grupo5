@@ -3,10 +3,10 @@ from secretaria.utilidades import imprimir_titulo
 
 RUTA_PROFESORES = "datos/profesores.json"
 
-def obtener_profesores():
+def obtener_profesores(): # Obtiene lista de profesores desde el archivo JSON
     return leer_json(RUTA_PROFESORES)
 
-def mostrar_profesor(profesor):
+def mostrar_profesor(profesor): # Muestra datos formateados de un profesor
     print(
         f"ID: "
         f"{profesor.get('id_profesor', 'N/A')} | "
@@ -19,13 +19,13 @@ def mostrar_profesor(profesor):
         f"Estado: "
         f"{profesor.get('estado', 'Desconocido')}")
 
-def buscar_profesor_por_id(profesores,id_profesor):
+def buscar_profesor_por_id(profesores,id_profesor): # Busca y devuelve profesor por ID, o None si no existe
     for profesor in profesores:
         if (profesor["id_profesor"] == id_profesor):
             return profesor
     return None
 
-def reporte_general_profesores():
+def reporte_general_profesores(): # Reporte completo de todos los profesores registrados
     imprimir_titulo("=== REPORTE GENERAL PROFESORES ===")
     profesores = obtener_profesores()
     if len(profesores) == 0:
@@ -36,7 +36,7 @@ def reporte_general_profesores():
     print(f"\nTotal profesores: "
         f"{len(profesores)}")
 
-def reporte_profesores_activos():
+def reporte_profesores_activos(): # Reporte filtrado solo para profesores en estado Activo
     imprimir_titulo("=== PROFESORES ACTIVOS ===")
     profesores = obtener_profesores()
     encontrados = 0
@@ -49,7 +49,7 @@ def reporte_profesores_activos():
     print(f"\nTotal activos: "
         f"{encontrados}")
 
-def reporte_profesores_inactivos():
+def reporte_profesores_inactivos(): # Reporte filtrado solo para profesores en estado Inactivo
     imprimir_titulo("=== PROFESORES INACTIVOS ===")
     profesores = obtener_profesores()
     encontrados = 0
@@ -62,7 +62,7 @@ def reporte_profesores_inactivos():
     print(f"\nTotal inactivos: "
         f"{encontrados}")
 
-def reporte_por_especialidad():
+def reporte_por_especialidad(): # Reporte filtrado por coincidencia de especialidad
     imprimir_titulo("=== REPORTE ESPECIALIDAD ===")
     profesores = obtener_profesores()
     especialidad = input("Ingresar especialidad: ").lower()
@@ -76,7 +76,7 @@ def reporte_por_especialidad():
     print(f"\nTotal encontrados: "
         f"{encontrados}")
 
-def buscar_por_id():
+def buscar_por_id(): # Búsqueda por ID con validación de entrada numérica
     imprimir_titulo("=== BUSCAR PROFESOR ===")
     profesores = obtener_profesores()
 
@@ -94,7 +94,7 @@ def buscar_por_id():
     for clave, valor in profesor.items():
         print(f"{clave}: {valor}")
 
-def buscar_por_dni():
+def buscar_por_dni(): # Búsqueda exacta por número de DNI
     imprimir_titulo("=== BUSCAR POR DNI ===")
     profesores = obtener_profesores()
     dni = input("Ingresar DNI: ")
@@ -106,7 +106,7 @@ def buscar_por_dni():
     if encontrados == 0:
         print("No se encontraron resultados.")
 
-def buscar_por_nombre():
+def buscar_por_nombre(): # Búsqueda parcial por coincidencia en nombre o apellido
     imprimir_titulo("=== BUSCAR POR NOMBRE ===")
     profesores = obtener_profesores()
     texto = input("Ingresar nombre/apellido: ").lower()
@@ -119,13 +119,13 @@ def buscar_por_nombre():
     if encontrados == 0:
         print("No se encontraron resultados.")
 
-def estadisticas_profesores():
+def estadisticas_profesores(): # Cálculo y visualización de estadísticas generales
     imprimir_titulo("=== ESTADÍSTICAS PROFESORES ===")
     profesores = obtener_profesores()
     total = len(profesores)
     activos = 0
     inactivos = 0
-    especialidades = {}
+    especialidades = {} # Almacena cantidad por cada especialidad
     for profesor in profesores:
         if profesor["estado"] == "Activo": activos += 1
         elif profesor["estado"] == "Inactivo": inactivos += 1
@@ -142,14 +142,14 @@ def estadisticas_profesores():
         print(f"{especialidad}: "
             f"{cantidad}")
 
-def reporte_ordenado_apellidos():
+def reporte_ordenado_apellidos(): # Reporte listado ordenado alfabéticamente por apellidos
     imprimir_titulo("=== REPORTE ORDENADO ===")
     profesores = obtener_profesores()
     ordenados = sorted(profesores,key=lambda profesor:profesor["apellidos"])
     for profesor in ordenados:
         mostrar_profesor(profesor)
 
-def menu_reporte_profesores():
+def menu_reporte_profesores(): # Menú principal de opciones de reportes
     while True:
         imprimir_titulo("=== REPORTES PROFESORES ===")
         print("""

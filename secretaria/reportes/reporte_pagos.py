@@ -3,10 +3,10 @@ from secretaria.utilidades import imprimir_titulo
 
 RUTA_PAGOS = "datos/pagos.json"
 
-def obtener_pagos():
+def obtener_pagos(): # Obtiene la lista de pagos registrados
     return leer_json(RUTA_PAGOS)
 
-def mostrar_pago(pago):
+def mostrar_pago(pago): # Muestra los datos principales de un pago
     print(f"ID Pago: "
         f"{pago['id_pago']} | "
         f"Alumno: "
@@ -18,13 +18,13 @@ def mostrar_pago(pago):
         f"Estado: "
         f"{pago['estado']}")
 
-def buscar_pago_por_id(pagos,id_pago):
+def buscar_pago_por_id(pagos,id_pago): # Busca un pago mediante su ID
     for pago in pagos:
         if (pago["id_pago"] == id_pago):
             return pago
     return None
 
-def reporte_general_pagos():
+def reporte_general_pagos(): # Muestra todos los pagos registrados
     imprimir_titulo("=== REPORTE GENERAL PAGOS ===")
     pagos = obtener_pagos()
     if len(pagos) == 0:
@@ -35,7 +35,7 @@ def reporte_general_pagos():
     print(f"\nTotal pagos: "
         f"{len(pagos)}")
 
-def reporte_pagos_pagados():
+def reporte_pagos_pagados(): # Muestra únicamente los pagos realizados
     imprimir_titulo("=== PAGOS REALIZADOS ===")
     pagos = obtener_pagos()
     encontrados = 0
@@ -48,7 +48,7 @@ def reporte_pagos_pagados():
     print(f"\nTotal pagados: "
         f"{encontrados}")
 
-def reporte_pagos_pendientes():
+def reporte_pagos_pendientes(): # Muestra únicamente los pagos pendientes
     imprimir_titulo("=== PAGOS PENDIENTES ===")
     pagos = obtener_pagos()
     encontrados = 0
@@ -61,7 +61,7 @@ def reporte_pagos_pendientes():
     print(f"\nTotal pendientes: "
         f"{encontrados}")
 
-def reporte_por_metodo_pago():
+def reporte_por_metodo_pago(): # Filtra pagos según el método de pago ingresado
     imprimir_titulo("=== REPORTE MÉTODO PAGO ===")
     pagos = obtener_pagos()
     metodo = input("Ingresar método: ").lower()
@@ -75,14 +75,14 @@ def reporte_por_metodo_pago():
     print(f"\nTotal encontrados: "
         f"{encontrados}")
 
-def reporte_mayores_montos():
+def reporte_mayores_montos(): # Ordena los pagos de mayor a menor monto
     imprimir_titulo("=== MAYORES PAGOS ===")
     pagos = obtener_pagos()
     ordenados = sorted(pagos,key=lambda pago:pago["monto"],reverse=True)
     for pago in ordenados:
         mostrar_pago(pago)
 
-def buscar_pago():
+def buscar_pago(): # Busca y muestra un pago por ID
     imprimir_titulo("=== BUSCAR PAGO ===")
     pagos = obtener_pagos()
 
@@ -100,7 +100,7 @@ def buscar_pago():
     for clave, valor in pago.items():
         print(f"{clave}: {valor}")
 
-def estadisticas_pagos():
+def estadisticas_pagos(): # Calcula estadísticas generales de pagos
     imprimir_titulo("=== ESTADÍSTICAS PAGOS ===")
     pagos = obtener_pagos()
     total_pagos = len(pagos)
@@ -121,14 +121,14 @@ def estadisticas_pagos():
     print(f"Monto recaudado: S/. {monto_pagado}")
     print(f"Monto pendiente: S/. {monto_pendiente}")
 
-def reporte_ordenado_alumnos():
+def reporte_ordenado_alumnos(): # Ordena los pagos alfabéticamente por alumno
     imprimir_titulo("=== PAGOS ORDENADOS ===")
     pagos = obtener_pagos()
-    ordenados = sorted(pagos,key=lambda pago:pago["nombre_alumno"])
+    ordenados = sorted(pagos,key=lambda pago:pago["nombre_alumno"]) # Ordena los pagos por nombre del alumno
     for pago in ordenados:
         mostrar_pago(pago)
 
-def menu_reporte_pagos():
+def menu_reporte_pagos(): # Controla el menú principal de reportes de pagos
     while True:
         imprimir_titulo("=== REPORTES PAGOS ===")
         print("""

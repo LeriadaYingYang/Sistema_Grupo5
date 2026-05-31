@@ -3,13 +3,13 @@ from secretaria.utilidades import imprimir_titulo
 
 RUTA_MATRICULAS = "datos/matriculas.json"
 
-def buscar_matricula(matriculas,id_matricula):
+def buscar_matricula(matriculas,id_matricula): # Busca una matrícula según su ID
     for matricula in matriculas:
         if (matricula["id_matricula"] == id_matricula):
             return matricula
     return None
 
-def mostrar_matriculas_activas():
+def mostrar_matriculas_activas(): # Muestra las matrículas activas registradas
     imprimir_titulo("=== MATRÍCULAS ACTIVAS ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     encontrados = 0
@@ -27,7 +27,7 @@ def mostrar_matriculas_activas():
     if encontrados == 0:
         print("No existen matrículas activas.")
 
-def mostrar_historial_retiros():
+def mostrar_historial_retiros(): # Muestra el historial de matrículas retiradas
     imprimir_titulo("=== HISTORIAL RETIROS ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     encontrados = 0
@@ -42,7 +42,7 @@ def mostrar_historial_retiros():
     if encontrados == 0:
         print("No existen retiros registrados.")
 
-def retirar_matricula():
+def retirar_matricula(): # Retira una matrícula activa
     imprimir_titulo("=== RETIRAR MATRÍCULA ===")
     matriculas = leer_json(RUTA_MATRICULAS)
     mostrar_matriculas_activas()
@@ -83,8 +83,10 @@ def retirar_matricula():
     if opcion not in motivos:
         print("Opción inválida.")
         return
-    descripcion = input("Descripción adicional: ")
-    matricula["estado"] = "Retirada"
+    descripcion = input("Descripción adicional: ") 
+
+# Actualiza el estado y motivo del retiro
+    matricula["estado"] = "Retirada" 
     matricula["motivo_retiro"] = (motivos[opcion])
     matricula["descripcion_retiro"] = (descripcion)
     guardar_json(RUTA_MATRICULAS,matriculas)
@@ -98,7 +100,7 @@ def retirar_matricula():
     print(f"Motivo: "
         f"{matricula['motivo_retiro']}")
 
-def buscar_retiro_por_id():
+def buscar_retiro_por_id(): # Busca y muestra una matrícula por ID
     imprimir_titulo("=== BUSCAR MATRÍCULA ===")
     matriculas = leer_json(RUTA_MATRICULAS)
 
@@ -113,10 +115,10 @@ def buscar_retiro_por_id():
         print("Matrícula no encontrada.")
         return
     imprimir_titulo("=== DATOS MATRÍCULA ===")
-    for clave, valor in matricula.items():
+    for clave, valor in matricula.items(): # Muestra toda la información de la matrícula
         print(f"{clave}: {valor}")
 
-def reactivar_matricula():
+def reactivar_matricula(): # Reactiva una matrícula retirada
     imprimir_titulo("=== REACTIVAR MATRÍCULA ===")
     matriculas = leer_json(RUTA_MATRICULAS)
 
@@ -133,11 +135,11 @@ def reactivar_matricula():
     if matricula["estado"] != "Retirada":
         print("La matrícula no está retirada.")
         return
-    matricula["estado"] = "Activa"
+    matricula["estado"] = "Activa" # Cambia el estado nuevamente a activa
     guardar_json(RUTA_MATRICULAS,matriculas)
     print("=== MATRÍCULA REACTIVADA CORRECTAMENTE ===")
 
-def menu_retirar_matricula():
+def menu_retirar_matricula(): # Muestra y gestiona el menú de retiro de matrículas
     while True:
         imprimir_titulo("=== MENU RETIRO MATRÍCULA ===")
         print("1. Retirar matrícula")

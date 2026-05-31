@@ -3,10 +3,10 @@ from secretaria.utilidades import imprimir_titulo
 
 RUTA_MATRICULAS = "datos/matriculas.json"
 
-def obtener_matriculas():
+def obtener_matriculas(): # Obtiene la lista de matrículas registradas
     return leer_json(RUTA_MATRICULAS)
 
-def mostrar_matricula(matricula):
+def mostrar_matricula(matricula): # Muestra los datos principales de una matrícula
     print(f"ID: "
         f"{matricula['id_matricula']} | "
         f"Alumno: "
@@ -18,13 +18,13 @@ def mostrar_matricula(matricula):
         f"Estado: "
         f"{matricula['estado']}")
 
-def buscar_matricula_por_id(matriculas,id_matricula):
+def buscar_matricula_por_id(matriculas,id_matricula): # Busca una matrícula mediante su ID
     for matricula in matriculas:
         if (matricula["id_matricula"] == id_matricula):
             return matricula
     return None
 
-def reporte_general_matriculas():
+def reporte_general_matriculas(): # Muestra todas las matrículas registradas
     imprimir_titulo("=== REPORTE GENERAL MATRÍCULAS ===")
     matriculas = obtener_matriculas()
     if len(matriculas) == 0:
@@ -35,7 +35,7 @@ def reporte_general_matriculas():
     print(f"\nTotal matrículas: "
         f"{len(matriculas)}")
 
-def reporte_matriculas_activas():
+def reporte_matriculas_activas(): # Muestra únicamente las matrículas activas
     imprimir_titulo("=== MATRÍCULAS ACTIVAS ===")
     matriculas = obtener_matriculas()
     encontrados = 0
@@ -48,7 +48,7 @@ def reporte_matriculas_activas():
     print(f"\nTotal activas: "
         f"{encontrados}")
 
-def reporte_matriculas_retiradas():
+def reporte_matriculas_retiradas(): # Muestra únicamente las matrículas retiradas
     imprimir_titulo("=== MATRÍCULAS RETIRADAS ===")
     matriculas = obtener_matriculas()
     encontrados = 0
@@ -61,7 +61,7 @@ def reporte_matriculas_retiradas():
     print(f"\nTotal retiradas: "
         f"{encontrados}")
 
-def reporte_matriculas_finalizadas():
+def reporte_matriculas_finalizadas(): # Muestra únicamente las matrículas finalizadas
     imprimir_titulo("=== MATRÍCULAS FINALIZADAS ===")
     matriculas = obtener_matriculas()
     encontrados = 0
@@ -74,7 +74,7 @@ def reporte_matriculas_finalizadas():
     print(f"\nTotal finalizadas: "
         f"{encontrados}")
 
-def reporte_por_carrera():
+def reporte_por_carrera(): # Filtra matrículas según la carrera ingresada
     imprimir_titulo("=== REPORTE POR CARRERA ===")
     matriculas = obtener_matriculas()
     carrera = input("Ingresar carrera: ").lower()
@@ -88,7 +88,7 @@ def reporte_por_carrera():
     print(f"\nTotal encontrados: "
         f"{encontrados}")
 
-def reporte_por_periodo():
+def reporte_por_periodo(): # Filtra matrículas según el periodo académico
     imprimir_titulo("=== REPORTE POR PERIODO ===")
     matriculas = obtener_matriculas()
     periodo = input("Ingresar periodo: ")
@@ -102,7 +102,7 @@ def reporte_por_periodo():
     print(f"\nTotal encontrados: "
         f"{encontrados}")
 
-def buscar_por_id():
+def buscar_por_id(): # Busca y muestra una matrícula por ID
     imprimir_titulo("=== BUSCAR MATRÍCULA ===")
     matriculas = obtener_matriculas()
 
@@ -118,10 +118,10 @@ def buscar_por_id():
         print("Matrícula no encontrada.")
         return
     imprimir_titulo("=== DATOS MATRÍCULA ===")
-    for clave, valor in matricula.items():
+    for clave, valor in matricula.items(): # Muestra toda la información de la matrícula
         print(f"{clave}: {valor}")
 
-def estadisticas_matriculas():
+def estadisticas_matriculas(): # Calcula estadísticas generales de matrículas
     imprimir_titulo("=== ESTADÍSTICAS MATRÍCULAS ===")
     matriculas = obtener_matriculas()
     total = len(matriculas)
@@ -138,14 +138,14 @@ def estadisticas_matriculas():
     print(f"Retiradas: {retiradas}")
     print(f"Finalizadas: {finalizadas}")
 
-def reporte_ordenado_periodo():
+def reporte_ordenado_periodo(): # Ordena las matrículas según el periodo académico
     imprimir_titulo("=== REPORTE ORDENADO ===")
     matriculas = obtener_matriculas()
-    ordenadas = sorted(matriculas,key=lambda matricula:matricula["periodo"])
+    ordenadas = sorted(matriculas,key=lambda matricula:matricula["periodo"]) # Ordena las matrículas por periodo
     for matricula in ordenadas:
         mostrar_matricula(matricula)
 
-def menu_reporte_matriculas():
+def menu_reporte_matriculas(): # Controla el menú principal de reportes de matrículas
     while True:
         imprimir_titulo("=== REPORTES MATRÍCULAS ===")
         print("""

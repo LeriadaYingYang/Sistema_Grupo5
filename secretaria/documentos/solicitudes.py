@@ -5,7 +5,7 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_SOLICITUDES = "datos/solicitudes.json"
 
-def mostrar_alumnos(alumnos):
+def mostrar_alumnos(alumnos): # Muestra la lista de alumnos activos
     imprimir_titulo("=== ALUMNOS DISPONIBLES ===")
     encontrados = 0
     for alumno in alumnos:
@@ -18,25 +18,25 @@ def mostrar_alumnos(alumnos):
     if encontrados == 0:
         print("No hay alumnos activos.")
 
-def buscar_alumno(alumnos,id_alumno):
+def buscar_alumno(alumnos,id_alumno): # Busca un alumno activo según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"] == id_alumno and alumno["estado"] == "Activo"):
             return alumno
     return None
 
-def obtener_asignacion(id_alumno,asignaciones):
+def obtener_asignacion(id_alumno,asignaciones): # Busca la asignación activa de un alumno
     for asignacion in asignaciones:
         if (asignacion["id_alumno"] == id_alumno and asignacion["estado"] == "Activo"):
             return asignacion
     return None
 
-def buscar_solicitud(solicitudes,id_solicitud):
+def buscar_solicitud(solicitudes,id_solicitud): # Busca una solicitud según su ID
     for solicitud in solicitudes:
         if (solicitud["id_solicitud"]== id_solicitud):
             return solicitud
     return None
 
-def mostrar_solicitudes():
+def mostrar_solicitudes(): # Muestra todas las solicitudes registradas
     imprimir_titulo("=== LISTA DE SOLICITUDES ===")
     solicitudes = leer_json(RUTA_SOLICITUDES)
     if len(solicitudes) == 0:
@@ -48,7 +48,7 @@ def mostrar_solicitudes():
             f"{solicitud['tipo_solicitud']} | "
             f"Estado: "f"{solicitud['estado']}")
 
-def mostrar_solicitudes_pendientes():
+def mostrar_solicitudes_pendientes(): # Muestra únicamente las solicitudes pendientes
     imprimir_titulo("=== SOLICITUDES PENDIENTES ===")
     solicitudes = leer_json(RUTA_SOLICITUDES)
     encontrados = 0
@@ -62,7 +62,7 @@ def mostrar_solicitudes_pendientes():
     if encontrados == 0:
         print("No existen pendientes.")
 
-def registrar_solicitud():
+def registrar_solicitud(): # Registra una nueva solicitud académica
     imprimir_titulo("=== REGISTRAR SOLICITUD ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     asignaciones = leer_json(RUTA_ASIGNACIONES)
@@ -109,7 +109,7 @@ def registrar_solicitud():
         print("Opción inválida.")
         return
     descripcion = input("Descripción de la solicitud: ")
-    nueva_solicitud = {
+    nueva_solicitud = { # Crea el registro de la nueva solicitud
         "id_solicitud":generar_id(solicitudes,"id_solicitud"),
         "id_alumno":alumno["id_alumno"],
         "nombre_alumno":f"{alumno['nombres']} "f"{alumno['apellidos']}",
@@ -120,14 +120,14 @@ def registrar_solicitud():
         "salon":asignacion["nombre_salon"],
         "estado":"Pendiente"
     }
-    solicitudes.append(nueva_solicitud)
+    solicitudes.append(nueva_solicitud) # Guarda la nueva solicitud registrada
     guardar_json(RUTA_SOLICITUDES,solicitudes)
     imprimir_titulo("=== SOLICITUD REGISTRADA ===")
     print(f"Solicitud ID: "f"{nueva_solicitud['id_solicitud']}")
     print(f"Alumno: "f"{nueva_solicitud['nombre_alumno']}")
     print(f"Estado: "f"{nueva_solicitud['estado']}")
 
-def actualizar_estado():
+def actualizar_estado(): # Actualiza el estado de una solicitud
     imprimir_titulo("=== ACTUALIZAR ESTADO ===")
     solicitudes = leer_json(RUTA_SOLICITUDES)
 
@@ -157,11 +157,11 @@ def actualizar_estado():
     if opcion not in estados:
         print("Opción inválida.")
         return
-    solicitud["estado"] = estados[opcion]
+    solicitud["estado"] = estados[opcion] # Modifica y guarda el nuevo estado
     guardar_json(RUTA_SOLICITUDES,solicitudes)
     print("=== ESTADO ACTUALIZADO CORRECTAMENTE ===")
 
-def buscar_solicitud_por_id():
+def buscar_solicitud_por_id(): # Busca y muestra una solicitud por ID
     imprimir_titulo("=== BUSCAR SOLICITUD ===")
     solicitudes = leer_json(RUTA_SOLICITUDES)
 
@@ -176,10 +176,10 @@ def buscar_solicitud_por_id():
         print("Solicitud no encontrada.")
         return
     imprimir_titulo("=== DATOS DE SOLICITUD ===")
-    for clave, valor in solicitud.items():
+    for clave, valor in solicitud.items(): # Muestra toda la información de la solicitud
         print(f"{clave}: {valor}")
 
-def menu_solicitudes():
+def menu_solicitudes(): # Muestra y gestiona el menú de solicitudes
     while True:
         imprimir_titulo("=== MENU SOLICITUDES ===")
         print("1. Registrar solicitud")

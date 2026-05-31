@@ -5,25 +5,25 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CONSTANCIAS = "datos/constancias.json"
 
-def obtener_asignacion(id_alumno, asignaciones):
+def obtener_asignacion(id_alumno, asignaciones): # Busca la asignación activa de un alumno
     for asignacion in asignaciones:
         if (asignacion["id_alumno"] == id_alumno and asignacion["estado"] == "Activo"):
             return asignacion
     return None
 
-def buscar_alumno(alumnos, id_alumno):
+def buscar_alumno(alumnos, id_alumno): # Busca un alumno activo según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"] == id_alumno and alumno["estado"] == "Activo"):
             return alumno
     return None
 
-def buscar_constancia(constancias, id_constancia):
+def buscar_constancia(constancias, id_constancia): # Busca una constancia según su ID
     for constancia in constancias:
         if constancia["id_constancia"] == id_constancia:
             return constancia
     return None
 
-def mostrar_alumnos(alumnos):
+def mostrar_alumnos(alumnos): # Muestra la lista de alumnos activos
     imprimir_titulo("=== ALUMNOS DISPONIBLES ===")
     encontrados = 0
     for alumno in alumnos:
@@ -36,7 +36,7 @@ def mostrar_alumnos(alumnos):
     if encontrados == 0:
         print("No hay alumnos activos.")
 
-def mostrar_constancias():
+def mostrar_constancias(): # Muestra las constancias registradas
     imprimir_titulo("=== LISTA DE CONSTANCIAS ===")
     constancias = leer_json(RUTA_CONSTANCIAS)
     if len(constancias) == 0:
@@ -48,7 +48,7 @@ def mostrar_constancias():
             f"Tipo: {constancia['tipo_constancia']} | "
             f"Estado: {constancia['estado']}")
 
-def generar_constancia():
+def generar_constancia(): # Genera una nueva constancia para un alumno
     imprimir_titulo("=== GENERAR CONSTANCIA ===")
     alumnos = leer_json(RUTA_ALUMNOS)
     asignaciones = leer_json(RUTA_ASIGNACIONES)
@@ -92,7 +92,7 @@ def generar_constancia():
     if opcion not in tipos:
         print("Opción inválida.")
         return
-    nueva_constancia = {
+    nueva_constancia = { # Crea el registro de la nueva constancia
         "id_constancia":generar_id(constancias,"id_constancia"),
         "id_alumno":alumno["id_alumno"],
         "nombre_alumno":alumno["nombres"]+ " "+ alumno["apellidos"],
@@ -103,14 +103,14 @@ def generar_constancia():
         "turno":asignacion["turno"],
         "estado":"Emitida"
     }
-    constancias.append(nueva_constancia)
+    constancias.append(nueva_constancia) # Agrega y guarda la constancia generada
     guardar_json(RUTA_CONSTANCIAS,constancias)
     imprimir_titulo("=== CONSTANCIA GENERADA ===")
     print(f"ID: "f"{nueva_constancia['id_constancia']}")
     print(f"Alumno: "f"{nueva_constancia['nombre_alumno']}")
     print(f"Tipo: "f"{nueva_constancia['tipo_constancia']}")
 
-def buscar_constancia_por_id():
+def buscar_constancia_por_id(): # Busca una constancia mediante su ID
     imprimir_titulo("=== BUSCAR CONSTANCIA ===")
     constancias = leer_json(RUTA_CONSTANCIAS)
 
@@ -125,10 +125,10 @@ def buscar_constancia_por_id():
         print("Constancia no encontrada.")
         return
     imprimir_titulo("=== DATOS DE CONSTANCIA ===")
-    for clave, valor in constancia.items():
+    for clave, valor in constancia.items(): #Muestra todos los datos de la constancia
         print(f"{clave}: {valor}")
 
-def anular_constancia():
+def anular_constancia(): # Cambia el estado de una constancia a anulada
     imprimir_titulo("=== ANULAR CONSTANCIA ===")
     constancias = leer_json(RUTA_CONSTANCIAS)
 
@@ -146,7 +146,7 @@ def anular_constancia():
     guardar_json(RUTA_CONSTANCIAS,constancias)
     print("=== CONSTANCIA ANULADA CORRECTAMENTE ===")
 
-def menu_constancias():
+def menu_constancias(): # Muestra y gestiona el menú de constancias
     while True:
         imprimir_titulo("=== MENU CONSTANCIAS ===")
         print("1. Generar constancia")

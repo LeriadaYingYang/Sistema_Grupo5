@@ -3,23 +3,23 @@ from secretaria.utilidades import imprimir_titulo
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
-def obtener_alumnos():
+def obtener_alumnos(): # Obtiene la lista de alumnos desde el archivo JSON
     return leer_json(RUTA_ALUMNOS)
 
-def mostrar_alumno(alumno):
+def mostrar_alumno(alumno): # Muestra la información básica de un alumno
     print(f"ID: {alumno['id_alumno']} | "
         f"{alumno['nombres']} "
         f"{alumno['apellidos']} | "
         f"DNI: {alumno['dni']} | "
         f"Estado: {alumno['estado']}")
 
-def buscar_alumno_por_id(alumnos,id_alumno):
+def buscar_alumno_por_id(alumnos,id_alumno): # Busca un alumno según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"] == id_alumno):
             return alumno
     return None
 
-def reporte_general_alumnos():
+def reporte_general_alumnos(): # Muestra el reporte general de alumnos
     imprimir_titulo("=== REPORTE GENERAL ALUMNOS ===")
     alumnos = obtener_alumnos()
     if len(alumnos) == 0:
@@ -30,7 +30,7 @@ def reporte_general_alumnos():
     print(f"\nTotal alumnos: "
         f"{len(alumnos)}")
 
-def reporte_alumnos_activos():
+def reporte_alumnos_activos(): # Muestra únicamente los alumnos activos
     imprimir_titulo("=== ALUMNOS ACTIVOS ===")
     alumnos = obtener_alumnos()
     encontrados = 0
@@ -43,7 +43,7 @@ def reporte_alumnos_activos():
     print(f"\nTotal activos: "
         f"{encontrados}")
 
-def reporte_alumnos_inactivos():
+def reporte_alumnos_inactivos(): # Muestra únicamente los alumnos inactivos
     imprimir_titulo("=== ALUMNOS INACTIVOS ===")
     alumnos = obtener_alumnos()
     encontrados = 0
@@ -56,7 +56,7 @@ def reporte_alumnos_inactivos():
     print(f"\nTotal inactivos: "
         f"{encontrados}")
 
-def buscar_por_dni():
+def buscar_por_dni(): # Busca alumnos mediante DNI
     imprimir_titulo("=== BUSCAR POR DNI ===")
     alumnos = obtener_alumnos()
     dni = input("Ingresar DNI: ")
@@ -68,7 +68,7 @@ def buscar_por_dni():
     if encontrados == 0:
         print("No se encontraron resultados.")
 
-def buscar_por_nombre():
+def buscar_por_nombre(): # Busca alumnos por nombre o apellido
     imprimir_titulo("=== BUSCAR POR NOMBRE ===")
     alumnos = obtener_alumnos()
     texto = input("Ingresar nombre/apellido: ").lower()
@@ -81,7 +81,7 @@ def buscar_por_nombre():
     if encontrados == 0:
         print("No se encontraron resultados.")
 
-def buscar_por_id():
+def buscar_por_id(): # Busca y muestra un alumno por ID
     imprimir_titulo("=== BUSCAR POR ID ===")
     alumnos = obtener_alumnos()
 
@@ -96,10 +96,10 @@ def buscar_por_id():
         print("Alumno no encontrado.")
         return
     imprimir_titulo("=== DATOS DEL ALUMNO ===")
-    for clave, valor in alumno.items():
+    for clave, valor in alumno.items(): # Muestra toda la información del alumno
         print(f"{clave}: {valor}")
 
-def estadisticas_alumnos():
+def estadisticas_alumnos(): # Muestra estadísticas generales de alumnos
     imprimir_titulo("=== ESTADÍSTICAS ALUMNOS ===")
     alumnos = obtener_alumnos()
     total = len(alumnos)
@@ -114,10 +114,10 @@ def estadisticas_alumnos():
     print(f"Activos: {activos}")
     print(f"Inactivos: {inactivos}")
 
-def reporte_ordenado_apellidos():
+def reporte_ordenado_apellidos(): # Ordena los alumnos por apellido
     imprimir_titulo("=== REPORTE ORDENADO ===")
     alumnos = obtener_alumnos()
-    alumnos_ordenados = sorted(
+    alumnos_ordenados = sorted( # Ordena alfabéticamente por apellidos
         alumnos,
         key=lambda alumno:
         alumno["apellidos"]
@@ -125,7 +125,7 @@ def reporte_ordenado_apellidos():
     for alumno in alumnos_ordenados:
         mostrar_alumno(alumno)
 
-def menu_reporte_alumnos():
+def menu_reporte_alumnos(): # Muestra y gestiona el menú de reportes
     while True:
         imprimir_titulo("=== REPORTES ALUMNOS ===")
         print("""

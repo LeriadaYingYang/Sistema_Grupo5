@@ -5,25 +5,25 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CERTIFICADOS = "datos/certificados.json"
 
-def obtener_asignacion(id_alumno, asignaciones):
+def obtener_asignacion(id_alumno, asignaciones):# Busca y devuelve la asignación activa correspondiente a un alumno según su ID
     for asignacion in asignaciones:
         if (asignacion["id_alumno"] == id_alumno and asignacion["estado"] == "Activo"):
             return asignacion
     return None
 
-def buscar_alumno(alumnos, id_alumno):
+def buscar_alumno(alumnos, id_alumno): # Busca y devuelve un alumno activo según su ID
     for alumno in alumnos:
         if (alumno["id_alumno"] == id_alumno and alumno["estado"] == "Activo"):
             return alumno
     return None
 
-def buscar_certificado(certificados, id_certificado):
+def buscar_certificado(certificados, id_certificado): # Busca y devuelve un certificado según su ID
     for certificado in certificados:
         if certificado["id_certificado"] == id_certificado:
             return certificado
     return None
 
-def mostrar_alumnos(alumnos):
+def mostrar_alumnos(alumnos): # Muestra la lista de alumnos activos disponibles
     imprimir_titulo("=== ALUMNOS DISPONIBLES ===")
     encontrados = 0
     for alumno in alumnos:
@@ -36,7 +36,7 @@ def mostrar_alumnos(alumnos):
     if encontrados == 0:
         print("No hay alumnos activos.")
 
-def mostrar_certificados():
+def mostrar_certificados(): # Muestra la lista de certificados registrados
     imprimir_titulo("=== LISTA DE CERTIFICADOS ===")
     certificados = leer_json(RUTA_CERTIFICADOS)
     if len(certificados) == 0:
@@ -49,11 +49,11 @@ def mostrar_certificados():
             f"Tipo: {certificado['tipo_certificado']} | "
             f"Estado: {certificado['estado']}")
 
-def generar_certificado():
+def generar_certificado(): # Inicia el proceso de generación de un certificado
     imprimir_titulo("=== GENERAR CERTIFICADO ===")
-    alumnos = leer_json(RUTA_ALUMNOS)
-    asignaciones = leer_json(RUTA_ASIGNACIONES)
-    certificados = leer_json(RUTA_CERTIFICADOS)
+    alumnos = leer_json(RUTA_ALUMNOS) # Carga los alumnos registrados
+    asignaciones = leer_json(RUTA_ASIGNACIONES) # Carga las asignaciones registradas
+    certificados = leer_json(RUTA_CERTIFICADOS) # Carga los certificados registrados
     if len(alumnos) == 0:
         print("No hay alumnos registrados.")
         return
@@ -73,6 +73,8 @@ def generar_certificado():
     if asignacion is None:
         print("El alumno no tiene asignación activa.")
         return
+
+# Solicita el tipo y crea un nuevo registro de certificado
     tipo = input("Tipo de certificado (Estudios/Matricula/Conducta): ")
     nuevo_certificado = {"id_certificado": generar_id(certificados,"id_certificado"),
         "id_alumno": alumno["id_alumno"],
@@ -83,15 +85,15 @@ def generar_certificado():
         "salon":asignacion["nombre_salon"],
         "estado": "Emitido"}
 
-    certificados.append(nuevo_certificado)
-    guardar_json(RUTA_CERTIFICADOS,certificados)
+    certificados.append(nuevo_certificado) # Agrega el nuevo certificado a la lista de certificados
+    guardar_json(RUTA_CERTIFICADOS,certificados) # Guarda la lista actualizada de certificados en el archivo JSON
     imprimir_titulo("=== CERTIFICADO GENERADO ===")
     print(f"ID Certificado: "f"{nuevo_certificado['id_certificado']}")
     print(f"Alumno: "f"{nuevo_certificado['nombre_alumno']}")
     print(f"Tipo: "f"{nuevo_certificado['tipo_certificado']}")
 
 
-def buscar_certificado_por_id():
+def buscar_certificado_por_id(): # Inicia la búsqueda de un certificado mediante su ID
     imprimir_titulo("=== BUSCAR CERTIFICADO ===")
     certificados = leer_json(RUTA_CERTIFICADOS)
 
@@ -110,7 +112,7 @@ def buscar_certificado_por_id():
         print(f"{clave}: {valor}")
 
 
-def anular_certificado():
+def anular_certificado(): # Inicia el proceso de anulación de un certificado
     imprimir_titulo("=== ANULAR CERTIFICADO ===")
     certificados = leer_json(RUTA_CERTIFICADOS)
 
@@ -128,7 +130,7 @@ def anular_certificado():
     guardar_json(RUTA_CERTIFICADOS,certificados)
     print("== CERTIFICADO ANULADO CORRECTAMENTE ===")
 
-def menu_certificados():
+def menu_certificados(): # Muestra y gestiona las opciones del menú de certificados
     while True:
         imprimir_titulo("=== MENU CERTIFICADOS ===")
         print("1. Generar certificado")
