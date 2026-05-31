@@ -2,7 +2,7 @@ import json
 import os
 
 
-def leer_json(ruta_archivo):#si el archivo no existe devuelve lista vacia
+def leer_json(ruta_archivo):# Si el archivo no existe devuelve lista vacía
 
     if not os.path.exists(ruta_archivo):
         return []

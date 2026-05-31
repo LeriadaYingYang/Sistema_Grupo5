@@ -10,7 +10,7 @@ def menu_director():  #muestra el menú principal del director y permite acceder
     while True:
         imprimir_titulo("MENÚ DIRECTOR")
         imprimir_menu(["Gestión académica", "Gestión de profesores", "Gestión de alumnos",
-                      "Gestión de notas","Gestión de asistencias", "Gestión de pagos", "Cerrar sesión"])
+                    "Gestión de notas","Gestión de asistencias", "Gestión de pagos", "Cerrar sesión"])
 
         opcion = input("Seleccione una opción: ")  #xsolicita la opción que desea ejecutar el director
         if opcion == "1":  #abre el módulo académico para gestionar carreras, plantillas, módulos y salones
