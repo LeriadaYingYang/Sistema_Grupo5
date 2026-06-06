@@ -1,7 +1,7 @@
-from director.alumnos.crear_alumno import crear_alumno
-from director.alumnos.asignar_alumno import asignar_alumno
-from director.alumnos.ver_datos_alumnos import menu_ver_datos_alumnos
-from director.alumnos.editar_alumno import editar_alumno
+from director.gestion_estudiante.crear_alumno import crear_alumno
+from director.gestion_estudiante.asignar_alumno import asignar_alumno
+from director.gestion_estudiante.ver_datos_alumnos import menu_ver_datos_alumnos
+from director.gestion_estudiante.editar_alumno import editar_alumno
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_alumnos():  #muestra el menú principal de gestión de alumnos

@@ -1,7 +1,7 @@
-from director.profesores.crear_profesor import crear_profesor
-from director.profesores.asignar_profesor import asignar_profesor
-from director.profesores.ver_datos_profesores import menu_ver_datos_profesores
-from director.profesores.editar_profesor import editar_profesor
+from director.gestion_docente.crear_profesor import crear_profesor
+from director.gestion_docente.asignar_profesor import asignar_profesor
+from director.gestion_docente.ver_datos_profesores import menu_ver_datos_profesores
+from director.gestion_docente.editar_profesor import editar_profesor
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_profesores():  #muestra el menú principal para administrar profesores

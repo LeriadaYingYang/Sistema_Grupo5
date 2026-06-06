@@ -1,8 +1,8 @@
-from director.pagos.cargos_oficiales import crear_cargo_oficial, ver_cargos_oficiales, modificar_cargo_oficial
-from director.pagos.descuentos import crear_descuento_convenio
-from director.pagos.asignar_descuentos import asignar_descuento_alumno
-from director.pagos.cargos_extras import menu_cargos_extras
-from director.pagos.resumen_pagos import menu_resumen_pagos
+from director.control_administrativa.cargos_oficiales import crear_cargo_oficial, ver_cargos_oficiales, modificar_cargo_oficial
+from director.control_administrativa.descuentos import crear_descuento_convenio
+from director.control_administrativa.asignar_descuentos import asignar_descuento_alumno
+from director.control_administrativa.cargos_extras import menu_cargos_extras
+from director.control_administrativa.resumen_pagos import menu_resumen_pagos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 

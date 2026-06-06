@@ -1,8 +1,8 @@
-from director.academico.carreras import registrar_carrera, ver_carreras
-from director.academico.salones import registrar_salon, ver_salones
-from director.academico.plantilla import crear_plantilla, ver_plantillas
-from director.academico.unidades import registrar_unidad, ver_unidades
-from director.academico.modulos import registrar_modulo, ver_modulos
+from director.gestion_academica.carreras import registrar_carrera, ver_carreras
+from director.gestion_academica.salones import registrar_salon, ver_salones
+from director.gestion_academica.plantilla import crear_plantilla, ver_plantillas
+from director.gestion_academica.unidades import registrar_unidad, ver_unidades
+from director.gestion_academica.modulos import registrar_modulo, ver_modulos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_academico():  #muestra el menú principal académico

@@ -1,32 +1,41 @@
-from director.profesores.main import menu_profesores
-from director.alumnos.main import menu_alumnos
-from director.academico.main import menu_academico
-from director.notas.main import menu_notas
-from director.asistencias.main import menu_asistencias
-from director.pagos.main import menu_pagos
+from director.gestion_docente.main import menu_profesores
+from director.gestion_estudiante.main import menu_alumnos
+from director.gestion_academica.main import menu_academico
+from director.control_academica.main import menu_control_academico
+from director.control_administrativa.main import menu_pagos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
-def menu_director():  #muestra el menú principal del director y permite acceder a todos los módulos del sistema
+def menu_director():
     while True:
         imprimir_titulo("MENÚ DIRECTOR")
-        imprimir_menu(["Gestión académica", "Gestión de profesores", "Gestión de alumnos",
-                      "Gestión de notas","Gestión de asistencias", "Gestión de pagos", "Cerrar sesión"])
+        imprimir_menu([
+            "Gestión académica",
+            "Gestión docente",
+            "Gestión estudiantil",
+            "Control académico",
+            "Control administrativo",
+            "Cerrar sesión"])
 
-        opcion = input("Seleccione una opción: ")  #xsolicita la opción que desea ejecutar el director
-        if opcion == "1":  #abre el módulo académico para gestionar carreras, plantillas, módulos y salones
+        opcion = input("Seleccione una opción: ")
+
+        if opcion == "1":
             menu_academico()
-        elif opcion == "2":  #abre el módulo para registrar, asignar y administrar profesores
+
+        elif opcion == "2":
             menu_profesores()
-        elif opcion == "3":  #abre el módulo para registrar, asignar y administrar alumnos
+
+        elif opcion == "3":
             menu_alumnos()
-        elif opcion == "4":  #abre el módulo de creación, registro y consulta de notas académicas
-            menu_notas()
-        elif opcion == "5":  #abre el módulo para configurar horarios y registrar asistencias
-            menu_asistencias()
-        elif opcion == "6":  #abre el módulo para administrar cargos, descuentos y pagos
+
+        elif opcion == "4":
+            menu_control_academico()
+
+        elif opcion == "5":
             menu_pagos()
-        elif opcion == "7":  #finaliza la sesión del director y regresa al menú principal del sistema
+
+        elif opcion == "6":
             print("\nCerrando sesión del director")
             break
-        else:  #muestra mensaje cuando la opción ingresada no existe en el menú
+
+        else:
             print("\nOpción inválida. Intente nuevamente.")
