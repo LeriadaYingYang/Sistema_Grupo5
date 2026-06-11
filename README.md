@@ -1,3 +1,5 @@
-# Sistema_Grupo5 - Fundamentos de Programación
+# Sistema de Gestión Académica y Administrativa (IISEM) - Fundamentos de Programación
 ### Integrante: [Fabrizio Ortega]
-- Este archivo contiene mi parte del trabajo: Función para el control académico (gestión de asistencias y gestión de notas).
+- Sistema desarrollado en Python para la administración académica de IISEM.
+- Permite gestionar: Horarios, asistencias, horas trabajadas, registrar notas, consultar notas, modificar notas y eliminar notas.
+- Los datos se guardan de forma permanente con archivos JSON
