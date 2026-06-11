@@ -66,5 +66,19 @@
         "nombre_salon": "s2",
         "turno": "mañana",
         "estado": "Activo"
+    },
+    {
+        "id_asignacion_alumno": 6,
+        "id_alumno": 5,
+        "nombre_alumno": "plpo dsadsa",
+        "dni": "dsa",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "estado": "Activo"
     }
 ]
