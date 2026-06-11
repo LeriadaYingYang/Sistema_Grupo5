@@ -1,0 +1,132 @@
+[
+    {
+        "id_registro_nota": 1,
+        "id_alumno": 1,
+        "nombre_alumno": "daniel francis",
+        "id_carrera": 1,
+        "id_salon": 1,
+        "id_unidad": 1,
+        "id_modulo": 1,
+        "notas": [
+            {
+                "orden": 1,
+                "nombre_nota": "caracate",
+                "nota": 12.0
+            },
+            {
+                "orden": 2,
+                "nombre_nota": "sospre",
+                "nota": 12.0
+            },
+            {
+                "orden": 3,
+                "nombre_nota": "moli",
+                "nota": 12.0
+            }
+        ],
+        "promedio_modulo": 12,
+        "estado": "Activo"
+    },
+    {
+        "id_registro_nota": 2,
+        "id_alumno": 4,
+        "nombre_alumno": "trysi ",
+        "id_carrera": 1,
+        "id_salon": 1,
+        "id_unidad": 1,
+        "id_modulo": 1,
+        "notas": [
+            {
+                "orden": 1,
+                "nombre_nota": "caracate",
+                "nota": 15.0
+            },
+            {
+                "orden": 2,
+                "nombre_nota": "sospre",
+                "nota": 12.0
+            },
+            {
+                "orden": 3,
+                "nombre_nota": "moli",
+                "nota": 17.0
+            }
+        ],
+        "promedio_modulo": 15,
+        "estado": "Activo"
+    },
+    {
+        "id_registro_nota": 3,
+        "id_alumno": 1,
+        "nombre_alumno": "daniel francis",
+        "id_carrera": 1,
+        "id_salon": 1,
+        "id_unidad": 1,
+        "id_modulo": 2,
+        "notas": [
+            {
+                "orden": 1,
+                "nombre_nota": "dsa",
+                "nota": 12.0
+            },
+            {
+                "orden": 2,
+                "nombre_nota": "sadsa",
+                "nota": 15.0
+            }
+        ],
+        "promedio_modulo": 14,
+        "estado": "Activo"
+    },
+    {
+        "id_registro_nota": 4,
+        "id_alumno": 6,
+        "nombre_alumno": "jhordan kol picaso",
+        "id_carrera": 2,
+        "id_salon": 2,
+        "id_unidad": 5,
+        "id_modulo": 8,
+        "notas": [
+            {
+                "orden": 1,
+                "nombre_nota": "teorico de introduccion",
+                "nota": 12.0
+            },
+            {
+                "orden": 2,
+                "nombre_nota": "teorico de capacitacion",
+                "nota": 15.0
+            },
+            {
+                "orden": 3,
+                "nombre_nota": "teorico de practica",
+                "nota": 18.0
+            }
+        ],
+        "promedio_modulo": 15,
+        "estado": "Activo"
+    },
+    {
+        "id_registro_nota": 5,
+        "id_alumno": 6,
+        "nombre_alumno": "jhordan kol picaso",
+        "id_carrera": 2,
+        "id_salon": 2,
+        "id_unidad": 6,
+        "id_modulo": 10,
+        "notas": [
+            {
+                "orden": 1,
+                "nombre_nota": "campo fuera",
+                "nota": 15.0
+            },
+            {
+                "orden": 2,
+                "nombre_nota": "campo dentro",
+                "nota": 12.0
+            }
+        ],
+        "promedio_modulo": 14,
+        "estado": "Activo"
+    }
+]

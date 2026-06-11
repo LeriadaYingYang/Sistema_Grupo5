@@ -1,0 +1,26 @@
+[
+    {
+        "id_cargo_oficial": 1,
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "nombre_cargo": "mesnualidad",
+        "monto": 350.0,
+        "frecuencia": "Mensual",
+        "fecha_limite": "1",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 2,
+        "id_plantilla": 3,
+        "nombre_plantilla": "malla 2026",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_cargo": "matricula",
+        "monto": 200.0,
+        "frecuencia": "Único",
+        "fecha_limite": "20 de junio",
+        "estado": "Activo"
+    }
+]
