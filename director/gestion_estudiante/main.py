@@ -2,13 +2,14 @@ from director.gestion_estudiante.crear_alumno import crear_alumno
 from director.gestion_estudiante.asignar_alumno import asignar_alumno
 from director.gestion_estudiante.ver_datos_alumnos import menu_ver_datos_alumnos
 from director.gestion_estudiante.editar_alumno import editar_alumno
+from director.gestion_estudiante.ver_historial_academico import ver_historial_academico
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 def menu_alumnos():  #muestra el menú principal de gestión de alumnos
     while True:
         imprimir_titulo("GESTIÓN DE ALUMNOS")
         imprimir_menu(["Crear Alumno", "Asignar Alumno a Carrera y Salón",
-                       "Ver Datos de Alumno","Editar Alumno","Volver"])
+                       "Ver Datos de Alumno","Editar Alumno", "Ver historial Academico","Volver"])
 
         opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
         if opcion == "1":  #abre el registro de alumno
@@ -19,7 +20,9 @@ def menu_alumnos():  #muestra el menú principal de gestión de alumnos
             menu_ver_datos_alumnos()
         elif opcion == "4":  #abre la edición de datos del alumno
             editar_alumno()
-        elif opcion == "5":  #vuelve al menú del director
+        elif opcion == "5":  #abre el menú para ver el historial académico
+            ver_historial_academico()
+        elif opcion == "6":  #vuelve al menú del director
             print("\nVolviendo al menú director.")
             break
         else:  #muestra mensaje si la opción no existe

@@ -61,5 +61,14 @@
         "correo": "valeri.gmail.com",
         "celular": "12232",
         "estado": "Activo"
+    },
+    {
+        "id_alumno": 8,
+        "nombres": "test",
+        "apellidos": "test",
+        "dni": "12345678",
+        "correo": "test@gmail.com",
+        "celular": "123456789",
+        "estado": "Activo"
     }
 ]
