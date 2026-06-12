@@ -73,30 +73,5 @@
         "hora_salida": "13:00",
         "horas_trabajadas": 3.67,
         "estado": "Activo"
-    },
-    {
-        "id_asistencia_profesor": 4,
-        "fecha": "2026-04-14",
-        "id_profesor": 1,
-        "nombre_profesor": "jose robert",
-        "id_plantilla": 1,
-        "nombre_plantilla": "malla 2025",
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "id_modulo": 2,
-        "nombre_modulo": "2",
-        "nombre_unidad": "unidad1",
-        "id_horario": 1,
-        "orden_dia": 1,
-        "dia": "1",
-        "hora_programada_inicio": "8 a 9",
-        "hora_programada_fin": "9",
-        "hora_entrada": "08:00",
-        "hora_salida": "12:00",
-        "horas_trabajadas": 4.0,
-        "estado": "Activo"
     }
 ]

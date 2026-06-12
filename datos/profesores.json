@@ -16,14 +16,5 @@
         "correo": "34324",
         "celular": "2321312",
         "estado": "Activo"
-    },
-    {
-        "id_profesor": 3,
-        "nombres": "Carlos Hugo",
-        "apellidos": "Vera Fernandez",
-        "dni": "195",
-        "correo": "VFch@gmail.com",
-        "celular": "912437762",
-        "estado": "Activo"
     }
 ]

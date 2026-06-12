@@ -7,14 +7,5 @@
         "motivo": "se decunta por descuento",
         "aplica_a": "Cargo oficial",
         "estado": "Activo"
-    },
-    {
-        "id_descuento": 2,
-        "nombre": "Descuento test",
-        "tipo": "Porcentaje",
-        "valor": 10.0,
-        "motivo": "Descuento de prueba",
-        "aplica_a": "Cargo oficial",
-        "estado": "Activo"
     }
 ]

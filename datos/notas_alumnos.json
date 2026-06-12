@@ -16,15 +16,15 @@
             {
                 "orden": 2,
                 "nombre_nota": "sospre",
-                "nota": 13.0
+                "nota": 12.0
             },
             {
                 "orden": 3,
-                "nombre_nota": "molly",
+                "nombre_nota": "moli",
                 "nota": 12.0
             }
         ],
-        "promedio_modulo": 12.33,
+        "promedio_modulo": 12,
         "estado": "Activo"
     },
     {
@@ -50,14 +50,9 @@
                 "orden": 3,
                 "nombre_nota": "moli",
                 "nota": 17.0
-            },
-            {
-                "orden": 4,
-                "nombre_nota": "Práctica 1",
-                "nota": 14.0
             }
         ],
-        "promedio_modulo": 14.5,
+        "promedio_modulo": 15,
         "estado": "Activo"
     },
     {

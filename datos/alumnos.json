@@ -61,14 +61,5 @@
         "correo": "valeri.gmail.com",
         "celular": "12232",
         "estado": "Activo"
-    },
-    {
-        "id_alumno": 8,
-        "nombres": "Alex Gabriel",
-        "apellidos": "Montoya Rodriguez",
-        "dni": "456",
-        "correo": "Gmor@gmail.com",
-        "celular": "912367123",
-        "estado": "Activo"
     }
 ]
