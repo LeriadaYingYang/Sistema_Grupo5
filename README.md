@@ -1,160 +1,155 @@
-# Sistema_Grupo5 Gestion Académica
-## Aporte de Daniel Enrqiue – Módulo de Gestión Académica entre otros Modulos
-Durante el desarrollo del Sistema de Gestión y Control Académica y Administrativa IISEM, participé en el diseño e implementación del módulo de Gestión Académica, encargado de administrar la estructura académica de la institución.
-Las funcionalidades desarrolladas incluyen:
-### Gestión de Carreras
-* Registrar carreras.
-* Editar carreras.
-* Buscar carreras.
-* Visualizar carreras registradas.
-* Desactivar carreras.
-### Gestión de Plantillas Académicas
-* Crear plantillas académicas.
-* Editar plantillas.
-* Asignar carreras a plantillas.
-* Visualizar plantillas.
-* Desactivar plantillas.
-### Gestión de Salones
-* Registrar salones.
-* Editar salones.
-* Asignar plantillas académicas a salones.
-* Visualizar salones.
-* Cerrar salones.
-### Gestión de Módulos
-* Registrar módulos académicos.
-* Editar módulos.
-* Asignar módulos a unidades.
-* Visualizar módulos.
-* Desactivar módulos.
-### Gestión de Unidades
-* Registrar unidades académicas.
-* Editar unidades.
-* Visualizar unidades.
-* Desactivar unidades.
-### Utilidades Generales
-Asimismo, desarrollé funciones reutilizables para estandarizar la interfaz del sistema en consola, incluyendo:
-* Impresión de títulos y encabezados.
-* Impresión de menús dinámicos.
-* Pausas de navegación.
-* Utilidades de presentación para mejorar la experiencia de usuario.
-### Persistencia de Datos
-Se implementó el manejo de archivos JSON mediante funciones genéricas para:
-* Lectura de archivos JSON.
-* Escritura y actualización de registros.
-* Generación automática de identificadores únicos.
-* Administración de la persistencia de datos del sistema.
-La estructura desarrollada permite mantener una relación jerárquica entre carreras, plantillas académicas, salones, módulos y unidades, garantizando la organización y consistencia de la información académica institucional.
+# Sistema de Gestión y Control Académica y Administrativa IISEM
 
-# Sistema de Control Académico
-Integrante
-- Fabrizio Ortega
-Observaciones: Esta parte del proyecto fue desarrollada para el trabajo final del curso Fundamentos de Programación, aplicando estructuras de datos, modularización, funciones, archivos JSON y buenas prácticas de programación.
+## Descripción General
 
-# Estructura del Sistema
+El Sistema de Gestión y Control Académica y Administrativa IISEM fue desarrollado como proyecto final del curso de Fundamentos de Programación, su propósito es digitalizar y centralizar los procesos académicos, administrativos, docentes y estudiantiles de una institución educativa mediante una aplicación de consola desarrollada en Python.
+El sistema fue construido aplicando los principios fundamentales de análisis, diseño e implementación de software, utilizando una arquitectura modular que facilita el mantenimiento, la escalabilidad y la reutilización del código.
 
-1. Gestión de Horarios
-Permite administrar los horarios académicos de los salones y docentes.
-
-Funciones implementadas:
-- Configurar horarios
-- Modificar horarios
-- Consultar horarios
-- Asignar horarios a profesores
-- Ver carga horaria docente
-
-2. Gestión de Asistencias
-Permite registrar y consultar la asistencia de alumnos y profesores.
-
-Funciones implementadas:
-- Asistencia de alumnos
-- Asistencia de profesores
-- Consultar asistencia de alumnos
-- Consultar asistencia de profesores
-- Reporte de inasistencias
-
-3. Seguimiento Académico
-Permite supervisar el rendimiento académico de los estudiantes.
-
-Funciones implementadas:
-- Ver notas por módulo
-- Ver notas por unidad
-- Consultar rendimiento académico
-- Alumnos con bajo rendimiento
-- Reporte académico general
-
-4. Control Docente
-Permite supervisar el desempeño y cumplimiento de los docentes.
-
-Funciones implementadas:
-- Ver horas trabajadas
-- Control de carga horaria
-- Reporte de asistencia docente
-- Profesores con faltas
-- Resumen de desempeño docente
-
-# Almacenamiento de Datos
-Toda la información del sistema se almacena con JSON ubicados dentro de la carpeta "datos/"
-
-Ejemplo:
-- alumnos.json
-- profesores.json
-- horarios.json
-- asistencia_alumnos.json
-- asistencia_profesores.json
-- notas_alumnos.json
-
-# Características Implementadas
-- Menús interactivos.
-- Persistencia de datos con JSON.
-- Validación de entradas.
-- Manejo básico de errores.
-- Generación automática de identificadores.
-- Registro de asistencias en tiempo real.
-- Cálculo automático de horas trabajadas.
-- Consultas y reportes académicos.
-- Consultas y reportes docentes.
-
-# Sistema de Gestión Docente
-
-Sistema desarrollado por el integrante pablo diaz desarrollo la parte de gestion docente.
-
-## Módulos principales
-
-### `profesor/` — Sesión del docente
-| Archivo | Función principal |
-|---|---|
-| `login_profesor.py` | Solicita usuario y contraseña para iniciar sesión |
-| `main,py` | Menú con opciones: cursos, alumnos, notas, horarios |
-| `ver_cursos.py` | Muestra módulos agrupados por unidad del salón asignado |
-| `ver_alumnos.py` | Lista alumnos inscritos con DNI y turno |
-| `ver_horarios.py` | Muestra días y horas de clase del salón |
-| `registrar_notas.py` | Flujo completo: salón → unidad → módulo → alumno → notas. Calcula promedio vigesimal y condición (A–D / Desaprobado) |
-
-### `profesores/` — Administración (director)
-| Archivo | Función principal |
-|---|---|
-| `main.py` | Menú CRUD de profesores |
-| `crear_profesor.py` | Registra profesor validando DNI (8 dígitos) y celular (9 dígitos) |
-| `editar_profesor.py` | Busca por nombre o DNI y edita campos individuales |
-| `asignar_profesor.py` | Vincula un profesor activo a un salón activo sin duplicados |
-| `ver_datos_profesores.py` | Consulta todos los profesores o busca por nombre/DNI, mostrando sus salones asignados |
 ---
 
-## Lo que mejoré
-- **Validaciones de entrada**: DNI (8 dígitos), celular (9 dígitos) y campos vacíos se validan antes de guardar.
-- **Prevención de duplicados**: Se verifica DNI repetido al crear/editar profesor, y asignación duplicada al asignar profesor a salón.
-- **Borrado lógico**: Ningún registro se elimina físicamente; se marca con `estado = "Activo/Inactivo"`.
-- **Cálculo automático de promedios**: `registrar_notas.py` recalcula el promedio vigesimal cada vez que se ingresa una nota y lo guarda junto con la condición final.
-- **Separación por roles**: El módulo `profesor/` gestiona la sesión activa del docente, mientras `profesores/` es de uso exclusivo del administrador.
+## Integrantes y Módulos Desarrollados
 
-# Sistema de Gestión Estudiantil
+### Daniel Enrique
+Responsable del desarrollo del código central de diversas funciones y modulos.
 
-Sistema desarrollado por el integrante Edith Huingo desarrollo la parte de gestion estudiantil.
-CAMBIOS Y MEJORAS QUE SE HIZO EN GESTION DE ESTUDIANTES
-Se optimizaron los módulos del sistema de alumnos, eliminando código repetido y añadiendo validaciones.
-En utilidades.py agregué las funciones pedir_entero() y validar_no_vacio() para no repetir la misma lógica en cada módulo.
-En crear_alumno.py añadí validaciones para que el DNI sea de 8 dígitos numéricos, el celular de 9 dígitos numéricos y el correo tenga formato ejemplo@gmail.com. También agregué una verificación para que no se puedan registrar dos alumnos con el mismo DNI.
-En asignar_alumno.py unifiqué las tres funciones de mostrar datos en una sola genérica y junté las validaciones previas en una lista en lugar de tenerlas separadas en cinco bloques.
-En editar_alumno.py el menú de edición ahora se genera desde una lista CAMPOS_EDITABLES en lugar de tener un elif por cada campo. También agregué validación de campo vacío y de DNI duplicado al momento de editar.
-En ver_datos_alumnos.py eliminé el patrón repetido de contar alumnos encontrados creando una función genérica, y cambié el menú para que se despache desde un diccionario en lugar de una cadena de elif.
-En ver_historial_academico.py reemplacé el pass vacío por un mensaje que avisa que el módulo está en construcción.
+#### Gestión Académica
+
+* Administración de carreras.
+* Gestión de plantillas académicas.
+* Gestión de salones.
+* Gestión de unidades académicas.
+* Gestión de módulos académicos.
+
+#### Desarrollo Base del Sistema
+
+* Diseño de la estructura general del proyecto.
+* Implementación de utilidades reutilizables para la interfaz de consola.
+* Desarrollo de funciones genéricas para manejo de archivos JSON.
+* Generación automática de identificadores únicos.
+* Estandarización de menús, títulos y navegación.
+
+---
+
+### Fabrizio Ortega
+Responsable del módulo de Control Académico.
+
+#### Funcionalidades Implementadas
+
+* Gestión de horarios.
+* Gestión de asistencias.
+* Seguimiento académico.
+* Control docente.
+* Generación de reportes académicos y docentes.
+
+---
+
+### Pablo Díaz
+Responsable del módulo de Gestión Docente.
+
+#### Funcionalidades Implementadas
+
+* Registro y administración de docentes.
+* Asignación de profesores a salones.
+* Consulta de cursos y horarios.
+* Registro y control de notas.
+* Validaciones y control de integridad de datos.
+
+---
+
+### Edith Huingo
+Responsable del módulo de Gestión Estudiantil.
+
+#### Funcionalidades Implementadas
+
+* Registro de alumnos.
+* Asignación de alumnos a carreras y salones.
+* Consulta de información estudiantil.
+* Edición y actualización de datos.
+* Optimización y reutilización de funciones de validación.
+
+---
+
+### Juan Xavier
+Responsable del módulo de Gestión y Control Administrativa
+
+#### Funcionalidades Implementadas
+
+* Gestión de cargos oficiales.
+* Gestión de descuentos y convenios.
+* Gestión de cargos extras.
+* Resúmenes de pagos y deudas.
+
+---
+
+## Conceptos de Programación Aplicados
+
+Durante el desarrollo del proyecto se aplicaron los principales conceptos estudiados en el curso:
+
+* Programación estructurada.
+* Modularización del sistema.
+* Entrada, Proceso y Salida
+* Diseño basado en funciones.
+* Reutilización de código.
+* Validación de datos.
+* Manejo de estructuras de datos.
+* Persistencia de información.
+* Gestión de archivos.
+* Control de errores.
+* Organización jerárquica de información.
+* Separación de responsabilidades entre módulos.
+
+Asimismo, todas las funcionalidades fueron diseñadas bajo el enfoque de Entrada, Proceso y Salida (EPS), permitiendo una adecuada captura de información, procesamiento de datos y presentación de resultados al usuario.
+
+---
+
+## Arquitectura Implementada
+
+El sistema se encuentra organizado en cuatro capas principales:
+
+### 1. Capa de Presentación
+Encargada de la interacción con el usuario mediante menús, formularios y mensajes mostrados en consola, permite la navegación entre los diferentes módulos del sistema y la visualización de la información procesada.
+
+### 2. Capa de Seguridad y Autenticación
+Responsable de controlar el acceso al sistema mediante procesos de autenticación, implementa la validación de credenciales como DNI y contraseña para verificar la identidad de los usuarios antes de permitir el acceso a los módulos correspondientes según su rol institucional, esta capa contribuye a la protección de la información y al control de acceso a las funcionalidades del sistema.
+
+### 3. Capa de Lógica de Negocio
+Contiene las reglas de funcionamiento del sistema, validaciones, cálculos y procesos académicos y administrativos, aquí se ejecutan las operaciones relacionadas con la gestión académica, estudiantil, docente, administrativa y de control académico.
+
+### 4. Capa de Persistencia de Datos
+Responsable del almacenamiento y recuperación de información utilizando archivos JSON, gestiona la lectura, escritura, actualización y consulta de registros, garantizando la conservación de los datos del sistema entre ejecuciones.
+
+---
+
+## Persistencia de Datos
+
+La información del sistema se almacena mediante archivos JSON, permitiendo mantener los registros de manera estructurada y permanente entre ejecuciones.
+
+Entre los principales beneficios de esta implementación se encuentran:
+
+* Almacenamiento organizado de información.
+* Facilidad de lectura y mantenimiento.
+* Independencia de bases de datos externas.
+* Portabilidad del sistema.
+* Simplicidad para fines académicos.
+
+---
+
+## Características Generales
+
+* Sistema completamente modular.
+* Menús interactivos.
+* Persistencia de datos mediante JSON.
+* Validaciones de entrada.
+* Manejo de errores.
+* Identificadores automáticos.
+* Búsquedas y consultas dinámicas.
+* Edición y actualización de registros.
+* Desactivación lógica de registros.
+* Organización jerárquica de la información académica.
+* Reutilización de componentes y funciones comunes.
+
+---
+
+## Conclusión
+
+El desarrollo de IISEM permitió aplicar de forma práctica los fundamentos de programación aprendidos durante el curso, integrando técnicas de modularización, estructura, entrada, proceso, salida, persistencia de datos, validación de información y organización por capas. El resultado es un sistema funcional que centraliza procesos académicos y administrativos, demostrando la capacidad de análisis, diseño y construcción de soluciones de software mediante trabajo colaborativo y buenas prácticas de programación.
