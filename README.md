@@ -118,3 +118,36 @@ Ejemplo:
 - Cálculo automático de horas trabajadas.
 - Consultas y reportes académicos.
 - Consultas y reportes docentes.
+# Sistema de Gestión Académica
+
+Sistema desarrollado por el integrante pablo diaz desarrollo la parte de gestion docente.
+
+## Módulos principales
+
+### `profesor/` — Sesión del docente
+| Archivo | Función principal |
+|---|---|
+| `login_profesor.py` | Solicita usuario y contraseña para iniciar sesión |
+| `main,py` | Menú con opciones: cursos, alumnos, notas, horarios |
+| `ver_cursos.py` | Muestra módulos agrupados por unidad del salón asignado |
+| `ver_alumnos.py` | Lista alumnos inscritos con DNI y turno |
+| `ver_horarios.py` | Muestra días y horas de clase del salón |
+| `registrar_notas.py` | Flujo completo: salón → unidad → módulo → alumno → notas. Calcula promedio vigesimal y condición (A–D / Desaprobado) |
+
+### `profesores/` — Administración (director)
+| Archivo | Función principal |
+|---|---|
+| `main.py` | Menú CRUD de profesores |
+| `crear_profesor.py` | Registra profesor validando DNI (8 dígitos) y celular (9 dígitos) |
+| `editar_profesor.py` | Busca por nombre o DNI y edita campos individuales |
+| `asignar_profesor.py` | Vincula un profesor activo a un salón activo sin duplicados |
+| `ver_datos_profesores.py` | Consulta todos los profesores o busca por nombre/DNI, mostrando sus salones asignados |
+---
+
+## Lo que mejoré
+
+- **Validaciones de entrada**: DNI (8 dígitos), celular (9 dígitos) y campos vacíos se validan antes de guardar.
+- **Prevención de duplicados**: Se verifica DNI repetido al crear/editar profesor, y asignación duplicada al asignar profesor a salón.
+- **Borrado lógico**: Ningún registro se elimina físicamente; se marca con `estado = "Activo/Inactivo"`.
+- **Cálculo automático de promedios**: `registrar_notas.py` recalcula el promedio vigesimal cada vez que se ingresa una nota y lo guarda junto con la condición final.
+- **Separación por roles**: El módulo `profesor/` gestiona la sesión activa del docente, mientras `profesores/` es de uso exclusivo del administrador.
