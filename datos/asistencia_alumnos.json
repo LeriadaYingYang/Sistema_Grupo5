@@ -61,5 +61,44 @@
         "dni": "545",
         "asistencia": "Presente",
         "estado": "Activo"
+    },
+    {
+        "id_asistencia_alumno": 4,
+        "fecha": "2026-06-12",
+        "id_plantilla": 1,
+        "id_salon": 1,
+        "id_horario": 1,
+        "orden_dia": 2,
+        "id_alumno": 1,
+        "nombre_alumno": "daniel jara",
+        "asistencia": "Tardanza",
+        "hora_registro": "13:31",
+        "estado": "Activo"
+    },
+    {
+        "id_asistencia_alumno": 5,
+        "fecha": "2026-06-12",
+        "id_plantilla": 1,
+        "id_salon": 1,
+        "id_horario": 1,
+        "orden_dia": 2,
+        "id_alumno": 3,
+        "nombre_alumno": "luis sarsd",
+        "asistencia": "Falta",
+        "hora_registro": "13:31",
+        "estado": "Activo"
+    },
+    {
+        "id_asistencia_alumno": 6,
+        "fecha": "2026-06-12",
+        "id_plantilla": 1,
+        "id_salon": 1,
+        "id_horario": 1,
+        "orden_dia": 2,
+        "id_alumno": 4,
+        "nombre_alumno": "trysi ",
+        "asistencia": "Tardanza",
+        "hora_registro": "13:31",
+        "estado": "Activo"
     }
 ]

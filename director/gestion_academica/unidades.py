@@ -1,6 +1,8 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 
+RUTA_SALONES = "datos/salones.json"
+RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_UNIDADES = "datos/unidades.json"
 RUTA_MODULOS = "datos/modulos.json"
 
@@ -110,9 +112,6 @@ def editar_unidad():  #edita una unidad registrada
         print("No hay unidades registradas.")
         input()
         return
-
-    mostrar_unidades(unidades)
-
     try:
         id_unidad = int(input("\nIngrese ID de la unidad: "))
     except ValueError:
@@ -163,6 +162,7 @@ def ver_unidades():  #muestra las unidades registradas
             print(f"Salón: {unidad['nombre_salon']}")
             print(f"Módulo: {unidad['nombre_modulo']}")
             print(f"Unidad: {unidad['nombre_unidad']}")
+            print(f"Orden: {unidad['orden']}")
             print(f"Descripción: {unidad['descripcion']}")
 
     input()
