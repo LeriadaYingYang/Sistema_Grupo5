@@ -2,25 +2,32 @@ from director.gestion_estudiante.crear_alumno import crear_alumno
 from director.gestion_estudiante.asignar_alumno import asignar_alumno
 from director.gestion_estudiante.ver_datos_alumnos import menu_ver_datos_alumnos
 from director.gestion_estudiante.editar_alumno import editar_alumno
-from director.utilidades import imprimir_titulo, imprimir_menu
+from director.gestion_estudiante.ver_historial_academico import ver_historial_academico
+from director.utilidades import imprimir_titulo, imprimir_menu, limpiar_pantalla, pausa
 
-def menu_alumnos():  #muestra el menú principal de gestión de alumnos
+_ACCIONES = {
+    "1": ("Crear Alumno", crear_alumno),
+    "2": ("Asignar Alumno a Carrera y Salón", asignar_alumno),
+    "3": ("Ver Datos de Alumno", menu_ver_datos_alumnos),
+    "4": ("Editar Alumno", editar_alumno),
+    "5": ("Ver historial Academico", ver_historial_academico),
+}
+
+def menu_alumnos():
     while True:
         imprimir_titulo("GESTIÓN DE ALUMNOS")
         imprimir_menu(["Crear Alumno", "Asignar Alumno a Carrera y Salón",
-                       "Ver Datos de Alumno","Editar Alumno","Volver"])
+                       "Ver Datos de Alumno","Editar Alumno", "Ver historial Academico","Volver"])
 
-        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
-        if opcion == "1":  #abre el registro de alumno
-            crear_alumno()
-        elif opcion == "2":  #abre la asignación del alumno a carrera y salón
-            asignar_alumno()
-        elif opcion == "3":  #abre el menú para ver datos de alumnos
-            menu_ver_datos_alumnos()
-        elif opcion == "4":  #abre la edición de datos del alumno
-            editar_alumno()
-        elif opcion == "5":  #vuelve al menú del director
+        opcion = input("Seleccione una opción: ")
+        if opcion == "6":
             print("\nVolviendo al menú director.")
             break
-        else:  #muestra mensaje si la opción no existe
+        elif opcion in _ACCIONES:
+            nombre, funcion = _ACCIONES[opcion]
+            print(f"\n→ Ha seleccionado: {nombre}")
+            pausa()
+            limpiar_pantalla()
+            funcion()
+        else:
             print("Opción inválida.")

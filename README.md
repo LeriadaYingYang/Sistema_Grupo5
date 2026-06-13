@@ -1,4 +1,4 @@
-# Sistema_Grupo5
+# Sistema_Grupo5 Gestion Académica
 ## Aporte de Daniel Enrqiue – Módulo de Gestión Académica entre otros Modulos
 Durante el desarrollo del Sistema de Gestión y Control Académica y Administrativa IISEM, participé en el diseño e implementación del módulo de Gestión Académica, encargado de administrar la estructura académica de la institución.
 Las funcionalidades desarrolladas incluyen:
@@ -45,15 +45,10 @@ Se implementó el manejo de archivos JSON mediante funciones genéricas para:
 * Administración de la persistencia de datos del sistema.
 La estructura desarrollada permite mantener una relación jerárquica entre carreras, plantillas académicas, salones, módulos y unidades, garantizando la organización y consistencia de la información académica institucional.
 
-# Sistema Académico - Grupo 5
+# Sistema de Control Académico
 Integrante
 - Fabrizio Ortega
-
-Asignación
-- Contról Académico
-
-Observaciones
-- Esta parte del proyecto fue desarrollada para el trabajo final del curso Fundamentos de Programación, aplicando estructuras de datos, modularización, funciones, archivos JSON y buenas prácticas de programación.
+Observaciones: Esta parte del proyecto fue desarrollada para el trabajo final del curso Fundamentos de Programación, aplicando estructuras de datos, modularización, funciones, archivos JSON y buenas prácticas de programación.
 
 # Estructura del Sistema
 
@@ -118,7 +113,8 @@ Ejemplo:
 - Cálculo automático de horas trabajadas.
 - Consultas y reportes académicos.
 - Consultas y reportes docentes.
-# Sistema de Gestión Académica
+
+# Sistema de Gestión Docente
 
 Sistema desarrollado por el integrante pablo diaz desarrollo la parte de gestion docente.
 
@@ -145,9 +141,20 @@ Sistema desarrollado por el integrante pablo diaz desarrollo la parte de gestion
 ---
 
 ## Lo que mejoré
-
 - **Validaciones de entrada**: DNI (8 dígitos), celular (9 dígitos) y campos vacíos se validan antes de guardar.
 - **Prevención de duplicados**: Se verifica DNI repetido al crear/editar profesor, y asignación duplicada al asignar profesor a salón.
 - **Borrado lógico**: Ningún registro se elimina físicamente; se marca con `estado = "Activo/Inactivo"`.
 - **Cálculo automático de promedios**: `registrar_notas.py` recalcula el promedio vigesimal cada vez que se ingresa una nota y lo guarda junto con la condición final.
 - **Separación por roles**: El módulo `profesor/` gestiona la sesión activa del docente, mientras `profesores/` es de uso exclusivo del administrador.
+
+# Sistema de Gestión Estudiantil
+
+Sistema desarrollado por el integrante Edith Huingo desarrollo la parte de gestion estudiantil.
+CAMBIOS Y MEJORAS QUE SE HIZO EN GESTION DE ESTUDIANTES
+Se optimizaron los módulos del sistema de alumnos, eliminando código repetido y añadiendo validaciones.
+En utilidades.py agregué las funciones pedir_entero() y validar_no_vacio() para no repetir la misma lógica en cada módulo.
+En crear_alumno.py añadí validaciones para que el DNI sea de 8 dígitos numéricos, el celular de 9 dígitos numéricos y el correo tenga formato ejemplo@gmail.com. También agregué una verificación para que no se puedan registrar dos alumnos con el mismo DNI.
+En asignar_alumno.py unifiqué las tres funciones de mostrar datos en una sola genérica y junté las validaciones previas en una lista en lugar de tenerlas separadas en cinco bloques.
+En editar_alumno.py el menú de edición ahora se genera desde una lista CAMPOS_EDITABLES en lugar de tener un elif por cada campo. También agregué validación de campo vacío y de DNI duplicado al momento de editar.
+En ver_datos_alumnos.py eliminé el patrón repetido de contar alumnos encontrados creando una función genérica, y cambié el menú para que se despache desde un diccionario en lugar de una cadena de elif.
+En ver_historial_academico.py reemplacé el pass vacío por un mensaje que avisa que el módulo está en construcción.

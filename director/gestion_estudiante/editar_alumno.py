@@ -1,112 +1,124 @@
 from basedatos_json import leer_json, guardar_json
-from director.utilidades import imprimir_titulo
+from director.utilidades import imprimir_titulo, pedir_entero, pausa
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
-def mostrar_alumno(alumno):  #muestra los datos principales de un alumno
+CAMPOS_EDITABLES = [  # Organizacion de los campos que es posible editar
+    ("Nombres",   "nombres"),
+    ("Apellidos", "apellidos"),
+    ("DNI",       "dni"),
+    ("Correo",    "correo"),
+    ("Celular",   "celular"),
+]
+
+def _mostrar_alumno(alumno):  # muestra los datos principales de un alumno
     print("\n-----------------------------")
-    print(f"ID: {alumno['id_alumno']}")
-    print(f"Nombres: {alumno['nombres']}")
+    print(f"ID      : {alumno['id_alumno']}")
+    print(f"Nombres : {alumno['nombres']}")
     print(f"Apellidos: {alumno['apellidos']}")
-    print(f"DNI: {alumno['dni']}")
-    print(f"Correo: {alumno['correo']}")
-    print(f"Celular: {alumno['celular']}")
+    print(f"DNI     : {alumno['dni']}")
+    print(f"Correo  : {alumno['correo']}")
+    print(f"Celular : {alumno['celular']}")
 
-def buscar_por_nombre(alumnos):  #busca alumnos activos por nombre o apellido
-    texto = input("Ingrese nombre o apellido aproximado: ").lower()
-    encontrados = []
-    for alumno in alumnos:
-        nombre_completo = f"{alumno['nombres']} {alumno['apellidos']}".lower()
-        if alumno["estado"] == "Activo" and texto in nombre_completo:
-            encontrados.append(alumno)
-    return encontrados
+def _buscar_alumnos(alumnos, por_dni=False):  # busca alumnos activos por nombre/apellido o por DNI exacto
+    if por_dni:
+        valor = input("Ingrese DNI: ")
+        return [a for a in alumnos if a["estado"] == "Activo" and a["dni"] == valor]
+    else:
+        texto = input("Ingrese nombre o apellido aproximado: ").lower()
+        return [
+            a for a in alumnos
+            if a["estado"] == "Activo"
+            and texto in f"{a['nombres']} {a['apellidos']}".lower()
+        ]
 
-def buscar_por_dni(alumnos):  #busca alumnos activos por dni
-    dni = input("Ingrese DNI: ")
-    encontrados = []
-    for alumno in alumnos:
-        if alumno["estado"] == "Activo" and alumno["dni"] == dni:
-            encontrados.append(alumno)
-    return encontrados
-
-def elegir_alumno(encontrados):  #permite seleccionar un alumno de la lista encontrada
-    if len(encontrados) == 0:
+def _elegir_alumno(encontrados):  # muestra los resultados y permite seleccionar uno por ID
+    if not encontrados:
         print("No se encontraron alumnos.")
         return None
+
     imprimir_titulo("ALUMNOS ENCONTRADOS")
     for alumno in encontrados:
-        mostrar_alumno(alumno)
-    try:
-        id_alumno = int(input("\nIngrese el ID del alumno que desea editar: "))
-    except ValueError:
-        print("Debe ingresar un número.")
+        _mostrar_alumno(alumno)
+
+    id_alumno = pedir_entero("\nIngrese el ID del alumno que desea editar: ")
+    if id_alumno is None:
         return None
-    for alumno in encontrados:
-        if alumno["id_alumno"] == id_alumno:
-            return alumno
-    print("ID no válido.")
-    return None
 
-def editar_campo(alumno):  #permite editar uno o varios datos del alumno seleccionado
+    alumno = next((a for a in encontrados if a["id_alumno"] == id_alumno), None)
+    if alumno is None:
+        print("ID no válido.")
+    return alumno
+
+def _dni_duplicado(alumnos, nuevo_dni, id_alumno_actual):  # verifica si el dni ya pertenece a otro alumno activo
+    return any(
+        a["dni"] == nuevo_dni and a["estado"] == "Activo" and a["id_alumno"] != id_alumno_actual
+        for a in alumnos
+    )
+
+def _editar_campo(alumno, alumnos):  # presenta el menú de edición y aplica los cambios al alumno
     while True:
-        print(f"""
-Alumno seleccionado:
-{alumno['nombres']} {alumno['apellidos']}
+        print(f"\nAlumno: {alumno['nombres']} {alumno['apellidos']} (ID: {alumno['id_alumno']})")
+        print("\n¿Qué dato desea editar?")
+        for idx, (etiqueta, clave) in enumerate(CAMPOS_EDITABLES, start=1):
+            print(f"{idx}. {etiqueta:<10}: {alumno[clave]}")
+        print(f"{len(CAMPOS_EDITABLES) + 1}. Salir")
 
-¿Qué dato desea editar?
-ID: {alumno['id_alumno']}
-1. Nombres   : {alumno['nombres']}
-2. Apellidos : {alumno['apellidos']}
-3. DNI       : {alumno['dni']}
-4. Correo    : {alumno['correo']}
-5. Celular   : {alumno['celular']}
-6. Salir""")
-        opcion = input("Seleccione una opción: ")
-        if opcion == "1":
-            alumno["nombres"] = input("Nuevo nombre: ")
-        elif opcion == "2":
-            alumno["apellidos"] = input("Nuevo apellido: ")
-        elif opcion == "3":
-            alumno["dni"] = input("Nuevo DNI: ")
-        elif opcion == "4":
-            alumno["correo"] = input("Nuevo correo: ")
-        elif opcion == "5":
-            alumno["celular"] = input("Nuevo celular: ")
-        elif opcion == "6":
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == str(len(CAMPOS_EDITABLES) + 1):
             break
-        else:
+
+        if not opcion.isdigit() or not (1 <= int(opcion) <= len(CAMPOS_EDITABLES)):
             print("Opción inválida.")
             continue
-        print("\nDato actualizado correctamente.")
-        continuar = input("¿Desea cambiar otro dato? (si/no): ").lower()
-        if continuar != "si":
+
+        etiqueta, clave = CAMPOS_EDITABLES[int(opcion) - 1]
+        nuevo_valor = input(f"Nuevo {etiqueta.lower()}: ").strip()
+
+        if not nuevo_valor:
+            print(f"Error: el campo '{etiqueta}' no puede estar vacío.")
+            continue
+
+        if clave == "dni" and _dni_duplicado(alumnos, nuevo_valor, alumno["id_alumno"]):
+            print("Error: ese DNI ya pertenece a otro alumno activo.")
+            continue
+
+        alumno[clave] = nuevo_valor
+        print(f"{etiqueta} actualizado correctamente.")
+
+        if input("¿Desea cambiar otro dato? (si/no): ").strip().lower() != "si":
             break
 
-def editar_alumno():  #permite buscar y editar los datos de un alumno
-    print("\n--- EDITAR DATOS DE ALUMNO ---")
-    alumnos = leer_json(RUTA_ALUMNOS)  #carga los alumnos registrados
-    if len(alumnos) == 0:
+def editar_alumno():
+    print("--- EDITAR ALUMNO ---")
+    print("Busque el alumno que desea modificar y edite sus datos.\n")
+    pausa()
+    imprimir_titulo("EDITAR DATOS DE ALUMNO")
+    alumnos = leer_json(RUTA_ALUMNOS)
+
+    if not alumnos:
         print("No hay alumnos registrados.")
         return
-    print("""
-Buscar alumno por:
 
-1. Nombre o apellido
-2. DNI
-3. Volver""")
-    opcion = input("Seleccione una opción: ")
+    print("\nBuscar alumno por:\n1. Nombre o apellido\n2. DNI\n3. Volver")
+    opcion = input("Seleccione una opción: ").strip()
+
     if opcion == "1":
-        encontrados = buscar_por_nombre(alumnos)
+        encontrados = _buscar_alumnos(alumnos, por_dni=False)
     elif opcion == "2":
-        encontrados = buscar_por_dni(alumnos)
+        encontrados = _buscar_alumnos(alumnos, por_dni=True)
     elif opcion == "3":
         return
     else:
         print("Opción inválida.")
         return
-    alumno = elegir_alumno(encontrados)  #obtiene el alumno seleccionado
+
+    alumno = _elegir_alumno(encontrados)
     if alumno is None:
         return
-    editar_campo(alumno)  #edita los datos del alumno
-    guardar_json(RUTA_ALUMNOS, alumnos)  #guarda los cambios en el archivo json
+
+    _editar_campo(alumno, alumnos)
+    guardar_json(RUTA_ALUMNOS, alumnos)
     print("\nAlumno actualizado correctamente.")
+    pausa()
