@@ -71,7 +71,7 @@ Los registros usan el campo `"estado": "Activo"` para el borrado lógico, evitan
 
 ---
 
-## 🔧 Lo que mejoré
+## Lo que mejoré
 
 - **Validaciones de entrada**: DNI (8 dígitos), celular (9 dígitos) y campos vacíos se validan antes de guardar.
 - **Prevención de duplicados**: Se verifica DNI repetido al crear/editar profesor, y asignación duplicada al asignar profesor a salón.
