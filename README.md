@@ -1,5 +1,5 @@
 # Sistema_Grupo5
-## Aporte de Daniel – Módulo de Gestión Académica
+## Aporte de Daniel Enrqiue – Módulo de Gestión Académica entre otros Modulos
 Durante el desarrollo del Sistema de Gestión y Control Académica y Administrativa IISEM, participé en el diseño e implementación del módulo de Gestión Académica, encargado de administrar la estructura académica de la institución.
 Las funcionalidades desarrolladas incluyen:
 ### Gestión de Carreras
