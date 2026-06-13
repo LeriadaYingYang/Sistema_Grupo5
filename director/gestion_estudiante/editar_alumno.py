@@ -1,5 +1,5 @@
 from basedatos_json import leer_json, guardar_json
-from director.utilidades import imprimir_titulo, pedir_entero
+from director.utilidades import imprimir_titulo, pedir_entero, pausa
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
@@ -90,9 +90,12 @@ def _editar_campo(alumno, alumnos):  # presenta el menú de edición y aplica lo
         if input("¿Desea cambiar otro dato? (si/no): ").strip().lower() != "si":
             break
 
-def editar_alumno():  # permite buscar y editar los datos de un alumno
+def editar_alumno():
+    print("--- EDITAR ALUMNO ---")
+    print("Busque el alumno que desea modificar y edite sus datos.\n")
+    pausa()
     imprimir_titulo("EDITAR DATOS DE ALUMNO")
-    alumnos = leer_json(RUTA_ALUMNOS)  # carga los alumnos registrados
+    alumnos = leer_json(RUTA_ALUMNOS)
 
     if not alumnos:
         print("No hay alumnos registrados.")
@@ -116,5 +119,6 @@ def editar_alumno():  # permite buscar y editar los datos de un alumno
         return
 
     _editar_campo(alumno, alumnos)
-    guardar_json(RUTA_ALUMNOS, alumnos)  # guarda los cambios en el archivo json
+    guardar_json(RUTA_ALUMNOS, alumnos)
     print("\nAlumno actualizado correctamente.")
+    pausa()

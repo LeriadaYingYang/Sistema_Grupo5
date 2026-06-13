@@ -70,5 +70,14 @@
         "correo": "test@gmail.com",
         "celular": "123456789",
         "estado": "Activo"
+    },
+    {
+        "id_alumno": 9,
+        "nombres": "Luz Elizabeth",
+        "apellidos": "Hernandez",
+        "dni": "78451632",
+        "correo": "luz@gmail.com",
+        "celular": "784596321",
+        "estado": "Activo"
     }
 ]

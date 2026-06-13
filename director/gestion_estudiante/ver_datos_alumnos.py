@@ -1,5 +1,5 @@
 from basedatos_json import leer_json
-from director.utilidades import imprimir_titulo, pedir_entero
+from director.utilidades import imprimir_titulo, pedir_entero, pausa
 
 RUTA_ALUMNOS      = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
@@ -45,6 +45,7 @@ def _ver_todos(alumnos, asignaciones):  # muestra todos los alumnos activos con 
         _alumnos_activos(alumnos), alumnos, asignaciones,
         "No hay alumnos activos registrados."
     )
+    pausa()
 
 def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos por carrera y salón
     # construir catálogo de carreras con alumnos
@@ -95,6 +96,7 @@ def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos
         and asig["id_salon"] == id_salon
     ]
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No hay alumnos en ese salón.")
+    pausa()
 
 def _buscar_por_nombre(alumnos, asignaciones):  # busca alumnos activos por nombre o apellido aproximado
     texto = input("Ingrese nombre o apellido a buscar: ").strip().lower()
@@ -103,11 +105,13 @@ def _buscar_por_nombre(alumnos, asignaciones):  # busca alumnos activos por nomb
         if texto in f"{a['nombres']} {a['apellidos']}".lower()
     ]
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No se encontraron alumnos con ese nombre.")
+    pausa()
 
 def _buscar_por_dni(alumnos, asignaciones):  # busca un alumno activo por DNI exacto
     dni = input("Ingrese DNI del alumno: ").strip()
     filtrados = [a for a in _alumnos_activos(alumnos) if a["dni"] == dni]
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No se encontró un alumno con ese DNI.")
+    pausa()
 
 # menú principal
 

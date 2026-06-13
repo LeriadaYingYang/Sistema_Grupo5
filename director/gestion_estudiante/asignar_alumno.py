@@ -1,5 +1,5 @@
 from basedatos_json import leer_json, guardar_json, generar_id
-from director.utilidades import imprimir_titulo, pedir_entero
+from director.utilidades import imprimir_titulo, pedir_entero, pausa
 
 RUTA_ALUMNOS      = "datos/alumnos.json"
 RUTA_CARRERAS     = "datos/carreras.json"
@@ -54,6 +54,9 @@ def _mostrar_salones_por_carrera(salones, id_carrera):  # muestra salones activo
 
 ## Logica principal del alumno 
 def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
+    print("--- ASIGNACIÓN DE ALUMNO ---")
+    print("Seleccione el alumno, plantilla, carrera y salón para la asignación.\n")
+    pausa()
     imprimir_titulo("ASIGNAR ALUMNO A CARRERA Y SALÓN")
 
     alumnos      = leer_json(RUTA_ALUMNOS)
@@ -152,3 +155,4 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
     print(f"Plantilla: {nueva_asignacion['nombre_plantilla']}")
     print(f"Carrera : {nueva_asignacion['nombre_carrera']}")
     print(f"Salón   : {nueva_asignacion['nombre_salon']}")
+    pausa()

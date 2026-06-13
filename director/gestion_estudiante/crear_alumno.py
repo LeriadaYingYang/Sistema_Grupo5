@@ -1,12 +1,12 @@
 from basedatos_json import leer_json, guardar_json, generar_id
-from director.utilidades import imprimir_titulo, validar_no_vacio
+from director.utilidades import imprimir_titulo, validar_no_vacio, pausa
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
-def _dni_ya_existe(alumnos, dni):  # verifica si el dni ya está registrado en un alumno activo
+def _dni_ya_existe(alumnos, dni):
     return any(a["dni"] == dni and a["estado"] == "Activo" for a in alumnos)
 
-def _validar_dni(dni):  # valida que el dni tenga exactamente 8 dígitos numéricos
+def _validar_dni(dni):
     if not dni.isdigit():
         print("Error: el DNI solo debe contener números.")
         return False
@@ -15,7 +15,7 @@ def _validar_dni(dni):  # valida que el dni tenga exactamente 8 dígitos numéri
         return False
     return True
 
-def _validar_celular(celular):  # valida que el celular tenga exactamente 9 dígitos numéricos
+def _validar_celular(celular):
     if not celular.isdigit():
         print("Error: el celular solo debe contener números.")
         return False
@@ -24,7 +24,7 @@ def _validar_celular(celular):  # valida que el celular tenga exactamente 9 díg
         return False
     return True
 
-def _validar_gmail(correo):  # valida que el correo tenga formato ...@gmail.com
+def _validar_gmail(correo):
     if not correo.endswith("@gmail.com"):
         print("Error: el correo debe tener formato ejemplo@gmail.com")
         return False
@@ -34,13 +34,13 @@ def _validar_gmail(correo):  # valida que el correo tenga formato ...@gmail.com
         return False
     return True
 
-def _pedir_campo(prompt, nombre_campo):  # solicita un campo de texto validando que no esté vacío
+def _pedir_campo(prompt, nombre_campo):
     while True:
         valor = input(prompt).strip()
         if validar_no_vacio(valor, nombre_campo):
             return valor
 
-def _pedir_campo_validado(prompt, nombre_campo, fn_validar):  # solicita un campo y aplica una validación adicional, reintentando si falla
+def _pedir_campo_validado(prompt, nombre_campo, fn_validar):
     while True:
         valor = input(prompt).strip()
         if not validar_no_vacio(valor, nombre_campo):
@@ -48,9 +48,12 @@ def _pedir_campo_validado(prompt, nombre_campo, fn_validar):  # solicita un camp
         if fn_validar(valor):
             return valor
 
-def crear_alumno():  # registra un alumno con sus datos personales
+def crear_alumno():
+    print("--- NUEVO REGISTRO DE ALUMNO ---")
+    print("Complete los siguientes datos del alumno.\n")
+    pausa()
     imprimir_titulo("REGISTRAR ALUMNOS")
-    alumnos = leer_json(RUTA_ALUMNOS)  # carga los alumnos registrados
+    alumnos = leer_json(RUTA_ALUMNOS)
 
     nombres   = _pedir_campo("Nombres: ", "nombres")
     apellidos = _pedir_campo("Apellidos: ", "apellidos")
@@ -58,12 +61,13 @@ def crear_alumno():  # registra un alumno con sus datos personales
     dni = _pedir_campo_validado("DNI: ", "dni", _validar_dni)
     if _dni_ya_existe(alumnos, dni):
         print("Error: ya existe un alumno activo con ese DNI.")
+        pausa()
         return
 
     correo  = _pedir_campo_validado("Correo (ejemplo@gmail.com): ", "correo", _validar_gmail)
     celular = _pedir_campo_validado("Celular: ", "celular", _validar_celular)
 
-    nuevo_alumno = {  # crea el diccionario con los datos del nuevo alumno
+    nuevo_alumno = {
         "id_alumno": generar_id(alumnos, "id_alumno"),
         "nombres":   nombres,
         "apellidos": apellidos,
@@ -73,8 +77,9 @@ def crear_alumno():  # registra un alumno con sus datos personales
         "estado":    "Activo",
     }
 
-    alumnos.append(nuevo_alumno)  # agrega el alumno a la lista
-    guardar_json(RUTA_ALUMNOS, alumnos)  # guarda la lista actualizada en el archivo json
+    alumnos.append(nuevo_alumno)
+    guardar_json(RUTA_ALUMNOS, alumnos)
 
     print(f"\nAlumno registrado correctamente.")
     print(f"ID alumno generado: {nuevo_alumno['id_alumno']}")
+    pausa()
