@@ -1,11 +1,11 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 
-RUTA_UNIDADES = "datos/unidades.json"
 RUTA_MODULOS = "datos/modulos.json"
 RUTA_SALONES = "datos/salones.json"
 RUTA_CARRERAS = "datos/carreras.json"
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
+RUTA_UNIDADES = "datos/unidades.json"
 
 def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su id
     for item in lista:
@@ -13,160 +13,301 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
             return item
     return None
 
-def unidad_ya_tiene_modulos(modulos, id_unidad):  #verifica si una unidad ya tiene módulos registrados
-    for m in modulos:
-        if (m["estado"] == "Activo"
-            and m["id_unidad"] == id_unidad):
-            return True
-    return False
-
-def mostrar_carreras(carreras):  #muestra las carreras activas disponibles
+def mostrar_carreras(carreras):  #muestra las carreras activas
     imprimir_titulo("CARRERAS DISPONIBLES")
-    for c in carreras:
-        if c["estado"] == "Activo":
-            print(f"ID: {c['id_carrera']} | {c['nombre']}")
+    for carrera in carreras:
+        if carrera["estado"] == "Activo":
+            print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
 
-def mostrar_plantillas(plantillas, id_carrera): #muestra las plantillas activas de una carrera
-    imprimir_titulo("PLANTILLA DE LA CARRERA")
-    for p in plantillas:
-        if p["estado"] == "Activo" and p["id_carrera"] == id_carrera:
-            print(f"ID: {p['id_plantilla']} | {p['nombre_plantilla']}")
+def mostrar_plantillas(plantillas, id_carrera):  #muestra las plantillas de una carrera
+    imprimir_titulo("PLANTILLAS DISPONIBLES")
+    for plantilla in plantillas:
+        if plantilla["estado"] == "Activo" and plantilla["id_carrera"] == id_carrera:
+            print(f"ID: {plantilla['id_plantilla']} | {plantilla['nombre_plantilla']}")
 
-def mostrar_salones(salones, id_carrera):  #muestra los salones activos de una carrera
-    imprimir_titulo("SALONES DE LA CARRERA")
-    for s in salones:
-        if s["estado"] == "Activo" and s["id_carrera"] == id_carrera:
-            print(f"ID: {s['id_salon']} | "
-                f"{s['nombre_salon']} | {s['turno']}")
+def mostrar_salones(salones, id_carrera):  #muestra los salones de una carrera
+    imprimir_titulo("SALONES DISPONIBLES")
+    for salon in salones:
+        if salon["estado"] == "Activo" and salon["id_carrera"] == id_carrera:
+            print(f"ID: {salon['id_salon']} | {salon['nombre_salon']} | {salon['turno']}")
 
-def mostrar_unidades(unidades, id_salon, id_plantilla):  #muestra las unidades de un salón y plantilla
-    imprimir_titulo("UNIDADES DEL SALÓN Y PLANTILLA")
-    encontrados = 0  #cuenta cuántas unidades se encontraron
-    for u in unidades:
-        if (u["estado"] == "Activo"
-            and u.get("id_salon") == id_salon
-            and u.get("id_plantilla") == id_plantilla):
-            encontrados += 1
-            print(f"ID: {u['id_unidad']} | {u['nombre_unidad']}")
-    if encontrados == 0:
-        print("No hay unidades para este salón y plantilla.")
+def mostrar_modulos(modulos):  #muestra los módulos activos
+    imprimir_titulo("MÓDULOS DISPONIBLES")
+    for modulo in modulos:
+        if modulo["estado"] == "Activo":
+            print(
+                f"ID: {modulo['id_modulo']} | "
+                f"Módulo: {modulo['nombre_modulo']} | "
+                f"Salón: {modulo['nombre_salon']}")
 
-def registrar_modulo():  #registra uno o varios módulos en una unidad
-    imprimir_titulo("REGISTRAR MÓDULOS")
+def registrar_modulo():  #registra módulos después de seleccionar carrera, plantilla y salón
+    imprimir_titulo("CREAR MÓDULO")
 
-    carreras = leer_json(RUTA_CARRERAS)  #carga las carreras registradas
-    plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
-    salones = leer_json(RUTA_SALONES)  #carga los salones registrados
-    unidades = leer_json(RUTA_UNIDADES)  #carga las unidades registradas
-    modulos = leer_json(RUTA_MODULOS)  #carga los módulos registrados
+    carreras = leer_json(RUTA_CARRERAS)
+    plantillas = leer_json(RUTA_PLANTILLAS)
+    salones = leer_json(RUTA_SALONES)
+    modulos = leer_json(RUTA_MODULOS)
 
-    if len(unidades) == 0:  #valida si existen unidades registradas
-        print("Primero debe registrar unidades.")
+    if len(carreras) == 0:
+        print("Primero debe registrar carreras.")
+        input()
         return
-    mostrar_carreras(carreras)  #muestra las carreras disponibles
+
+    if len(plantillas) == 0:
+        print("Primero debe crear plantillas académicas.")
+        input()
+        return
+
+    if len(salones) == 0:
+        print("Primero debe registrar salones.")
+        input()
+        return
+
+    mostrar_carreras(carreras)
+
     try:
-        id_carrera = int(input("\nIngrese ID de carrera: "))  #solicita el id de la carrera
+        id_carrera = int(input("\nIngrese ID de carrera: "))
     except ValueError:
         print("Debe ingresar un número.")
+        input()
         return
-    mostrar_plantillas(plantillas, id_carrera)  #muestra las plantillas de la carrera seleccionada
+
+    carrera = buscar_por_id(carreras, "id_carrera", id_carrera)
+
+    if carrera is None:
+        print("Carrera no encontrada.")
+        input()
+        return
+
+    mostrar_plantillas(plantillas, id_carrera)
+
     try:
-        id_plantilla = int(input("\nIngrese ID de plantilla: "))  #solicita el id de la plantilla
+        id_plantilla = int(input("\nIngrese ID de plantilla: "))
     except ValueError:
         print("Debe ingresar un número.")
+        input()
         return
-    plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)  #busca la plantilla ingresada
-    if plantilla is None or plantilla["id_carrera"] != id_carrera:  #valida que la plantilla pertenezca a la carrera
+
+    plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)
+
+    if plantilla is None or plantilla["id_carrera"] != id_carrera:
         print("Plantilla no válida.")
+        input()
         return
-    mostrar_salones(salones, id_carrera)  #muestra los salones de la carrera seleccionada
+
+    mostrar_salones(salones, id_carrera)
+
     try:
-        id_salon = int(input("\nIngrese ID de salón: "))  #solicita el id del salón
+        id_salon = int(input("\nIngrese ID de salón: "))
     except ValueError:
         print("Debe ingresar un número.")
+        input()
         return
-    salon = buscar_por_id(salones, "id_salon", id_salon)  #busca el salón ingresado
-    if salon is None or salon["id_carrera"] != id_carrera:  #valida que el salón pertenezca a la carrera
+
+    salon = buscar_por_id(salones, "id_salon", id_salon)
+
+    if salon is None or salon["id_carrera"] != id_carrera:
         print("Salón no válido.")
+        input()
         return
-    mostrar_unidades(unidades, id_salon, id_plantilla)  #muestra las unidades del salón y plantilla
-    try:
-        id_unidad = int(input("\nIngrese ID de unidad: "))  #solicita el id de la unidad
-    except ValueError:
-        print("Debe ingresar un número.")
-        return
-    unidad = buscar_por_id(unidades, "id_unidad", id_unidad)  #busca la unidad ingresada
-    if (unidad is None
-        or unidad.get("id_salon") != id_salon
-        or unidad.get("id_plantilla") != id_plantilla):  #valida que la unidad pertenezca al salón y plantilla seleccionados
-        print("Unidad no válida.")
-        return
-    if unidad_ya_tiene_modulos(modulos, id_unidad):  #evita registrar módulos duplicados en la unidad
-        print("Esta unidad ya tiene módulos registrados.")
-        return
-    while True:  #valida la cantidad de módulos a crear
+
+    while True:
         try:
             cantidad = int(input("¿Cuántos módulos desea crear?: "))
             if cantidad > 0:
                 break
-            print("Debe ser mayor a 0.")
+            print("La cantidad debe ser mayor que 0.")
         except ValueError:
             print("Ingrese un número válido.")
-    for i in range(1, cantidad + 1):  #repite el registro según la cantidad indicada
-        imprimir_titulo(f"MODULO {i}")
-        nombre = input("Nombre del módulo: ")  #solicita el nombre del módulo
-        descripcion = input("Descripción: ")  #solicita la descripción del módulo
-        nuevo = {  #crea el diccionario del nuevo módulo
+
+    for i in range(1, cantidad + 1):
+        imprimir_titulo(f"MÓDULO {i}")
+
+        nombre = input("Nombre del módulo: ")
+        descripcion = input("Descripción: ")
+
+        nuevo_modulo = {
             "id_modulo": generar_id(modulos, "id_modulo"),
-            "id_unidad": unidad["id_unidad"],
-            "id_salon": unidad.get("id_salon"),
-            "nombre_salon": unidad.get("nombre_salon"),
-            "turno": unidad.get("turno"),
-            "id_plantilla": unidad["id_plantilla"],
-            "nombre_plantilla": unidad["nombre_plantilla"],
-            "id_carrera": unidad["id_carrera"],
-            "nombre_carrera": unidad["nombre_carrera"],
-            "nombre_unidad": unidad["nombre_unidad"],
+            "id_carrera": carrera["id_carrera"],
+            "nombre_carrera": carrera["nombre"],
+            "id_plantilla": plantilla["id_plantilla"],
+            "nombre_plantilla": plantilla["nombre_plantilla"],
+            "id_salon": salon["id_salon"],
+            "nombre_salon": salon["nombre_salon"],
+            "turno": salon["turno"],
+            "id_unidad": None,
+            "nombre_unidad": "",
             "nombre_modulo": nombre,
             "descripcion": descripcion,
             "orden": i,
             "estado": "Activo"}
-        modulos.append(nuevo)  #agrega el módulo a la lista
-        print(f"Módulo agregado: {nombre}")
-    guardar_json(RUTA_MODULOS, modulos)  #guarda los módulos en el archivo json
-    print("\nMódulos registrados correctamente.")
 
-def ver_modulos():  #muestra los módulos registrados por carrera, plantilla, salón y unidad
-    imprimir_titulo("VER MODULOS")
-    carreras = leer_json(RUTA_CARRERAS)  #carga las carreras registradas
-    plantillas = leer_json(RUTA_PLANTILLAS)  #carga las plantillas registradas
-    salones = leer_json(RUTA_SALONES)  #carga los salones registrados
-    unidades = leer_json(RUTA_UNIDADES)  #carga las unidades registradas
-    modulos = leer_json(RUTA_MODULOS)  #carga los módulos registrados
-    if len(modulos) == 0:  #valida si existen módulos registrados
+        modulos.append(nuevo_modulo)
+        print(f"Módulo agregado: {nombre}")
+
+    guardar_json(RUTA_MODULOS, modulos)
+
+    print("\nMódulos registrados correctamente.")
+    input()
+
+def editar_modulo():  #edita los datos de un módulo
+    imprimir_titulo("EDITAR MÓDULO")
+
+    modulos = leer_json(RUTA_MODULOS)
+
+    if len(modulos) == 0:
         print("No hay módulos registrados.")
+        input()
         return
-    mostrar_carreras(carreras)  #muestra las carreras disponibles
-    id_carrera = int(input("\nIngrese ID de carrera: "))  #solicita el id de la carrera
-    mostrar_plantillas(plantillas, id_carrera)  #muestra las plantillas de la carrera
-    id_plantilla = int(input("\nIngrese ID de plantilla: "))  #solicita el id de la plantilla
-    mostrar_salones(salones, id_carrera)  #muestra los salones de la carrera
-    id_salon = int(input("\nIngrese ID de salón: "))  #solicita el id del salón
-    mostrar_unidades(unidades, id_salon, id_plantilla)  #muestra las unidades disponibles
-    id_unidad = int(input("\nIngrese ID de unidad: "))  #solicita el id de la unidad
-    imprimir_titulo("MÓDULOS DE LA UNIDAD")
-    encontrados = 0  #cuenta cuántos módulos se encontraron
-    for m in modulos:
-        if (m["estado"] == "Activo"
-            and m["id_unidad"] == id_unidad):
+
+    mostrar_modulos(modulos)
+
+    try:
+        id_modulo = int(input("\nIngrese ID del módulo: "))
+    except ValueError:
+        print("Debe ingresar un número.")
+        input()
+        return
+
+    for modulo in modulos:
+        if modulo["id_modulo"] == id_modulo and modulo["estado"] == "Activo":
+            nuevo_nombre = input(f"Nombre ({modulo['nombre_modulo']}): ").strip()
+            nueva_descripcion = input(f"Descripción ({modulo['descripcion']}): ").strip()
+
+            if nuevo_nombre:
+                modulo["nombre_modulo"] = nuevo_nombre
+
+            if nueva_descripcion:
+                modulo["descripcion"] = nueva_descripcion
+
+            guardar_json(RUTA_MODULOS, modulos)
+
+            print("\nMódulo actualizado correctamente.")
+            input()
+            return
+
+    print("Módulo no encontrado.")
+    input()
+
+def asignar_modulo_unidad():  #asigna una unidad a un módulo
+    imprimir_titulo("ASIGNAR MÓDULO A UNIDAD")
+
+    modulos = leer_json(RUTA_MODULOS)
+    unidades = leer_json(RUTA_UNIDADES)
+
+    if len(modulos) == 0:
+        print("No hay módulos registrados.")
+        input()
+        return
+
+    if len(unidades) == 0:
+        print("No hay unidades registradas.")
+        input()
+        return
+
+    mostrar_modulos(modulos)
+
+    try:
+        id_modulo = int(input("\nIngrese ID del módulo: "))
+    except ValueError:
+        print("Debe ingresar un número.")
+        input()
+        return
+
+    modulo = buscar_por_id(modulos, "id_modulo", id_modulo)
+
+    if modulo is None:
+        print("Módulo no encontrado.")
+        input()
+        return
+
+    imprimir_titulo("UNIDADES DISPONIBLES")
+
+    for unidad in unidades:
+        if unidad["estado"] == "Activo":
+            print(f"ID: {unidad['id_unidad']} | {unidad['nombre_unidad']}")
+
+    try:
+        id_unidad = int(input("\nIngrese ID de unidad: "))
+    except ValueError:
+        print("Debe ingresar un número.")
+        input()
+        return
+
+    unidad = buscar_por_id(unidades, "id_unidad", id_unidad)
+
+    if unidad is None:
+        print("Unidad no encontrada.")
+        input()
+        return
+
+    modulo["id_unidad"] = unidad["id_unidad"]
+    modulo["nombre_unidad"] = unidad["nombre_unidad"]
+
+    guardar_json(RUTA_MODULOS, modulos)
+
+    print("\nUnidad asignada correctamente al módulo.")
+    input()
+
+def ver_modulos():  #muestra los módulos registrados
+    imprimir_titulo("VER MÓDULOS")
+
+    modulos = leer_json(RUTA_MODULOS)
+
+    if len(modulos) == 0:
+        print("No hay módulos registrados.")
+        input()
+        return
+
+    encontrados = 0
+
+    for modulo in modulos:
+        if modulo["estado"] == "Activo":
             encontrados += 1
+
             print("\n-----------------------------")
-            print(f"ID: {m['id_modulo']}")
-            print(f"Módulo: {m['nombre_modulo']}")
-            print(f"Unidad: {m['nombre_unidad']}")
-            print(f"Salón: {m.get('nombre_salon')}")
-            print(f"Turno: {m.get('turno')}")
-            print(f"Descripción: {m['descripcion']}")
-    input()  #pausa la pantalla antes de volver al menú
+            print(f"ID: {modulo['id_modulo']}")
+            print(f"Carrera: {modulo['nombre_carrera']}")
+            print(f"Plantilla: {modulo['nombre_plantilla']}")
+            print(f"Salón: {modulo['nombre_salon']}")
+            print(f"Turno: {modulo['turno']}")
+            print(f"Módulo: {modulo['nombre_modulo']}")
+            print(f"Unidad: {modulo['nombre_unidad']}")
+            print(f"Descripción: {modulo['descripcion']}")
+
     if encontrados == 0:
-        print("No hay módulos para esta unidad.")
+        print("No hay módulos activos.")
+
+    input()
+
+def desactivar_modulo():  #desactiva un módulo
+    imprimir_titulo("DESACTIVAR MÓDULO")
+
+    modulos = leer_json(RUTA_MODULOS)
+
+    if len(modulos) == 0:
+        print("No hay módulos registrados.")
+        input()
+        return
+
+    mostrar_modulos(modulos)
+
+    try:
+        id_modulo = int(input("\nIngrese ID del módulo: "))
+    except ValueError:
+        print("Debe ingresar un número.")
+        input()
+        return
+
+    for modulo in modulos:
+        if modulo["id_modulo"] == id_modulo and modulo["estado"] == "Activo":
+            modulo["estado"] = "Inactivo"
+
+            guardar_json(RUTA_MODULOS, modulos)
+
+            print("\nMódulo desactivado correctamente.")
+            input()
+            return
+
+    print("Módulo no encontrado.")
+    input()
