@@ -16,25 +16,15 @@ def reporte_inasistencias_alumnos():
     print("3. Por fecha")
     op = input("Opción: ")
     if op == "1":
-        filtrado = [
-            a for a in data
-            if a.get("asistencia") == "Falta"]
+        filtrado = [a for a in data if a.get("asistencia") == "Falta"]
         mostrar_alumnos(filtrado)
     elif op == "2":
         nombre = input("Nombre alumno: ").lower()
-        filtrado = [
-            a for a in data
-            if nombre in a.get("nombre_alumno", "").lower()
-            and a.get("asistencia") == "Falta"
-        ]
+        filtrado = [a for a in data if nombre in a.get("nombre_alumno", "").lower() and a.get("asistencia") == "Falta"]
         mostrar_alumnos(filtrado)
     elif op == "3":
         fecha = input("Fecha (YYYY-MM-DD): ")
-        filtrado = [
-            a for a in data
-            if a.get("fecha") == fecha
-            and a.get("asistencia") == "Falta"
-        ]
+        filtrado = [a for a in data if a.get("fecha") == fecha and a.get("asistencia") == "Falta"]
         mostrar_alumnos(filtrado)
     else:
         print("Opción inválida")
@@ -64,31 +54,28 @@ def reporte_inasistencias_profesores():
     if not data:
         print("No hay registros.")
         return
-    print("\n1. Tardanzas")
-    print("2. Filtrar por profesor")
-    print("3. Por fecha")
+    print("\n1. Ver faltas")
+    print("2. Ver tardanzas")
+    print("3. Ver justificaciones")
+    print("4. Filtrar por profesor")
+    print("5. Filtrar por fecha")
     op = input("Opción: ")
     if op == "1":
-        filtrado = [
-            p for p in data
-            if p.get("estado") == "Tardanza"
-        ]
+        filtrado = [p for p in data if p.get("estado") == "Falta"]
         mostrar_profesores(filtrado)
     elif op == "2":
-        nombre = input("Nombre profesor: ").lower()
-        filtrado = [
-            p for p in data
-            if nombre in p.get("nombre_profesor", "").lower()
-            and p.get("estado") == "Tardanza"
-        ]
+        filtrado = [p for p in data if p.get("estado") == "Tardanza"]
         mostrar_profesores(filtrado)
     elif op == "3":
+        filtrado = [p for p in data if p.get("estado") == "Justificado"]
+        mostrar_profesores(filtrado)
+    elif op == "4":
+        nombre = input("Nombre profesor: ").lower()
+        filtrado = [p for p in data if nombre in p.get("nombre_profesor", "").lower()]
+        mostrar_profesores(filtrado)
+    elif op == "5":
         fecha = input("Fecha (YYYY-MM-DD): ")
-        filtrado = [
-            p for p in data
-            if p.get("fecha") == fecha
-            and p.get("estado") == "Tardanza"
-        ]
+        filtrado = [p for p in data if p.get("fecha") == fecha]
         mostrar_profesores(filtrado)
     else:
         print("Opción inválida")
@@ -109,6 +96,7 @@ def mostrar_profesores(lista):
             f"\nSalida: {p.get('hora_salida', '-')}"
             f"\nHoras trabajadas: {p.get('horas_trabajadas', 0)}"
             f"\nEstado: {p.get('estado', '-')}"
+            f"\nJustificación: {p.get('justificacion', '-')}"
             f"\n--------------------"
         )
     print(f"\nTOTAL REGISTROS: {total}")
