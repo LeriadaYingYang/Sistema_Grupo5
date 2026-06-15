@@ -16,7 +16,7 @@ def menu_control_administrativo():
         
         opciones = [
             "Gestionar Cargos Oficiales (Matrículas, Pensiones)",
-            "Gestionar Cargos Extras (Multas, Certificados)",
+            "Gestionar Cargos Extras (Certificados)",
             "Gestionar Catálogo de Descuentos / Convenios",
             "Asignar Descuento a un Alumno",
             "Resumen de Pagos y Estado Financiero (Reporte)",
