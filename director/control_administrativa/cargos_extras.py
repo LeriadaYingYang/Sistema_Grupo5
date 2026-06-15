@@ -19,7 +19,7 @@ def buscar_nombre_relacionado(lista, campo_id, valor_id, campo_nombre):
             return str(item.get(campo_nombre, "Desconocido")).title()
     return "No encontrado"
 def mostrar_cargos_extras():
-    imprimir_titulo("LISTADO DE CARGOS EXTRAS (MULTAS, CONSTANCIAS)")
+    imprimir_titulo("LISTADO DE CARGOS EXTRAS (CONSTANCIAS)")
     # ENTRADA: Carga de múltiples arreglos para combinación
     cargos = leer_json(RUTA_CARGOS_EXTRAS)
     alumnos = leer_json(RUTA_ALUMNOS)
