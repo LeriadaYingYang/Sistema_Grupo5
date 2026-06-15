@@ -1,0 +1,31 @@
+[
+    {
+        "id_tablilla": 1,
+        "id_unidad": 1,
+        "nombre_unidad": "unidad1",
+        "id_modulo": 1,
+        "nombre_modulo": "1",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_plantilla_evaluacion": 1,
+        "nombre_plantilla_evaluacion": "Evaluación Regular",
+        "grupos": [
+            {
+                "orden": 1,
+                "nombre_grupo": "Prácticas",
+                "actividades": [
+                    {
+                        "orden": 1,
+                        "nombre_actividad": "Práctica 1"
+                    }
+                ]
+            }
+        ],
+        "estado": "Activo"
+    }
+]
