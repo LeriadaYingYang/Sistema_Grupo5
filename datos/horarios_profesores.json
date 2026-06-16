@@ -12,19 +12,5 @@
         "nombre_salon": "salon A5",
         "turno": "NOCHE",
         "estado": "Activo"
-    },
-    {
-        "id_asignacion_horario": 2,
-        "id_profesor": 2,
-        "nombre_profesor": "roberto sanchez",
-        "id_horario": 3,
-        "id_plantilla": 2,
-        "nombre_plantilla": "2026",
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "estado": "Activo"
     }
 ]

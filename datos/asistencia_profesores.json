@@ -135,41 +135,5 @@
         "id_horario": 1,
         "orden_dia": 2,
         "estado_registro": "Activo"
-    },
-    {
-        "id_asistencia_profesor": 7,
-        "fecha": "2026-06-14",
-        "id_profesor": 1,
-        "hora_entrada": "15:11",
-        "hora_salida": "15:11",
-        "estado": "Tardanza",
-        "horas_trabajadas": 0.0,
-        "id_horario": 3,
-        "orden_dia": 3,
-        "estado_registro": "Activo"
-    },
-    {
-        "id_asistencia_profesor": 8,
-        "fecha": "2026-06-14",
-        "id_profesor": 1,
-        "hora_entrada": "15:12",
-        "hora_salida": "15:12",
-        "estado": "Tardanza",
-        "horas_trabajadas": 0.0,
-        "id_horario": 1,
-        "orden_dia": 1,
-        "estado_registro": "Activo"
-    },
-    {
-        "id_asistencia_profesor": 9,
-        "fecha": "2026-06-14",
-        "id_profesor": 2,
-        "hora_entrada": "15:21",
-        "hora_salida": "15:21",
-        "estado": "Tardanza",
-        "horas_trabajadas": 0.0,
-        "id_horario": 3,
-        "orden_dia": 2,
-        "estado_registro": "Activo"
     }
 ]

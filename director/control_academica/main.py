@@ -30,7 +30,7 @@ def menu_control_academico():
             "Gestión de Horarios",
             "Gestión de Asistencias",
             "Seguimiento Académico",
-            "Control Docente",
+            "Control de Docente",
             "Volver"
         ])
         opcion = input("\nSeleccione una opción: ")

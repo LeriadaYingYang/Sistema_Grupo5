@@ -11,9 +11,9 @@
         "dias_horas": [
             {
                 "orden": 1,
-                "dia": "Lunes",
-                "hora_inicio": "8:00",
-                "hora_fin": "9:00"
+                "dia": "1",
+                "hora_inicio": "8 a 9",
+                "hora_fin": "9"
             },
             {
                 "orden": 2,
@@ -57,37 +57,6 @@
                 "dia": "viernes",
                 "hora_inicio": "10:50",
                 "hora_fin": "14:00"
-            }
-        ],
-        "estado": "Activo"
-    },
-    {
-        "id_horario": 3,
-        "id_plantilla": 2,
-        "nombre_plantilla": "2026",
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "dias_horas": [
-            {
-                "orden": 1,
-                "dia": "Lunes",
-                "hora_inicio": "10:50",
-                "hora_fin": "12:20"
-            },
-            {
-                "orden": 2,
-                "dia": "Jueves",
-                "hora_inicio": "7:30",
-                "hora_fin": "09:00"
-            },
-            {
-                "orden": 3,
-                "dia": "Viernes",
-                "hora_inicio": "2:30",
-                "hora_fin": "4:00"
             }
         ],
         "estado": "Activo"

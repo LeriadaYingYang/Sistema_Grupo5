@@ -100,44 +100,5 @@
         "asistencia": "Tardanza",
         "hora_registro": "13:31",
         "estado": "Activo"
-    },
-    {
-        "id_asistencia_alumno": 7,
-        "fecha": "2026-06-14",
-        "id_plantilla": 2,
-        "id_salon": 1,
-        "id_horario": 3,
-        "orden_dia": 1,
-        "id_alumno": 1,
-        "nombre_alumno": "daniel jara",
-        "asistencia": "Presente",
-        "hora_registro": "15:21",
-        "estado": "Activo"
-    },
-    {
-        "id_asistencia_alumno": 8,
-        "fecha": "2026-06-14",
-        "id_plantilla": 2,
-        "id_salon": 1,
-        "id_horario": 3,
-        "orden_dia": 1,
-        "id_alumno": 3,
-        "nombre_alumno": "luis sarsd",
-        "asistencia": "Tardanza",
-        "hora_registro": "15:21",
-        "estado": "Activo"
-    },
-    {
-        "id_asistencia_alumno": 9,
-        "fecha": "2026-06-14",
-        "id_plantilla": 2,
-        "id_salon": 1,
-        "id_horario": 3,
-        "orden_dia": 1,
-        "id_alumno": 4,
-        "nombre_alumno": "trysi ",
-        "asistencia": "Presente",
-        "hora_registro": "15:21",
-        "estado": "Activo"
     }
 ]
