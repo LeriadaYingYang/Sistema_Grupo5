@@ -5,201 +5,77 @@ RUTA_HORARIOS = "datos/horarios.json"
 
 
 def cargar_horarios():
-
     try:
-
-        datos = leer_json(
-            RUTA_HORARIOS
-        )
-
-        if not isinstance(
-            datos,
-            list
-        ):
+        datos = leer_json(RUTA_HORARIOS)
+        if not isinstance(datos,list):
             return []
-
         return datos
-
     except Exception as e:
-
-        print(
-            f"Error al leer horarios: {e}"
-        )
-
+        print(f"Error al leer horarios: {e}")
         return []
 
 
 def consultar_horarios():
-
-    imprimir_titulo(
-        "CONSULTAR HORARIOS"
-    )
-
+    imprimir_titulo("CONSULTAR HORARIOS")
     horarios = cargar_horarios()
-
     if not horarios:
-
-        print(
-            "No existen horarios "
-            "registrados."
-        )
-
+        print("No existen horarios registrados.")
         return
-
-    horarios_activos = [
-
-        h for h in horarios
-
-        if h.get("estado")
-        == "Activo"
-    ]
-
+    horarios_activos = [h for h in horarios
+        if h.get("estado")== "Activo"]
     if not horarios_activos:
-
-        print(
-            "No existen horarios "
-            "activos."
-        )
-
+        print("No existen horarios activos.")
         return
-
     print("\n1. Ver todos")
     print("2. Filtrar por plantilla")
     print("3. Filtrar por carrera")
     print("4. Filtrar por salón")
-
-    opcion = input(
-        "\nSeleccione opción: "
-    ).strip()
+    opcion = input("\nSeleccione opción: ").strip()
 
     if opcion == "1":
-
-        mostrar_horarios(
-            horarios_activos
-        )
+        mostrar_horarios(horarios_activos)
 
     elif opcion == "2":
-
-        nombre = input(
-            "Nombre de plantilla: "
-        ).strip().lower()
-
+        nombre = input("Nombre de plantilla: ").strip().lower()
         if not nombre:
-
-            print(
-                "Debe ingresar "
-                "un nombre."
-            )
-
+            print("Debe ingresar un nombre.")
             return
-
         filtrados = [
-
             h for h in horarios_activos
-
-            if nombre in str(
-                h.get(
-                    "nombre_plantilla",
-                    ""
-                )
-            ).lower()
-        ]
-
-        mostrar_horarios(
-            filtrados
-        )
+            if nombre in str(h.get("nombre_plantilla","")).lower()]
+        mostrar_horarios(filtrados)
 
     elif opcion == "3":
-
-        nombre = input(
-            "Nombre de carrera: "
-        ).strip().lower()
-
+        nombre = input("Nombre de carrera: ").strip().lower()
         if not nombre:
-
-            print(
-                "Debe ingresar "
-                "un nombre."
-            )
-
+            print("Debe ingresar un nombre.")
             return
-
         filtrados = [
-
             h for h in horarios_activos
-
-            if nombre in str(
-                h.get(
-                    "nombre_carrera",
-                    ""
-                )
-            ).lower()
-        ]
-
-        mostrar_horarios(
-            filtrados
-        )
+            if nombre in str(h.get("nombre_carrera","")).lower()]
+        mostrar_horarios(filtrados)
 
     elif opcion == "4":
-
-        nombre = input(
-            "Nombre de salón: "
-        ).strip().lower()
-
+        nombre = input("Nombre de salón: ").strip().lower()
         if not nombre:
-
-            print(
-                "Debe ingresar "
-                "un nombre."
-            )
-
+            print("Debe ingresar un nombre.")
             return
-
         filtrados = [
-
             h for h in horarios_activos
-
-            if nombre in str(
-                h.get(
-                    "nombre_salon",
-                    ""
-                )
-            ).lower()
-        ]
-
-        mostrar_horarios(
-            filtrados
-        )
-
+            if nombre in str(h.get("nombre_salon","")).lower()]
+        mostrar_horarios(filtrados)
     else:
-
-        print(
-            "Opción inválida."
-        )
+        print("Opción inválida.")
 
 
 def mostrar_horarios(lista):
-
-    imprimir_titulo(
-        "RESULTADOS"
-    )
-
+    imprimir_titulo("RESULTADOS")
     if not lista:
-
-        print(
-            "No se encontraron "
-            "registros."
-        )
-
+        print("No se encontraron registros.")
         return
-
-    print(
-        f"\nTotal encontrados: "
-        f"{len(lista)}"
-    )
-
+    print(f"\nTotal encontrados: "
+        f"{len(lista)}")
     for horario in lista:
-
         print(
             f"\nID Horario: "
             f"{horario.get('id_horario','N/A')}"
@@ -212,35 +88,14 @@ def mostrar_horarios(lista):
             f"\nTurno: "
             f"{horario.get('turno','N/A')}"
         )
-
         print("\nDÍAS Y HORARIOS:")
-
-        dias_horas = horario.get(
-            "dias_horas",
-            []
-        )
-
-        if not isinstance(
-            dias_horas,
-            list
-        ) or not dias_horas:
-
-            print(
-                "  No existen "
-                "horarios registrados."
-            )
-
+        dias_horas = horario.get("dias_horas",[])
+        if not isinstance(dias_horas,list) or not dias_horas:
+            print("No existen horarios registrados.")
         else:
-
             for dia in dias_horas:
-
-                print(
-                    f"  {dia.get('orden','?')}. "
+                print(f"  {dia.get('orden','?')}. "
                     f"{dia.get('dia','N/A')} | "
                     f"{dia.get('hora_inicio','N/A')} - "
-                    f"{dia.get('hora_fin','N/A')}"
-                )
-
-        print(
-            "\n" + "-" * 40
-        )
+                    f"{dia.get('hora_fin','N/A')}")
+        print("\n" + "-" * 40)
