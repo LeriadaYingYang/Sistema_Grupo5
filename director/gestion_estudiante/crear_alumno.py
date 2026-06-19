@@ -37,8 +37,17 @@ def _validar_gmail(correo):
 def _pedir_campo(prompt, nombre_campo):
     while True:
         valor = input(prompt).strip()
-        if validar_no_vacio(valor, nombre_campo):
-            return valor
+        if not validar_no_vacio(valor, nombre_campo):
+            continue
+        tiene_simbolos = False
+        for c in valor:
+            if not (c.isalpha() or c.isspace()):
+                tiene_simbolos = True
+                break
+        if tiene_simbolos:
+            print(f"Error: el campo '{nombre_campo}' solo debe contener letras.")
+            continue
+        return valor
 
 def _pedir_campo_validado(prompt, nombre_campo, fn_validar):
     while True:

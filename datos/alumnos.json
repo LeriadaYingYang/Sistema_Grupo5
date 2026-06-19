@@ -79,5 +79,23 @@
         "correo": "luz@gmail.com",
         "celular": "784596321",
         "estado": "Activo"
+    },
+    {
+        "id_alumno": 10,
+        "nombres": "#@",
+        "apellidos": "#",
+        "dni": "78965412",
+        "correo": "jo@gmail.com",
+        "celular": "963587412",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 11,
+        "nombres": "fer",
+        "apellidos": "Saldaña",
+        "dni": "85264793",
+        "correo": "fer@gmail.com",
+        "celular": "912657384",
+        "estado": "Activo"
     }
 ]
