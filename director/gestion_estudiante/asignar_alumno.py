@@ -7,23 +7,25 @@ RUTA_SALONES      = "datos/salones.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_PLANTILLAS   = "datos/plantillas_academicas.json"
 
+# Cada ruta apunta al archivo JSON donde se guardan los datos que usa este módulo.
 
-def _buscar_activo(lista, campo_id, valor_id):  # retorna el primer registro activo que coincida con el id dado
+
+def _buscar_activo(lista, campo_id, valor_id):  # Busca un registro activo por su ID y devuelve el primero que coincida
     return next(
         (item for item in lista
          if item[campo_id] == valor_id and item["estado"] == "Activo"),
         None
     )
 
-def _alumno_ya_asignado(asignaciones, id_alumno):  # verifica si el alumno tiene una asignación activa
+def _alumno_ya_asignado(asignaciones, id_alumno):  # Revisa si el alumno ya aparece en una asignación activa
     return any(
         a["id_alumno"] == id_alumno and a["estado"] == "Activo"
         for a in asignaciones
     )
 
-# funciones de visualización
+# Funciones de apoyo para mostrar opciones en pantalla.
 
-def _mostrar_alumnos_no_asignados(alumnos, asignaciones):  # muestra alumnos activos sin asignación activa
+def _mostrar_alumnos_no_asignados(alumnos, asignaciones):  # Lista solo alumnos activos que todavía no tienen asignación
     imprimir_titulo("ALUMNOS DISPONIBLES NO ASIGNADOS")
     encontrados = sum(
         1 for a in alumnos
@@ -33,14 +35,14 @@ def _mostrar_alumnos_no_asignados(alumnos, asignaciones):  # muestra alumnos act
     if encontrados == 0:
         print("Todos los alumnos ya están asignados.")
 
-def _mostrar_lista(titulo, items, campos):  # muestra una lista genérica con título y campos indicados
+def _mostrar_lista(titulo, items, campos):  # Imprime una lista reutilizable con el formato que se le indique
     imprimir_titulo(titulo)
     for item in items:
         if item["estado"] == "Activo":
             linea = " | ".join(f"{etiqueta}: {item[campo]}" for etiqueta, campo in campos)
             print(linea)
 
-def _mostrar_salones_por_carrera(salones, id_carrera):  # muestra salones activos de una carrera específica
+def _mostrar_salones_por_carrera(salones, id_carrera):  # Filtra y muestra únicamente los salones activos de la carrera elegida
     imprimir_titulo("SALONES DISPONIBLES PARA ESTA CARRERA")
     disponibles = [
         s for s in salones
@@ -52,8 +54,8 @@ def _mostrar_salones_por_carrera(salones, id_carrera):  # muestra salones activo
     for s in disponibles:
         print(f"ID: {s['id_salon']} | Salón: {s['nombre_salon']} | Turno: {s['turno']}")
 
-## Logica principal del alumno 
-def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
+## Lógica principal del alumno
+def asignar_alumno():  # Coordina todo el proceso para asignar un alumno a plantilla, carrera y salón
     print("--- ASIGNACIÓN DE ALUMNO ---")
     print("Seleccione el alumno, plantilla, carrera y salón para la asignación.\n")
     pausa()
@@ -65,7 +67,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
     asignaciones = leer_json(RUTA_ASIGNACIONES)
     plantillas   = leer_json(RUTA_PLANTILLAS)
 
-    # validaciones previas
+    # Antes de pedir datos, se confirma que existan registros para poder trabajar.
     checks = [
         (not alumnos,                                       "Primero debe registrar alumnos."),
         (not plantillas,                                    "Primero debe registrar plantillas."),
@@ -81,7 +83,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
             print(mensaje)
             return
 
-    # selección de alumno
+    # Paso 1: elegir el alumno que será asignado.
     _mostrar_alumnos_no_asignados(alumnos, asignaciones)
     id_alumno = pedir_entero("\nIngrese ID del alumno: ")
     if id_alumno is None:
@@ -94,7 +96,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
         print("Este alumno ya tiene una asignación activa.")
         return
 
-    # selección de plantilla
+    # Paso 2: elegir la plantilla académica que se usará en la asignación.
     _mostrar_lista("PLANTILLAS DISPONIBLES", plantillas,
                    [("ID", "id_plantilla"), ("Nombre", "nombre_plantilla"), ("Carrera", "nombre_carrera")])
     id_plantilla = pedir_entero("\nIngrese ID de la plantilla: ")
@@ -105,7 +107,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
         print("Plantilla no encontrada.")
         return
 
-    # selección de carrera
+    # Paso 3: elegir la carrera y verificar que coincida con la plantilla.
     _mostrar_lista("CARRERAS DISPONIBLES", carreras,
                    [("ID", "id_carrera"), ("Carrera", "nombre")])
     id_carrera = pedir_entero("\nIngrese ID de la carrera: ")
@@ -119,7 +121,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
         print("Error: la carrera no coincide con la plantilla seleccionada.")
         return
 
-    # selección de salón
+    # Paso 4: seleccionar el salón correcto para esa carrera.
     _mostrar_salones_por_carrera(salones, id_carrera)
     id_salon = pedir_entero("\nIngrese ID del salón: ")
     if id_salon is None:
@@ -132,7 +134,7 @@ def asignar_alumno():  # asigna un alumno a una plantilla, carrera y salón
         print("Error: el salón no pertenece a esa carrera.")
         return
 
-    # crear y guardar asignación
+    # Si todo coincide, se crea el registro final y se guarda en el JSON.
     nueva_asignacion = {
         "id_asignacion_alumno": generar_id(asignaciones, "id_asignacion_alumno"),
         "id_alumno":      alumno["id_alumno"],

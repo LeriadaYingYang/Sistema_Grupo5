@@ -3,7 +3,8 @@ from director.utilidades import imprimir_titulo, pedir_entero, pausa
 
 RUTA_ALUMNOS = "datos/alumnos.json"
 
-CAMPOS_EDITABLES = [  # Organizacion de los campos que es posible editar
+# Esta lista define los campos que el usuario puede modificar.
+CAMPOS_EDITABLES = [
     ("Nombres",   "nombres"),
     ("Apellidos", "apellidos"),
     ("DNI",       "dni"),
@@ -11,7 +12,7 @@ CAMPOS_EDITABLES = [  # Organizacion de los campos que es posible editar
     ("Celular",   "celular"),
 ]
 
-def _mostrar_alumno(alumno):  # muestra los datos principales de un alumno
+def _mostrar_alumno(alumno):  # Muestra la ficha breve del alumno para identificarlo antes de editar
     print("\n-----------------------------")
     print(f"ID      : {alumno['id_alumno']}")
     print(f"Nombres : {alumno['nombres']}")
@@ -20,7 +21,7 @@ def _mostrar_alumno(alumno):  # muestra los datos principales de un alumno
     print(f"Correo  : {alumno['correo']}")
     print(f"Celular : {alumno['celular']}")
 
-def _buscar_alumnos(alumnos, por_dni=False):  # busca alumnos activos por nombre/apellido o por DNI exacto
+def _buscar_alumnos(alumnos, por_dni=False):  # Busca alumnos activos por texto aproximado o por DNI exacto
     if por_dni:
         valor = input("Ingrese DNI: ")
         return [a for a in alumnos if a["estado"] == "Activo" and a["dni"] == valor]
@@ -32,7 +33,7 @@ def _buscar_alumnos(alumnos, por_dni=False):  # busca alumnos activos por nombre
             and texto in f"{a['nombres']} {a['apellidos']}".lower()
         ]
 
-def _elegir_alumno(encontrados):  # muestra los resultados y permite seleccionar uno por ID
+def _elegir_alumno(encontrados):  # Muestra los resultados encontrados y permite escoger uno por ID
     if not encontrados:
         print("No se encontraron alumnos.")
         return None
@@ -50,13 +51,13 @@ def _elegir_alumno(encontrados):  # muestra los resultados y permite seleccionar
         print("ID no válido.")
     return alumno
 
-def _dni_duplicado(alumnos, nuevo_dni, id_alumno_actual):  # verifica si el dni ya pertenece a otro alumno activo
+def _dni_duplicado(alumnos, nuevo_dni, id_alumno_actual):  # Evita que dos alumnos activos compartan el mismo DNI
     return any(
         a["dni"] == nuevo_dni and a["estado"] == "Activo" and a["id_alumno"] != id_alumno_actual
         for a in alumnos
     )
 
-def _editar_campo(alumno, alumnos):  # presenta el menú de edición y aplica los cambios al alumno
+def _editar_campo(alumno, alumnos):  # Muestra el menú de edición y actualiza el campo elegido
     while True:
         print(f"\nAlumno: {alumno['nombres']} {alumno['apellidos']} (ID: {alumno['id_alumno']})")
         print("\n¿Qué dato desea editar?")
@@ -80,6 +81,7 @@ def _editar_campo(alumno, alumnos):  # presenta el menú de edición y aplica lo
             print(f"Error: el campo '{etiqueta}' no puede estar vacío.")
             continue
 
+        # Si se edita el DNI, primero se confirma que no exista en otro alumno activo.
         if clave == "dni" and _dni_duplicado(alumnos, nuevo_valor, alumno["id_alumno"]):
             print("Error: ese DNI ya pertenece a otro alumno activo.")
             continue
@@ -95,12 +97,15 @@ def editar_alumno():
     print("Busque el alumno que desea modificar y edite sus datos.\n")
     pausa()
     imprimir_titulo("EDITAR DATOS DE ALUMNO")
+
+    # Se carga la lista completa antes de buscar o modificar cualquier alumno.
     alumnos = leer_json(RUTA_ALUMNOS)
 
     if not alumnos:
         print("No hay alumnos registrados.")
         return
 
+    # El usuario puede buscar por coincidencia de nombre o por DNI exacto.
     print("\nBuscar alumno por:\n1. Nombre o apellido\n2. DNI\n3. Volver")
     opcion = input("Seleccione una opción: ").strip()
 
@@ -118,6 +123,7 @@ def editar_alumno():
     if alumno is None:
         return
 
+    # La edición se hace directamente sobre el registro seleccionado.
     _editar_campo(alumno, alumnos)
     guardar_json(RUTA_ALUMNOS, alumnos)
     print("\nAlumno actualizado correctamente.")
