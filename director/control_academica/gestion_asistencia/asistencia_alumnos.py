@@ -248,3 +248,30 @@ def registrar_asistencia_alumnos():
     except Exception as e:
         print(f"Error al guardar la asistencia: "
             f"{e}")
+
+def generar_registros_prueba_asistencia(cantidad=50): # Genera registros simulados de asistencia de alumnos
+    try:
+        asistencias = leer_json(RUTA_ASISTENCIA_ALUMNOS) or []
+    except Exception:
+        asistencias = []
+
+    for i in range(1, cantidad + 1):
+        registro = {
+            "id_asistencia_alumno": generar_id(asistencias, "id_asistencia_alumno"),
+            "fecha": "2026-06-20",
+            "id_plantilla": 1,
+            "id_salon": 1,
+            "id_horario": 1,
+            "orden_dia": 1,
+            "id_alumno": i,
+            "nombre_alumno": f"Alumno {i}",
+            "asistencia": "Presente" if i % 3 != 0 else "Tardanza",
+            "hora_registro": "08:00",
+            "estado": "Activo"
+        }
+        asistencias.append(registro)
+    try:
+        guardar_json(RUTA_ASISTENCIA_ALUMNOS, asistencias)
+        print(f"\n Se generaron {cantidad} registros de asistencia correctamente.")
+    except Exception as e:
+        print(f"Error al guardar registros: {e}")
