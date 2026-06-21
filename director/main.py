@@ -13,7 +13,7 @@ def menu_director():
             "Control académico",
             "Gestión docente",
             "Gestión estudiantil",
-            "Control administrativo",
+            "Gestion y Control administrativo",
             "Cerrar sesión"])
 
         opcion = input("Seleccione una opción: ")

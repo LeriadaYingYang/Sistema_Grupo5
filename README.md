@@ -110,7 +110,7 @@ El sistema se encuentra organizado en cuatro capas principales:
 Encargada de la interacción con el usuario mediante menús, formularios y mensajes mostrados en consola, permite la navegación entre los diferentes módulos del sistema y la visualización de la información procesada.
 
 ### 2. Capa de Seguridad y Autenticación
-Responsable de controlar el acceso al sistema mediante procesos de autenticación, implementa la validación de credenciales como DNI y contraseña para verificar la identidad de los usuarios antes de permitir el acceso a los módulos correspondientes según su rol institucional, esta capa contribuye a la protección de la información y al control de acceso a las funcionalidades del sistema.
+Responsable de controlar el acceso al sistema mediante procesos de autenticación, implementa la validación de credenciales como Usuario y contraseña para verificar la identidad de los usuarios antes de permitir el acceso a los módulos correspondientes según su rol institucional, esta capa contribuye a la protección de la información y al control de acceso a las funcionalidades del sistema.
 
 ### 3. Capa de Lógica de Negocio
 Contiene las reglas de funcionamiento del sistema, validaciones, cálculos y procesos académicos y administrativos, aquí se ejecutan las operaciones relacionadas con la gestión académica, estudiantil, docente, administrativa y de control académico.
