@@ -1,0 +1,63 @@
+[
+    {
+        "id_cargo_extra": 1,
+        "nombre": "carnet ",
+        "monto": 100.0,
+        "aplica_a": "Alumno",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_alumno": 1,
+        "nombre_alumno": "daniel francis",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 2,
+        "nombre": "papa",
+        "monto": 33.0,
+        "aplica_a": "Carrera",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": null,
+        "nombre_salon": null,
+        "id_alumno": null,
+        "nombre_alumno": null,
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 3,
+        "nombre": "poofd",
+        "monto": 55.0,
+        "aplica_a": "Carrera",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": null,
+        "nombre_salon": null,
+        "id_alumno": null,
+        "nombre_alumno": null,
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 4,
+        "nombre": "pen",
+        "monto": 77.0,
+        "aplica_a": "Carrera",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "id_salon": null,
+        "nombre_salon": null,
+        "id_alumno": null,
+        "nombre_alumno": null,
+        "estado": "Activo"
+    }
+]

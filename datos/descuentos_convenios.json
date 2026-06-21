@@ -1,0 +1,74 @@
+[
+    {
+        "id_descuento": 1,
+        "nombre": "conveio con upn",
+        "tipo": "Monto fijo",
+        "valor": 20.0,
+        "motivo": "se decunta por descuento",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 2,
+        "nombre": "yyy",
+        "tipo": "Porcentaje",
+        "valor": 99.0,
+        "motivo": "j",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 3,
+        "nombre": "mamatraemeeldesayuno",
+        "tipo": "Monto fijo",
+        "valor": 30.0,
+        "motivo": "mdakvkifs",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 4,
+        "nombre": "jfsaudfs",
+        "tipo": "Monto fijo",
+        "valor": 8.0,
+        "motivo": "mekh",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 5,
+        "nombre": "des",
+        "tipo": "Porcentaje",
+        "valor": 5.0,
+        "motivo": "poiuytrew",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 6,
+        "nombre": "44",
+        "tipo": "Monto fijo",
+        "valor": 2.0,
+        "motivo": "daawdxsaddddd´+´+",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 7,
+        "nombre": "67",
+        "tipo": "Porcentaje",
+        "valor": 4.0,
+        "motivo": "55552",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 8,
+        "nombre": "ñ",
+        "tipo": "Monto fijo",
+        "valor": 2.0,
+        "motivo": "2",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    }
+]
