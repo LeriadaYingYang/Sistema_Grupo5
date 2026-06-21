@@ -7,6 +7,7 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CARGOS_EXTRAS = "datos/cargos_extras.json"
 
+
 # ====================================================================
 # FUNCIONES DE VALIDACIÓN (A PRUEBA DE ERRORES)
 # ====================================================================
@@ -22,6 +23,7 @@ def pedir_entero(mensaje):
         except ValueError:
             print("Error: Debe ingresar un número entero válido (sin letras).")
 
+
 def pedir_monto(mensaje):
     while True:
         try:
@@ -33,6 +35,7 @@ def pedir_monto(mensaje):
         except ValueError:
             print("Error: Debe ingresar un monto numérico válido.")
 
+
 def pedir_texto(mensaje):
     while True:
         texto = input(mensaje).strip()
@@ -40,6 +43,7 @@ def pedir_texto(mensaje):
             print("Error: El campo no puede quedar vacío.")
         else:
             return texto
+
 
 # ====================================================================
 # LÓGICA DEL MÓDULO
@@ -51,17 +55,21 @@ def buscar_por_id(lista, campo_id, valor_id):
             return item
     return None
 
+
 def mostrar_plantillas(plantillas):
     imprimir_titulo("PLANTILLAS")
     for plantilla in plantillas:
         if plantilla.get("estado") == "Activo":
-            print(f"ID: {plantilla.get('id_plantilla')} | {plantilla.get('nombre_plantilla')} | Carrera: {plantilla.get('nombre_carrera')}")
+            print(
+                f"ID: {plantilla.get('id_plantilla')} | {plantilla.get('nombre_plantilla')} | Carrera: {plantilla.get('nombre_carrera')}")
+
 
 def mostrar_salones(salones, id_carrera):
     imprimir_titulo("SALONES")
     for salon in salones:
         if salon.get("estado") == "Activo" and salon.get("id_carrera") == id_carrera:
             print(f"ID: {salon.get('id_salon')} | {salon.get('nombre_salon')} | Turno: {salon.get('turno')}")
+
 
 def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):
     imprimir_titulo("ALUMNOS DEL SALÓN")
@@ -71,19 +79,20 @@ def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):
             alumno = buscar_por_id(alumnos, "id_alumno", asignacion.get("id_alumno"))
             if alumno:
                 encontrados += 1
-                print(f"ID: {alumno.get('id_alumno')} | {alumno.get('nombres')} {alumno.get('apellidos')} | DNI: {alumno.get('dni')}")
+                print(
+                    f"ID: {alumno.get('id_alumno')} | {alumno.get('nombres')} {alumno.get('apellidos')} | DNI: {alumno.get('dni')}")
     if encontrados == 0:
         print("No hay alumnos asignados a este salón.")
 
 
-def crear_cargo_extra(): # 1. Crear cargo extra genérico para toda la institución
+def crear_cargo_extra():  # 1. Crear cargo extra genérico para toda la institución
     imprimir_titulo("CREAR CARGO EXTRA GENERAL")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
-    
+
     print("Este cargo se creará de forma general (aplicable a toda la institución).")
     nombre = pedir_texto("Nombre del cargo extra: ")
     monto = pedir_monto("Monto del cargo extra: S/ ")
-    
+
     nuevo = {
         "id_cargo_extra": generar_id(cargos, "id_cargo_extra"),
         "nombre": nombre,
@@ -104,23 +113,23 @@ def crear_cargo_extra(): # 1. Crear cargo extra genérico para toda la instituci
     print("\nCargo extra general creado correctamente.")
 
 
-def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
+def asignar_cargo_extra():  # 2. Asignar cargo extra a grupo o alumno
     while True:
         imprimir_titulo("ASIGNAR CARGO EXTRA")
         print("1. Asignar a toda una Carrera")
         print("2. Asignar a un Salón")
         print("3. Asignar a un Alumno específico")
         print("4. Cancelar / Volver")
-        
+
         opcion = input("\nSeleccione a quién asignar el cargo: ").strip()
-        
+
         if opcion in ["1", "2", "3"]:
             plantillas = leer_json(RUTA_PLANTILLAS) or []
             salones = leer_json(RUTA_SALONES) or []
             alumnos = leer_json(RUTA_ALUMNOS) or []
             asignaciones = leer_json(RUTA_ASIGNACIONES) or []
             cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
-            
+
             if not plantillas:
                 print("No hay plantillas registradas en el sistema.")
                 return
@@ -128,7 +137,7 @@ def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
             mostrar_plantillas(plantillas)
             id_plantilla = pedir_entero("\nIngrese ID de plantilla: ")
             plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)
-            
+
             if not plantilla:
                 print("Plantilla no válida o inactiva.")
                 continue
@@ -136,12 +145,12 @@ def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
             id_salon, nombre_salon = None, None
             id_alumno, nombre_alumno = None, None
             aplica_a = "Carrera"
-            
+
             if opcion in ["2", "3"]:
                 mostrar_salones(salones, plantilla["id_carrera"])
                 id_salon = pedir_entero("\nIngrese ID de salón: ")
                 salon = buscar_por_id(salones, "id_salon", id_salon)
-                
+
                 if not salon or salon["id_carrera"] != plantilla["id_carrera"]:
                     print("Salón no válido.")
                     continue
@@ -152,7 +161,7 @@ def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
                 mostrar_alumnos_salon(alumnos, asignaciones, id_salon)
                 id_alumno = pedir_entero("\nIngrese ID del alumno: ")
                 alumno = buscar_por_id(alumnos, "id_alumno", id_alumno)
-                
+
                 if not alumno:
                     print("Alumno no válido.")
                     continue
@@ -161,7 +170,7 @@ def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
 
             nombre_cargo = pedir_texto("Nombre del cargo extra a asignar: ")
             monto_cargo = pedir_monto("Monto del cargo extra: S/ ")
-            
+
             nuevo = {
                 "id_cargo_extra": generar_id(cargos, "id_cargo_extra"),
                 "nombre": nombre_cargo,
@@ -180,21 +189,21 @@ def asignar_cargo_extra(): # 2. Asignar cargo extra a grupo o alumno
             cargos.append(nuevo)
             guardar_json(RUTA_CARGOS_EXTRAS, cargos)
             print(f"\nCargo extra asignado a {aplica_a} correctamente.")
-            
+
         elif opcion == "4":
             break
         else:
             print("Opción inválida.")
 
 
-def ver_cargos_extras(): # 4. Ver cargos extras
+def ver_cargos_extras():  # 4. Ver cargos extras
     imprimir_titulo("CARGOS EXTRAS REGISTRADOS")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
-    
+
     if len(cargos) == 0:
         print("No hay cargos extras registrados en el sistema.")
         return False
-        
+
     for cargo in cargos:
         print("\n-----------------------------")
         print(f"ID: {cargo.get('id_cargo_extra')} | Cargo: {cargo.get('nombre')}")
@@ -208,32 +217,33 @@ def ver_cargos_extras(): # 4. Ver cargos extras
         print(f"Estado: {cargo.get('estado')}")
     return True
 
-def editar_cargo_extra(): # 3. Editar cargo extra
+
+def editar_cargo_extra():  # 3. Editar cargo extra
     imprimir_titulo("EDITAR CARGO EXTRA")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
-    
+
     if not ver_cargos_extras():
         return
-        
+
     id_cargo = pedir_entero("\nIngrese ID del cargo que desea editar: ")
-    
+
     cargo_encontrado = None
     for cargo in cargos:
         if cargo.get("id_cargo_extra") == id_cargo:
             cargo_encontrado = cargo
             break
-            
+
     if cargo_encontrado is None:
         print("Error: Cargo no encontrado.")
         return
-        
+
     print(f"\nEditando cargo: {cargo_encontrado['nombre']} | S/ {cargo_encontrado['monto']}")
     print("Deje en blanco y presione Enter si no desea cambiar un dato.")
-    
+
     nuevo_nombre = input("Nuevo nombre del cargo: ").strip()
     if nuevo_nombre:
         cargo_encontrado["nombre"] = nuevo_nombre
-        
+
     nuevo_monto_str = input("Nuevo monto (S/): ").strip()
     if nuevo_monto_str:
         try:
@@ -244,20 +254,20 @@ def editar_cargo_extra(): # 3. Editar cargo extra
                 print("Monto negativo ignorado, se mantuvo el anterior.")
         except ValueError:
             print("Monto inválido ignorado, se mantuvo el anterior.")
-            
+
     guardar_json(RUTA_CARGOS_EXTRAS, cargos)
     print("\nCargo extra actualizado correctamente.")
 
 
-def eliminar_cargo_extra(): # 5. Eliminar / Restaurar cargo extra
+def eliminar_cargo_extra():  # 5. Eliminar / Restaurar cargo extra
     imprimir_titulo("ELIMINAR / RESTAURAR CARGO EXTRA")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
-    
+
     if not ver_cargos_extras():
         return
-        
+
     id_cargo = pedir_entero("\nIngrese ID del cargo que desea eliminar/restaurar: ")
-    
+
     for cargo in cargos:
         if cargo.get("id_cargo_extra") == id_cargo:
             if cargo.get("estado") == "Activo":
@@ -266,11 +276,12 @@ def eliminar_cargo_extra(): # 5. Eliminar / Restaurar cargo extra
             else:
                 cargo["estado"] = "Activo"
                 print(f"\nEl cargo '{cargo['nombre']}' ha sido restaurado (activado).")
-                
+
             guardar_json(RUTA_CARGOS_EXTRAS, cargos)
             return
-            
+
     print("Error: Cargo no encontrado.")
+
 
 # ====================================================================
 # MENÚ PRINCIPAL DEL MÓDULO
@@ -285,9 +296,9 @@ def menu_cargos_extras():
         print("4. Ver cargos extras")
         print("5. Eliminar / Restaurar cargo extra")
         print("6. Volver")
-        
+
         opcion = input("\nSeleccione una opción: ").strip()
-        
+
         if opcion == "1":
             crear_cargo_extra()
         elif opcion == "2":

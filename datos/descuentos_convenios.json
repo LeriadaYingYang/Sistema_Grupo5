@@ -1,66 +1,20 @@
 [
     {
         "id_descuento": 1,
-        "nombre": "Convenio Empresarial",
-        "descripcion": "Descuento para estudiantes provenientes de empresas con convenio.",
-        "tipo": "Convenio",
-        "porcentaje": 15,
+        "nombre": "Ayudante de Profesor",
+        "motivo": "ayuda en clases",
+        "tipo": "Monto fijo",
+        "valor": 20.0,
+        "aplica_a": "Cargo oficial",
         "estado": "Activo"
     },
     {
         "id_descuento": 2,
-        "nombre": "Pronto Pago",
-        "descripcion": "Descuento por pago realizado antes de la fecha de vencimiento.",
-        "tipo": "Descuento",
-        "porcentaje": 10,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 3,
-        "nombre": "Excelencia Académica",
-        "descripcion": "Beneficio para alumnos con alto rendimiento académico.",
-        "tipo": "Beca",
-        "porcentaje": 25,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 4,
-        "nombre": "Familiar Directo",
-        "descripcion": "Beneficio para hermanos o familiares matriculados.",
-        "tipo": "Descuento",
-        "porcentaje": 20,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 5,
-        "nombre": "Trabajador IISEM",
-        "descripcion": "Beneficio para trabajadores y colaboradores de la institución.",
-        "tipo": "Convenio",
-        "porcentaje": 30,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 6,
-        "nombre": "Beca Social",
-        "descripcion": "Apoyo económico para estudiantes de bajos recursos.",
-        "tipo": "Beca",
-        "porcentaje": 40,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 7,
-        "nombre": "Convenio Municipal",
-        "descripcion": "Convenio con municipalidades y entidades públicas.",
-        "tipo": "Convenio",
-        "porcentaje": 15,
-        "estado": "Activo"
-    },
-    {
-        "id_descuento": 8,
-        "nombre": "Alumno Reincorporado",
-        "descripcion": "Beneficio especial para estudiantes reincorporados.",
-        "tipo": "Descuento",
-        "porcentaje": 10,
+        "nombre": "Beca",
+        "motivo": "beac por ganar un concurso",
+        "tipo": "Monto fijo",
+        "valor": 20.0,
+        "aplica_a": "Cargo oficial",
         "estado": "Activo"
     }
 ]
