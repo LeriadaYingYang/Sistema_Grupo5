@@ -1,5 +1,6 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
+from director.control_administrativa.descuentos import crear_descuento_convenio
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
@@ -25,7 +26,6 @@ def calcular_monto_final(monto, descuento):  #calcula el monto final luego de ap
 
     return monto
 
-
 def mostrar_plantillas(plantillas):  #muestra las plantillas disponibles para asignar descuentos
     imprimir_titulo("PLANTILLAS")
     for plantilla in plantillas:
@@ -44,7 +44,6 @@ def mostrar_salones(salones, id_carrera):  #muestra los salones de la carrera se
                 f"{salon['nombre_salon']} | "
                 f"Turno: {salon['turno']}")
 
-
 def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):  #muestra los alumnos asignados al salón seleccionado
     imprimir_titulo("ALUMNOS DEL SALÓN")
     encontrados = 0
@@ -62,7 +61,6 @@ def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):  #muestra los alumno
                     f"DNI: {alumno['dni']}")
     if encontrados == 0:
         print("No hay alumnos asignados a este salón.")
-
 
 def mostrar_cargos_oficiales(cargos, id_plantilla, id_carrera):  #muestra los cargos oficiales disponibles para aplicar descuentos
     imprimir_titulo("CARGOS OFICIALES")
@@ -198,3 +196,138 @@ def asignar_descuento_alumno():  #asigna un descuento o convenio a un alumno par
     print(f"Monto original: S/ {nueva_asignacion['monto_original']}")
     print(f"Descuento: {nueva_asignacion['nombre_descuento']}")
     print(f"Monto final: S/ {nueva_asignacion['monto_final']}")
+
+# ====================================================================
+# --- FUNCIONES Y SISTEMA ANTI-ERRORES ---
+# ====================================================================
+
+def pedir_entero_asignacion(mensaje):
+    """Sistema anti-errores: Asegura que el ID ingresado sea un número válido y no letras."""
+    while True:
+        try:
+            valor = int(input(mensaje))
+            if valor < 0:
+                print("Error: No se permiten números negativos.")
+            else:
+                return valor
+        except ValueError:
+            print("Error: Debe ingresar un número entero válido (sin letras).")
+
+def ver_descuentos_asignados():
+    imprimir_titulo("DESCUENTOS ASIGNADOS A ALUMNOS")
+    asignaciones = leer_json(RUTA_DESCUENTOS_ALUMNOS) or []
+    
+    if len(asignaciones) == 0:
+        print("No hay descuentos asignados en el sistema.")
+        return False
+        
+    for a in asignaciones:
+        print("\n-----------------------------")
+        print(f"ID Asignación: {a.get('id_descuento_alumno')}")
+        print(f"Alumno: {a.get('nombre_alumno')} | DNI: {a.get('dni')}")
+        print(f"Cargo: {a.get('nombre_cargo')} | Monto original: S/ {a.get('monto_original')}")
+        print(f"Descuento: {a.get('nombre_descuento')} ({a.get('valor_descuento')} {a.get('tipo_descuento')})")
+        print(f"Monto final a pagar: S/ {a.get('monto_final')} | Estado: {a.get('estado')}")
+        
+    return True
+
+def modificar_descuento_asignado():
+    imprimir_titulo("MODIFICAR DESCUENTO ASIGNADO")
+    asignaciones = leer_json(RUTA_DESCUENTOS_ALUMNOS) or []
+    descuentos = leer_json(RUTA_DESCUENTOS) or []
+    
+    if not ver_descuentos_asignados():
+        return
+        
+    id_asignacion = pedir_entero_asignacion("\nIngrese el ID de la asignación que desea modificar: ")
+    
+    asignacion = None
+    for a in asignaciones:
+        if a.get("id_descuento_alumno") == id_asignacion:
+            asignacion = a
+            break
+            
+    if asignacion is None:
+        print("Error: No se encontró la asignación.")
+        return
+        
+    if asignacion.get("estado") != "Activo":
+        print("Error: No se puede modificar una asignación inactiva. Restáurela primero.")
+        return
+
+    print(f"\nAlumno: {asignacion['nombre_alumno']} | Cargo: {asignacion['nombre_cargo']}")
+    print("Seleccione el NUEVO descuento que desea aplicarle a este alumno:")
+    
+    mostrar_descuentos(descuentos)
+    id_nuevo_desc = pedir_entero_asignacion("\nIngrese el ID del nuevo descuento: ")
+    
+    nuevo_descuento = buscar_por_id(descuentos, "id_descuento", id_nuevo_desc)
+    if nuevo_descuento is None:
+        print("Error: Descuento no válido o inactivo.")
+        return
+        
+    nuevo_monto_final = calcular_monto_final(asignacion["monto_original"], nuevo_descuento)
+    
+    asignacion["id_descuento"] = nuevo_descuento["id_descuento"]
+    asignacion["nombre_descuento"] = nuevo_descuento["nombre"]
+    asignacion["tipo_descuento"] = nuevo_descuento["tipo"]
+    asignacion["valor_descuento"] = nuevo_descuento["valor"]
+    asignacion["monto_final"] = nuevo_monto_final
+    
+    guardar_json(RUTA_DESCUENTOS_ALUMNOS, asignaciones)
+    print("\nAsignación actualizada correctamente.")
+    print(f"El nuevo monto final a pagar es: S/ {nuevo_monto_final}")
+
+def eliminar_descuento_asignado():
+    imprimir_titulo("ELIMINAR / RESTAURAR ASIGNACIÓN")
+    asignaciones = leer_json(RUTA_DESCUENTOS_ALUMNOS) or []
+    
+    if not ver_descuentos_asignados():
+        return
+        
+    id_asignacion = pedir_entero_asignacion("\nIngrese el ID de la asignación a eliminar/restaurar: ")
+    
+    for a in asignaciones:
+        if a.get("id_descuento_alumno") == id_asignacion:
+            if a.get("estado") == "Activo":
+                a["estado"] = "Inactivo"
+                print(f"\nSe ha eliminado el descuento del alumno {a['nombre_alumno']}.")
+            else:
+                a["estado"] = "Activo"
+                print(f"\nSe ha restaurado el descuento del alumno {a['nombre_alumno']}.")
+                
+            guardar_json(RUTA_DESCUENTOS_ALUMNOS, asignaciones)
+            return
+            
+    print("Error: No se encontró la asignación.")
+
+# ====================================================================
+# --- INTERFAZ PRINCIPAL DEL MÓDULO ---
+# ====================================================================
+
+def menu_asignar_descuentos():
+    while True:
+        imprimir_titulo("ASIGNAR DESCUENTOS Y CONVENIOS")
+        print("1. Crear descuento")
+        print("2. Asignar descuento")
+        print("3. Modificar descuento")
+        print("4. Ver descuentos")
+        print("5. Eliminar descuento")
+        print("6. Volver")
+        
+        opcion = input("\nSeleccione una opción: ").strip()
+        
+        if opcion == "1":
+            crear_descuento_convenio() # Llama directamente a la función de descuentos.py
+        elif opcion == "2":
+            asignar_descuento_alumno() 
+        elif opcion == "3":
+            modificar_descuento_asignado()
+        elif opcion == "4":
+            ver_descuentos_asignados()
+        elif opcion == "5":
+            eliminar_descuento_asignado()
+        elif opcion == "6":
+            break
+        else:
+            print("Opción inválida.")

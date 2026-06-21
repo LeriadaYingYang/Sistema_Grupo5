@@ -5,6 +5,53 @@ RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_CARRERAS = "datos/carreras.json"
 RUTA_CARGOS_OFICIALES = "datos/cargos_oficiales.json"
 
+# --- FUNCIONES DE VALIDACIÓN AGREGADAS ---
+def pedir_entero(mensaje):
+    while True:
+        try:
+            valor = int(input(mensaje))
+            if valor < 0:
+                print("Error: No se permiten números negativos.")
+            else:
+                return valor
+        except ValueError:
+            print("Error: Debe ingresar un número entero válido (sin letras).")
+
+def pedir_monto(mensaje):
+    while True:
+        try:
+            valor = float(input(mensaje))
+            if valor < 0:
+                print("Error: El monto no puede ser negativo.")
+            else:
+                return round(valor, 2)
+        except ValueError:
+            print("Error: Debe ingresar un monto numérico válido.")
+
+def pedir_texto(mensaje):
+    while True:
+        texto = input(mensaje).strip()
+        if not texto:
+            print("Error: El campo no puede quedar vacío.")
+        else:
+            return texto
+
+def pedir_dia_limite(mensaje):
+    while True:
+        entrada = input(mensaje).strip()
+        try:
+            dia = int(entrada)
+            # Verifica si el número es menor a 0 o mayor a 31
+            if dia < 0 or dia > 31:
+                print("carácter no valido")
+            else:
+                # Se devuelve como texto para mantener el formato en el JSON
+                return str(dia)
+        except ValueError:
+            # Captura si el usuario ingresa letras, símbolos o deja vacío
+            print("carácter no valido")
+# -----------------------------------------
+
 def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo utilizando su identificador
     for item in lista:
         if item[campo_id] == valor_id and item["estado"] == "Activo":
@@ -48,7 +95,7 @@ def pedir_frecuencia():  #permite seleccionar la frecuencia de cobro del cargo
 4. Por módulo
 """)
 
-        opcion = input("Seleccione frecuencia: ")
+        opcion = input("Seleccione frecuencia: ").strip()
 
         if opcion == "1":
             return "Único"
@@ -63,46 +110,53 @@ def pedir_frecuencia():  #permite seleccionar la frecuencia de cobro del cargo
 
 def crear_cargo_oficial():  #registra un cargo oficial que será utilizado en los pagos de alumnos
     imprimir_titulo("CREAR CARGO OFICIAL")
-    plantillas = leer_json(RUTA_PLANTILLAS)
-    carreras = leer_json(RUTA_CARRERAS)
-    cargos = leer_json(RUTA_CARGOS_OFICIALES)
+    
+    # Se agrega "or []" como validación de persistencia por si el JSON está vacío o no existe
+    plantillas = leer_json(RUTA_PLANTILLAS) or []
+    carreras = leer_json(RUTA_CARRERAS) or []
+    cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
+    
     if len(plantillas) == 0:
         print("Primero debe crear plantillas académicas.")
         return
+        
     mostrar_plantillas(plantillas)
-    try:
-        id_plantilla = int(input("\nIngrese ID de plantilla: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return
+    
+    # Usando validación
+    id_plantilla = pedir_entero("\nIngrese ID de plantilla: ")
+    
     plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)
     if plantilla is None:
         print("Plantilla no encontrada.")
         return
+        
     mostrar_carreras(carreras, plantilla["id_carrera"])
-    try:
-        id_carrera = int(input("\nIngrese ID de carrera: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return
+    
+    # Usando validación
+    id_carrera = pedir_entero("\nIngrese ID de carrera: ")
+    
     if id_carrera != plantilla["id_carrera"]:
         print("La carrera no pertenece a la plantilla seleccionada.")
         return
+        
     carrera = buscar_por_id(carreras, "id_carrera", id_carrera)
     if carrera is None:
         print("Carrera no encontrada.")
         return
-    nombre_cargo = input("Nombre del cargo: ")
+        
+    # Usando validación
+    nombre_cargo = pedir_texto("Nombre del cargo: ")
     if cargo_ya_existe(cargos, id_plantilla, id_carrera, nombre_cargo):
         print("Este cargo oficial ya existe para esta plantilla y carrera.")
         return
-    try:
-        monto = float(input("Monto del cargo: S/ "))
-    except ValueError:
-        print("Debe ingresar un monto válido.")
-        return
+        
+    # Usando validación
+    monto = pedir_monto("Monto del cargo: S/ ")
     frecuencia = pedir_frecuencia()
-    fecha_limite = input("Fecha límite o regla (ejemplo: Día 10 de cada mes): ")
+    
+    # Usando la nueva validación exclusiva para el límite de días (0-31)
+    fecha_limite = pedir_dia_limite("Fecha límite o regla (ejemplo: Día 10 de cada mes): ")
+    
     nuevo_cargo = {
         "id_cargo_oficial": generar_id(cargos, "id_cargo_oficial"),
         "id_plantilla": plantilla["id_plantilla"],
@@ -114,13 +168,14 @@ def crear_cargo_oficial():  #registra un cargo oficial que será utilizado en lo
         "frecuencia": frecuencia,
         "fecha_limite": fecha_limite,
         "estado": "Activo"}
+        
     cargos.append(nuevo_cargo)  # agrega el nuevo cargo a la lista de cargos oficiales
     guardar_json(RUTA_CARGOS_OFICIALES, cargos)  # guarda el cargo oficial en el archivo json
     print("\nCargo oficial creado correctamente.")
 
 def ver_cargos_oficiales():  # muestra todos los cargos oficiales registrados en el sistema
     imprimir_titulo("CARGOS OFICIALES")
-    cargos = leer_json(RUTA_CARGOS_OFICIALES)
+    cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
     if len(cargos) == 0:
         print("No hay cargos oficiales creados.")
         return
@@ -137,24 +192,26 @@ def ver_cargos_oficiales():  # muestra todos los cargos oficiales registrados en
 
 def modificar_cargo_oficial():  # permite editar datos de un cargo oficial existente
     imprimir_titulo("MODIFICAR CARGO OFICIAL")
-    cargos = leer_json(RUTA_CARGOS_OFICIALES)
+    cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
     if len(cargos) == 0:
         print("No hay cargos oficiales creados.")
         return
+        
     ver_cargos_oficiales()
-    try:
-        id_cargo = int(input("\nIngrese ID del cargo que desea modificar: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return
+    
+    # Usando validación
+    id_cargo = pedir_entero("\nIngrese ID del cargo que desea modificar: ")
+    
     cargo = None
     for item in cargos:
         if item["id_cargo_oficial"] == id_cargo:
             cargo = item
             break
+            
     if cargo is None:
         print("Cargo no encontrado.")
         return
+        
     while True:
         print(f"""
 Cargo seleccionado:
@@ -170,19 +227,16 @@ Cargo seleccionado:
 6. Volver
 """)
 
-        opcion = input("Seleccione una opción: ")
+        opcion = input("Seleccione una opción: ").strip()
         if opcion == "1":
-            cargo["nombre_cargo"] = input("Nuevo nombre del cargo: ")
+            cargo["nombre_cargo"] = pedir_texto("Nuevo nombre del cargo: ")
         elif opcion == "2":
-            try:
-                cargo["monto"] = float(input("Nuevo monto: S/ "))
-            except ValueError:
-                print("Monto inválido.")
-                continue
+            cargo["monto"] = pedir_monto("Nuevo monto: S/ ")
         elif opcion == "3":
             cargo["frecuencia"] = pedir_frecuencia()
         elif opcion == "4":
-            cargo["fecha_limite"] = input("Nueva fecha límite o regla: ")
+            #validación de fechas (0-31) 
+            cargo["fecha_limite"] = pedir_dia_limite("Nueva fecha límite o regla: ")
         elif opcion == "5":
             if cargo["estado"] == "Activo":
                 cargo["estado"] = "Inactivo"
@@ -197,6 +251,7 @@ Cargo seleccionado:
 
         guardar_json(RUTA_CARGOS_OFICIALES, cargos)  # guarda inmediatamente los cambios realizados
         print("\nCargo actualizado correctamente.")
-        continuar = input("¿Desea modificar otro dato del mismo cargo? (si/no): ").lower()
+        
+        continuar = pedir_texto("¿Desea modificar otro dato del mismo cargo? (si/no): ").lower()
         if continuar != "si":
             break
