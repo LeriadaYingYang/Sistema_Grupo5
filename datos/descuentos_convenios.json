@@ -16,5 +16,32 @@
         "motivo": "",
         "aplica_a": "Cargo oficial",
         "estado": "Activo"
+    },
+    {
+        "id_descuento": 3,
+        "nombre": "sald",
+        "tipo": "Monto fijo",
+        "valor": -200.0,
+        "motivo": "dsdsa",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 4,
+        "nombre": "sali",
+        "tipo": "Monto fijo",
+        "valor": -200.0,
+        "motivo": "1",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 5,
+        "nombre": "sdsa",
+        "tipo": "Monto fijo",
+        "valor": -20.0,
+        "motivo": "sda",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
     }
 ]
