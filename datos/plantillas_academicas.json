@@ -1,8 +1,8 @@
 [
     {
         "id_plantilla": 1,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
         "nombre_plantilla": "malla 2025",
         "descripcion": "",
         "estado": "Activo"
@@ -21,6 +21,22 @@
         "nombre_carrera": "Administracion ",
         "nombre_plantilla": "malla 2026",
         "descripcion": "malla recien creada",
+        "estado": "Activo"
+    },
+    {
+        "id_plantilla": 4,
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_plantilla": "@",
+        "descripcion": "",
+        "estado": "Activo"
+    },
+    {
+        "id_plantilla": 5,
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_plantilla": "sdsasadq3we2",
+        "descripcion": "dsadsa",
         "estado": "Activo"
     }
 ]

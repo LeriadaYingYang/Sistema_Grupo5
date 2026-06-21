@@ -5,14 +5,14 @@ RUTA_ALUMNOS      = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 
 
-def _obtener_asignacion(id_alumno, asignaciones):  # retorna la asignación activa de un alumno, o None
+def _obtener_asignacion(id_alumno, asignaciones):  # Busca la asignación activa del alumno para mostrar su carrera y salón
     return next(
         (a for a in asignaciones
          if a["id_alumno"] == id_alumno and a["estado"] == "Activo"),
         None
     )
 
-def _mostrar_alumno(alumno, asignacion):  # imprime los datos completos de un alumno y su asignación
+def _mostrar_alumno(alumno, asignacion):  # Imprime los datos del alumno y, si existe, su asignación actual
     print("\n-----------------------------")
     print(f"ID      : {alumno['id_alumno']}")
     print(f"Nombre  : {alumno['nombres']} {alumno['apellidos']}")
@@ -27,10 +27,10 @@ def _mostrar_alumno(alumno, asignacion):  # imprime los datos completos de un al
         print("Carrera : No asignada")
         print("Salón   : No asignado")
 
-def _alumnos_activos(alumnos):  # genera solo los alumnos con estado Activo
+def _alumnos_activos(alumnos):  # Devuelve únicamente los alumnos que siguen activos
     return (a for a in alumnos if a["estado"] == "Activo")
 
-def _mostrar_alumnos(lista, alumnos, asignaciones, mensaje_vacio):  # imprime cada alumno de la lista con su asignación
+def _mostrar_alumnos(lista, alumnos, asignaciones, mensaje_vacio):  # Recorre la lista y muestra cada alumno con su asignación
     encontrados = 0
     for alumno in lista:
         _mostrar_alumno(alumno, _obtener_asignacion(alumno["id_alumno"], asignaciones))
@@ -38,17 +38,17 @@ def _mostrar_alumnos(lista, alumnos, asignaciones, mensaje_vacio):  # imprime ca
     if encontrados == 0:
         print(mensaje_vacio)
 
-# opciones del menú 
+# Opciones del menú principal.
 
-def _ver_todos(alumnos, asignaciones):  # muestra todos los alumnos activos con sus asignaciones
+def _ver_todos(alumnos, asignaciones):  # Lista todos los alumnos activos con los datos de su asignación actual
     _mostrar_alumnos(
         _alumnos_activos(alumnos), alumnos, asignaciones,
         "No hay alumnos activos registrados."
     )
     pausa()
 
-def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos por carrera y salón
-    # construir catálogo de carreras con alumnos
+def _ver_por_carrera_y_salon(alumnos, asignaciones):  # Filtra alumnos primero por carrera y luego por salón
+    # Se arma un catálogo de carreras con alumnos activos para que el usuario elija.
     carreras_vistas = {}
     for a in asignaciones:
         if a["estado"] == "Activo":
@@ -62,12 +62,13 @@ def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos
     for id_c, nombre_c in carreras_vistas.items():
         print(f"ID: {id_c} | Carrera: {nombre_c}")
 
+    # La carrera seleccionada define qué salones se mostrarán después.
     id_carrera = pedir_entero("\nIngrese ID de carrera: ")
     if id_carrera is None or id_carrera not in carreras_vistas:
         print("Carrera no encontrada.")
         return
 
-    # construir catálogo de salones de esa carrera
+    # Ahora se listan solo los salones que pertenecen a esa carrera.
     salones_vistos = {}
     for a in asignaciones:
         if a["estado"] == "Activo" and a["id_carrera"] == id_carrera:
@@ -84,6 +85,7 @@ def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos
     for id_s, datos in salones_vistos.items():
         print(f"ID: {id_s} | Salón: {datos['nombre_salon']} | Turno: {datos['turno']}")
 
+    # Con el salón elegido se filtra a los alumnos exactos que coinciden.
     id_salon = pedir_entero("\nIngrese ID de salón: ")
     if id_salon is None:
         return
@@ -98,7 +100,7 @@ def _ver_por_carrera_y_salon(alumnos, asignaciones):  # filtra y muestra alumnos
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No hay alumnos en ese salón.")
     pausa()
 
-def _buscar_por_nombre(alumnos, asignaciones):  # busca alumnos activos por nombre o apellido aproximado
+def _buscar_por_nombre(alumnos, asignaciones):  # Busca alumnos activos por coincidencia parcial de nombre o apellido
     texto = input("Ingrese nombre o apellido a buscar: ").strip().lower()
     filtrados = [
         a for a in _alumnos_activos(alumnos)
@@ -107,13 +109,13 @@ def _buscar_por_nombre(alumnos, asignaciones):  # busca alumnos activos por nomb
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No se encontraron alumnos con ese nombre.")
     pausa()
 
-def _buscar_por_dni(alumnos, asignaciones):  # busca un alumno activo por DNI exacto
+def _buscar_por_dni(alumnos, asignaciones):  # Busca un alumno activo usando su DNI exacto
     dni = input("Ingrese DNI del alumno: ").strip()
     filtrados = [a for a in _alumnos_activos(alumnos) if a["dni"] == dni]
     _mostrar_alumnos(filtrados, alumnos, asignaciones, "No se encontró un alumno con ese DNI.")
     pausa()
 
-# menú principal
+# Menú principal.
 
 _OPCIONES = {
     "1": ("Ver todos los alumnos",          _ver_todos),
@@ -122,16 +124,18 @@ _OPCIONES = {
     "4": ("Buscar alumno por DNI",           _buscar_por_dni),
 }
 
-def menu_ver_datos_alumnos():  # muestra el menú para consultar alumnos y despacha las acciones
+def menu_ver_datos_alumnos():  # Muestra el menú de consulta y ejecuta la opción seleccionada
     while True:
-        alumnos      = leer_json(RUTA_ALUMNOS)       # carga los alumnos registrados
-        asignaciones = leer_json(RUTA_ASIGNACIONES)  # carga las asignaciones registradas
+        # Se recargan los datos en cada vuelta para mostrar siempre la información más reciente.
+        alumnos      = leer_json(RUTA_ALUMNOS)
+        asignaciones = leer_json(RUTA_ASIGNACIONES)
 
         imprimir_titulo("VER DATOS DE ALUMNOS")
         for clave, (etiqueta, _) in _OPCIONES.items():
             print(f"{clave}. {etiqueta}")
         print("5. Volver al menú director")
 
+        # El usuario decide cómo quiere consultar los registros.
         opcion = input("Seleccione una opción: ").strip()
 
         if opcion == "5":

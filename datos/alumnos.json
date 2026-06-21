@@ -79,5 +79,374 @@
         "correo": "luz@gmail.com",
         "celular": "784596321",
         "estado": "Activo"
+    },
+    {
+        "id_alumno": 10,
+        "nombres": "#@",
+        "apellidos": "#",
+        "dni": "78965412",
+        "correo": "jo@gmail.com",
+        "celular": "963587412",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 11,
+        "nombres": "fer",
+        "apellidos": "Saldaña",
+        "dni": "85264793",
+        "correo": "fer@gmail.com",
+        "celular": "912657384",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 12,
+        "nombres": "Marcos",
+        "apellidos": "Juarez",
+        "dni": "85236947",
+        "correo": "marcos@gmail.com",
+        "celular": "912567843",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 13,
+        "nombres": "Marcela",
+        "apellidos": "Diaz",
+        "dni": "87645321",
+        "correo": "marce@gmail.com",
+        "celular": "852367419",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 14,
+        "nombres": "Manuel",
+        "apellidos": "Rodriguez",
+        "dni": "12396584",
+        "correo": "manu@gmail.com",
+        "celular": "912587463",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 15,
+        "nombres": "Piero",
+        "apellidos": "Campos",
+        "dni": "78294563",
+        "correo": "piero@gmail.com",
+        "celular": "964785213",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 16,
+        "nombres": "Alessandro",
+        "apellidos": "Cabanilla",
+        "dni": "12395786",
+        "correo": "alesso@gmail.com",
+        "celular": "963158742",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 17,
+        "nombres": "Jhon",
+        "apellidos": "Dominguez",
+        "dni": "75236984",
+        "correo": "jhon@gmail.com",
+        "celular": "912874563",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 18,
+        "nombres": "Sebastian",
+        "apellidos": "Gonzales",
+        "dni": "36589247",
+        "correo": "sebas@gmail.com",
+        "celular": "932568741",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 19,
+        "nombres": "Francisco",
+        "apellidos": "Maza",
+        "dni": "20478539",
+        "correo": "fran@gmail.com",
+        "celular": "254139870",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 20,
+        "nombres": "Salvador",
+        "apellidos": "Rojas",
+        "dni": "32145678",
+        "correo": "salva@gmail.com",
+        "celular": "963214580",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 21,
+        "nombres": "Pedro",
+        "apellidos": "Suarez",
+        "dni": "03210014",
+        "correo": "pedro@gmail.com",
+        "celular": "900123456",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 22,
+        "nombres": "Kevin",
+        "apellidos": "Tejada",
+        "dni": "00512364",
+        "correo": "kev@gmail.com",
+        "celular": "963154780",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 23,
+        "nombres": "Valeria",
+        "apellidos": "Saenz",
+        "dni": "06091235",
+        "correo": "val@gmail.com",
+        "celular": "912345600",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 24,
+        "nombres": "Teresa",
+        "apellidos": "Heras",
+        "dni": "12300000",
+        "correo": "ter@gmail.com",
+        "celular": "963258521",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 25,
+        "nombres": "Antonia",
+        "apellidos": "Rojas",
+        "dni": "96321450",
+        "correo": "antonia@gmail.com",
+        "celular": "912005630",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 26,
+        "nombres": "Adriana",
+        "apellidos": "Moro",
+        "dni": "07123645",
+        "correo": "adri@gmail.com",
+        "celular": "915006300",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 27,
+        "nombres": "Angela",
+        "apellidos": "Rodriguez",
+        "dni": "71236580",
+        "correo": "ange@gmail.com",
+        "celular": "980526314",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 28,
+        "nombres": "Lucia",
+        "apellidos": "Barrios",
+        "dni": "10254786",
+        "correo": "luci@gmail.com",
+        "celular": "985472136",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 29,
+        "nombres": "Rosalia",
+        "apellidos": "Otero",
+        "dni": "12365487",
+        "correo": "ros@gmail.com",
+        "celular": "912360057",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 30,
+        "nombres": "Sol",
+        "apellidos": "Muñoz",
+        "dni": "72361009",
+        "correo": "sol@gmail.com",
+        "celular": "941383100",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 31,
+        "nombres": "Luna",
+        "apellidos": "Lara",
+        "dni": "70521486",
+        "correo": "luna@gmail.com",
+        "celular": "963154780",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 32,
+        "nombres": "Daniela",
+        "apellidos": "Tucto",
+        "dni": "32140875",
+        "correo": "danie@gmail.com",
+        "celular": "901458723",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 33,
+        "nombres": "sofia",
+        "apellidos": "sanchez",
+        "dni": "07852364",
+        "correo": "sofia@gmail.com",
+        "celular": "900000000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 34,
+        "nombres": "Marisol",
+        "apellidos": "Hernande",
+        "dni": "03147852",
+        "correo": "mari@gmail.com",
+        "celular": "912000000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 35,
+        "nombres": "Alessia",
+        "apellidos": "Perez",
+        "dni": "86325410",
+        "correo": "alessia@gmail.com",
+        "celular": "950683330",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 36,
+        "nombres": "Fernanda",
+        "apellidos": "Medrano",
+        "dni": "46319490",
+        "correo": "fer@gmail.com",
+        "celular": "912307854",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 37,
+        "nombres": "Gabriela",
+        "apellidos": "Castope",
+        "dni": "12000000",
+        "correo": "gaby@gmail.com",
+        "celular": "987654000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 38,
+        "nombres": "Fabiana",
+        "apellidos": "Catañeda",
+        "dni": "21453060",
+        "correo": "fabiana@gmail.com",
+        "celular": "945213600",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 39,
+        "nombres": "Jheny",
+        "apellidos": "Campos",
+        "dni": "12345670",
+        "correo": "jhen@gmail.com",
+        "celular": "900006007",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 40,
+        "nombres": "Alejandra",
+        "apellidos": "Mendoza",
+        "dni": "78012300",
+        "correo": "alej@gmail.com",
+        "celular": "900000001",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 41,
+        "nombres": "Maria",
+        "apellidos": "Trinidad",
+        "dni": "85201474",
+        "correo": "mar@gmail.com",
+        "celular": "963000145",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 42,
+        "nombres": "Julia",
+        "apellidos": "Barrio",
+        "dni": "01020304",
+        "correo": "jul@gmail.com",
+        "celular": "909090909",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 43,
+        "nombres": "Yolanda",
+        "apellidos": "Mara",
+        "dni": "40404040",
+        "correo": "yola@gmail.com",
+        "celular": "908070605",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 44,
+        "nombres": "Estrella",
+        "apellidos": "Morales",
+        "dni": "01010101",
+        "correo": "estre@gmail.com",
+        "celular": "930303030",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 45,
+        "nombres": "Aurora",
+        "apellidos": "Ozuma",
+        "dni": "02020202",
+        "correo": "auro@gmail.com",
+        "celular": "903030300",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 46,
+        "nombres": "Emilia",
+        "apellidos": "Nolazco",
+        "dni": "07000000",
+        "correo": "emi@gmail.com",
+        "celular": "945000000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 47,
+        "nombres": "Dayana",
+        "apellidos": "Diestra",
+        "dni": "00000000",
+        "correo": "dayan@gmail.com",
+        "celular": "901000000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 48,
+        "nombres": "Milagros",
+        "apellidos": "Portal",
+        "dni": "30000000",
+        "correo": "milag@gmail.com",
+        "celular": "963000000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 49,
+        "nombres": "Dominga",
+        "apellidos": "Cameron",
+        "dni": "11111100",
+        "correo": "dom@gmail.com",
+        "celular": "980800000",
+        "estado": "Activo"
+    },
+    {
+        "id_alumno": 50,
+        "nombres": "Becky",
+        "apellidos": "Trujillo",
+        "dni": "33336666",
+        "correo": "beck@gmail.com",
+        "celular": "978888000",
+        "estado": "Activo"
     }
 ]

@@ -10,9 +10,9 @@ def menu_director():
         imprimir_titulo("MENÚ DIRECTOR")
         imprimir_menu([
             "Gestión académica",
+            "Control académico",
             "Gestión docente",
             "Gestión estudiantil",
-            "Control académico",
             "Control administrativo",
             "Cerrar sesión"])
 
@@ -22,13 +22,13 @@ def menu_director():
             menu_academico()
 
         elif opcion == "2":
-            menu_profesores()
+            menu_control_academico()
 
         elif opcion == "3":
-            menu_alumnos()
+            menu_profesores()
 
         elif opcion == "4":
-            menu_control_academico()
+            menu_alumnos()
 
         elif opcion == "5":
             menu_pagos()

@@ -3,7 +3,7 @@ from director.control_academica.gestion_horarios.modificar_horarios import modif
 from director.control_academica.gestion_horarios.consultar_horarios import consultar_horarios
 from director.control_academica.gestion_horarios.asignar_horarios import asignar_horarios_profesores
 from director.control_academica.gestion_horarios.ver_carga_horaria import ver_carga_horaria_docente
-from director.control_academica.gestion_asistencia.asistencia_alumnos import registrar_asistencia_alumnos
+from director.control_academica.gestion_asistencia.asistencia_alumnos import registrar_asistencia_alumnos, generar_registros_prueba_asistencia
 from director.control_academica.gestion_asistencia.asistencia_profesores import registrar_asistencia_profesores
 from director.control_academica.gestion_asistencia.consultar_asistencia_alumnos import consultar_asistencia_alumnos
 from director.control_academica.gestion_asistencia.consultar_asistencia_profesores import consultar_asistencia_profesores
@@ -86,6 +86,7 @@ def menu_gestion_asistencias():
             "Consultar asistencia de alumnos",
             "Consultar asistencia de profesores",
             "Reporte de inasistencias",
+            "Registros simulados",
             "Volver"
         ])
         opcion = input("\nSeleccione una opción: ")
@@ -100,6 +101,8 @@ def menu_gestion_asistencias():
         elif opcion == "5":
             reporte_inasistencias()
         elif opcion == "6":
+            generar_registros_prueba_asistencia()
+        elif opcion == "7":
             break
         pausa()
 

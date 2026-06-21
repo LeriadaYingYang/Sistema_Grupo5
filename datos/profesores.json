@@ -16,5 +16,14 @@
         "correo": "34324",
         "celular": "2321312",
         "estado": "Activo"
+    },
+    {
+        "id_profesor": 3,
+        "nombres": "Roberto Sanchez",
+        "apellidos": "Sanchez",
+        "dni": "12345678",
+        "correo": "sanchez@gmail.com",
+        "celular": "987654321",
+        "estado": "Activo"
     }
 ]
