@@ -18,16 +18,16 @@ def solicitar_nombre_apellido(mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: Este campo no puede estar vacío.")
+            print(" Error: Este campo no puede estar vacío.")
             continue
         if len(dato) > 60:
-            print("❌ Error: El texto es demasiado largo (máximo 60 caracteres).")
+            print(" Error: El texto es demasiado largo (máximo 60 caracteres).")
             continue
         # Expresión regular: solo letras y espacios intermedios
         if re.fullmatch(r"[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+", dato):
             # Formatea con la primera letra de cada palabra en mayúscula
             return dato.title()
-        print("❌ Error: Solo se permiten letras y espacios. Sin números ni caracteres especiales.")
+        print(" Error: Solo se permiten letras y espacios. Sin números ni caracteres especiales.")
 
 
 def solicitar_dni(profesores, mensaje):
@@ -38,15 +38,15 @@ def solicitar_dni(profesores, mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El DNI no puede estar vacío.")
+            print(" Error: El DNI no puede estar vacío.")
             continue
         # Expresión regular: exactamente 8 dígitos numéricos del 0 al 9
         if not re.fullmatch(r"\d{8}", dato):
-            print("❌ Error: El DNI debe contener exactamente 8 dígitos numéricos, sin letras ni espacios.")
+            print(" Error: El DNI debe contener exactamente 8 dígitos numéricos, sin letras ni espacios.")
             continue
         # Validación de duplicidad
         if existe_dni(profesores, dato):
-            print("❌ Error: Ya existe un profesor registrado con ese DNI. Ingrese otro.")
+            print(" Error: Ya existe un profesor registrado con ese DNI. Ingrese otro.")
             continue
         return dato
 
@@ -59,13 +59,13 @@ def solicitar_correo(mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El correo electrónico no puede estar vacío.")
+            print(" Error: El correo electrónico no puede estar vacío.")
             continue
         # Expresión regular estándar para correos electrónicos
         patron = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
         if re.fullmatch(patron, dato):
             return dato.lower()  # Se almacena en minúsculas por buena práctica
-        print("❌ Error: Formato de correo inválido (ejemplo: usuario@dominio.com). No incluya espacios.")
+        print(" Error: Formato de correo inválido (ejemplo: usuario@dominio.com). No incluya espacios.")
 
 
 def solicitar_celular(mensaje):
@@ -76,12 +76,12 @@ def solicitar_celular(mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El celular no puede estar vacío.")
+            print(" Error: El celular no puede estar vacío.")
             continue
         # Expresión regular: exactamente 9 dígitos numéricos
         if re.fullmatch(r"\d{9}", dato):
             return dato
-        print("❌ Error: El celular debe contener exactamente 9 dígitos numéricos.")
+        print(" Error: El celular debe contener exactamente 9 dígitos numéricos.")
 
 
 # ==========================================
@@ -129,5 +129,5 @@ def crear_profesor():
     profesores.append(nuevo_profesor)
     guardar_json(RUTA_PROFESORES, profesores)
 
-    print("\n✅ Profesor registrado correctamente.")
+    print("\n Profesor registrado correctamente.")
     print(f"ID profesor generado: {nuevo_profesor['id_profesor']}")

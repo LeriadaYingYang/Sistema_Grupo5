@@ -14,7 +14,7 @@ def solicitar_opcion_menu(mensaje, opciones_validas):
         valor = input(mensaje).strip()
         if valor in opciones_validas:
             return valor
-        print(f"❌ Error: Opción inválida. Elija una de las siguientes opciones: {', '.join(opciones_validas)}")
+        print(f" Error: Opción inválida. Elija una de las siguientes opciones: {', '.join(opciones_validas)}")
 
 def solicitar_texto_no_vacio(mensaje):
     """Solicita un texto asegurando que no esté vacío."""
@@ -22,31 +22,31 @@ def solicitar_texto_no_vacio(mensaje):
         dato = input(mensaje).strip()
         if dato:
             return dato
-        print("❌ Error: Este campo no puede estar vacío ni contener solo espacios.")
+        print(" Error: Este campo no puede estar vacío ni contener solo espacios.")
 
 def solicitar_nombre_apellido(mensaje):
     """Solicita nombres o apellidos (solo letras y espacios), con formato Title Case."""
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El campo no puede estar vacío.")
+            print(" Error: El campo no puede estar vacío.")
             continue
         if len(dato) > 60:
-            print("❌ Error: El texto es demasiado largo (máximo 60 caracteres).")
+            print(" Error: El texto es demasiado largo (máximo 60 caracteres).")
             continue
         if re.fullmatch(r"[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+", dato):
             return dato.title()
-        print("❌ Error: Solo se permiten letras y espacios. Sin números ni caracteres especiales.")
+        print(" Error: Solo se permiten letras y espacios. Sin números ni caracteres especiales.")
 
 def solicitar_dni_edicion(profesores, id_actual, mensaje):
     """Solicita un DNI válido de 8 dígitos y verifica que no pertenezca a otro profesor."""
     while True:
         dato = input(mensaje).strip()
         if not re.fullmatch(r"\d{8}", dato):
-            print("❌ Error: El DNI debe contener exactamente 8 dígitos numéricos.")
+            print(" Error: El DNI debe contener exactamente 8 dígitos numéricos.")
             continue
         if dni_duplicado(profesores, dato, id_actual):
-            print("❌ Error: Ese DNI ya está registrado a nombre de otro profesor.")
+            print(" Error: Ese DNI ya está registrado a nombre de otro profesor.")
             continue
         return dato
 
@@ -57,7 +57,7 @@ def solicitar_correo(mensaje):
         patron = r"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$"
         if re.fullmatch(patron, dato):
             return dato.lower()
-        print("❌ Error: Formato de correo inválido (ejemplo: usuario@dominio.com). No incluya espacios.")
+        print(" Error: Formato de correo inválido (ejemplo: usuario@dominio.com). No incluya espacios.")
 
 def solicitar_celular(mensaje):
     """Solicita un número telefónico de exactamente 9 dígitos."""
@@ -65,19 +65,19 @@ def solicitar_celular(mensaje):
         dato = input(mensaje).strip()
         if re.fullmatch(r"\d{9}", dato):
             return dato
-        print("❌ Error: El celular debe contener exactamente 9 dígitos numéricos.")
+        print(" Error: El celular debe contener exactamente 9 dígitos numéricos.")
 
 def solicitar_id(mensaje):
     """Solicita un ID numérico numérico asegurando que no existan errores de tipo."""
     while True:
         valor = input(mensaje).strip()
         if not valor:
-            print("❌ Error: El ID no puede estar vacío.")
+            print(" Error: El ID no puede estar vacío.")
             continue
         try:
             return int(valor)
         except ValueError:
-            print("❌ Error: Debe ingresar exclusivamente un número entero válido.")
+            print(" Error: Debe ingresar exclusivamente un número entero válido.")
 
 # ==========================================
 # LÓGICA PRINCIPAL DEL SISTEMA
@@ -111,7 +111,7 @@ def buscar_por_dni(profesores):
         dni = input("Ingrese DNI a buscar (8 dígitos): ").strip()
         if re.fullmatch(r"\d{8}", dni):
             break
-        print("❌ Error: Ingrese un DNI válido de 8 números.")
+        print(" Error: Ingrese un DNI válido de 8 números.")
 
     return [
         profesor for profesor in profesores
@@ -124,7 +124,7 @@ def buscar_por_dni(profesores):
 def elegir_profesor(encontrados):
     """Permite seleccionar un profesor forzando un ID válido."""
     if not encontrados:
-        print("❌ No se encontraron profesores con ese criterio.")
+        print(" No se encontraron profesores con ese criterio.")
         return None
 
     imprimir_titulo("PROFESORES ENCONTRADOS")
@@ -140,8 +140,8 @@ def elegir_profesor(encontrados):
         for profesor in encontrados:
             if profesor["id_profesor"] == id_profesor:
                 return profesor
-                
-        print("❌ Error: El ID no corresponde a ninguno de los profesores encontrados.")
+
+        print("Error: El ID no corresponde a ninguno de los profesores encontrados.")
 
 def dni_duplicado(profesores, dni, id_actual):
     """Verifica si el DNI pertenece a otro profesor."""
@@ -172,23 +172,23 @@ Profesor seleccionado:
 
         if opcion == "1":
             profesor["nombres"] = solicitar_nombre_apellido("Nuevo nombre: ")
-            print("\n✅ Nombre actualizado.")
+            print("\nNombre actualizado.")
 
         elif opcion == "2":
             profesor["apellidos"] = solicitar_nombre_apellido("Nuevo apellido: ")
-            print("\n✅ Apellido actualizado.")
+            print("\nApellido actualizado.")
 
         elif opcion == "3":
             profesor["dni"] = solicitar_dni_edicion(profesores, profesor["id_profesor"], "Nuevo DNI: ")
-            print("\n✅ DNI actualizado.")
+            print("\n DNI actualizado.")
 
         elif opcion == "4":
             profesor["correo"] = solicitar_correo("Nuevo correo: ")
-            print("\n✅ Correo actualizado.")
+            print("\n Correo actualizado.")
 
         elif opcion == "5":
             profesor["celular"] = solicitar_celular("Nuevo celular: ")
-            print("\n✅ Celular actualizado.")
+            print("\n Celular actualizado.")
 
         elif opcion == "6":
             break
@@ -204,7 +204,7 @@ def editar_profesor():
     profesores = leer_json(RUTA_PROFESORES)
 
     if not any(profesor.get("estado") == "Activo" for profesor in profesores):
-        print("❌ No hay profesores activos registrados.")
+        print(" No hay profesores activos registrados.")
         return
 
     print("""
@@ -232,4 +232,4 @@ Buscar profesor por:
     editar_campos(profesor, profesores)
     guardar_json(RUTA_PROFESORES, profesores)
 
-    print("\n✅ Profesor actualizado en el sistema correctamente.")
+    print("\n Profesor actualizado en el sistema correctamente.")

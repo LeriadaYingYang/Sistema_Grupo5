@@ -15,7 +15,7 @@ def solicitar_opcion_menu(mensaje, opciones_validas):
         valor = input(mensaje).strip()
         if valor in opciones_validas:
             return valor
-        print(f"❌ Error: Opción inválida. Elija una de las siguientes: {', '.join(opciones_validas)}")
+        print(f" Error: Opción inválida. Elija una de las siguientes: {', '.join(opciones_validas)}")
 
 def solicitar_texto_busqueda(mensaje):
     """
@@ -25,12 +25,12 @@ def solicitar_texto_busqueda(mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El campo de búsqueda no puede estar vacío.")
+            print(" Error: El campo de búsqueda no puede estar vacío.")
             continue
         # Permite letras, tildes, ñ y espacios
         if re.fullmatch(r"[a-zA-ZáéíóúÁÉÍÓÚñÑ\s]+", dato):
             return dato.lower()
-        print("❌ Error: Solo se permiten letras y espacios para la búsqueda.")
+        print(" Error: Solo se permiten letras y espacios para la búsqueda.")
 
 def solicitar_dni_busqueda(mensaje):
     """
@@ -40,12 +40,12 @@ def solicitar_dni_busqueda(mensaje):
     while True:
         dato = input(mensaje).strip()
         if not dato:
-            print("❌ Error: El DNI no puede estar vacío.")
+            print(" Error: El DNI no puede estar vacío.")
             continue
         # Expresión regular: exactamente 8 dígitos
         if re.fullmatch(r"\d{8}", dato):
             return dato
-        print("❌ Error: El DNI debe contener exactamente 8 dígitos numéricos.")
+        print(" Error: El DNI debe contener exactamente 8 dígitos numéricos.")
 
 # ==========================================
 # LÓGICA PRINCIPAL DEL SISTEMA
@@ -94,7 +94,7 @@ def ver_todos_profesores(profesores, asignaciones):
     ]
 
     if not profesores_activos:
-        print("❌ No hay profesores registrados o activos.")
+        print(" No hay profesores registrados o activos.")
         return
 
     for profesor in profesores_activos:
@@ -121,7 +121,7 @@ def buscar_por_nombre(profesores, asignaciones):
     ]
 
     if not encontrados:
-        print("❌ No se encontraron profesores con ese criterio.")
+        print(" No se encontraron profesores con ese criterio.")
         return
 
     for profesor in encontrados:
@@ -149,7 +149,7 @@ def buscar_por_dni(profesores, asignaciones):
     )
 
     if profesor is None:
-        print(f"❌ No se encontró ningún profesor activo con el DNI {dni}.")
+        print(f" No se encontró ningún profesor activo con el DNI {dni}.")
         return
 
     asignaciones_profesor = obtener_asignaciones_profesor(

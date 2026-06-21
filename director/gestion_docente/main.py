@@ -18,7 +18,7 @@ def solicitar_opcion_menu(mensaje, opciones_validas):
         if valor in opciones_validas:
             return valor
         # Muestra un mensaje amigable y claro sin romper el programa
-        print(f"❌ Error: Opción inválida. Por favor, seleccione una de las siguientes opciones: {', '.join(opciones_validas)}")
+        print(f" Error: Opción inválida. Por favor, seleccione una de las siguientes opciones: {', '.join(opciones_validas)}")
 
 
 # ==========================================

@@ -12,7 +12,7 @@ def ver_cursos_profesor(profesor):
 
     # 1. Validación del parámetro de entrada
     if not isinstance(profesor, dict) or "id_profesor" not in profesor:
-        print("❌ Error interno: Datos del profesor inválidos o no proporcionados.")
+        print(" Error interno: Datos del profesor inválidos o no proporcionados.")
         pausa()
         return
 
@@ -79,7 +79,7 @@ def ver_cursos_profesor(profesor):
 
                 # Mostrar módulos agrupados
                 for id_u, datos_u in unidades_vistas.items():
-                    print(f"  📚 {datos_u['nombre']}")
+                    print(f"   {datos_u['nombre']}")
 
                     # Ordenar y mostrar de forma segura
                     for m in sorted(datos_u["modulos"], key=lambda x: x.get("orden", 0)):

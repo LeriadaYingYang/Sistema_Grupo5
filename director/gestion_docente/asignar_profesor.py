@@ -23,12 +23,12 @@ def solicitar_id(mensaje):
     while True:
         valor = input(mensaje).strip() # Limpia espacios al inicio y final
         if not valor:
-            print("❌ Error: El campo no puede estar vacío.")
+            print(" Error: El campo no puede estar vacío.")
             continue
         try:
             return int(valor) # Intenta convertir a entero
         except ValueError:
-            print("❌ Error: Entrada inválida. Debe ingresar exclusivamente un número entero.")
+            print(" Error: Entrada inválida. Debe ingresar exclusivamente un número entero.")
 
 def mostrar_profesores(profesores):
     """Muestra los profesores activos disponibles."""
@@ -92,11 +92,11 @@ def asignar_profesor():
 
     # Validar que existan registros activos antes de proceder
     if not any(profesores) or not any(profesor.get("estado") == "Activo" for profesor in profesores):
-        print("❌ No hay profesores activos registrados.")
+        print("No hay profesores activos registrados.")
         return
 
     if not any(salones) or not any(salon.get("estado") == "Activo" for salon in salones):
-        print("❌ No hay salones activos registrados.")
+        print("No hay salones activos registrados.")
         return
 
     # Proceso de selección de Profesor (Ciclo de validación de existencia)
@@ -107,7 +107,7 @@ def asignar_profesor():
         profesor = buscar_por_id(profesores, "id_profesor", id_profesor)
         if profesor is not None:
             break # Si el profesor existe, rompemos el ciclo
-        print(f"❌ No existe un profesor activo con ID {id_profesor}. Intente nuevamente.\n")
+        print(f"No existe un profesor activo con ID {id_profesor}. Intente nuevamente.\n")
 
     # Proceso de selección de Salón (Ciclo de validación de existencia)
     while True:
@@ -117,11 +117,11 @@ def asignar_profesor():
         salon = buscar_por_id(salones, "id_salon", id_salon)
         if salon is not None:
             break # Si el salón existe, rompemos el ciclo
-        print(f"❌ No existe un salón activo con ID {id_salon}. Intente nuevamente.\n")
+        print(f" No existe un salón activo con ID {id_salon}. Intente nuevamente.\n")
 
     # Validar duplicados
     if ya_existe_asignacion(asignaciones, id_profesor, id_salon):
-        print("❌ Error: Este profesor ya está asignado a este salón.")
+        print("Error: Este profesor ya está asignado a este salón.")
         return
 
     # Crear y guardar asignación
@@ -129,7 +129,7 @@ def asignar_profesor():
     asignaciones.append(nueva_asignacion)
     guardar_json(RUTA_PROFESORES_SALONES, asignaciones)
 
-    print("\n✅ Profesor asignado correctamente.")
+    print("\nProfesor asignado correctamente.")
     print(f"Profesor: {nueva_asignacion['nombre_profesor']}")
     print(f"Carrera: {nueva_asignacion['nombre_carrera']}")
     print(f"Salón: {nueva_asignacion['nombre_salon']}")
