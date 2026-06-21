@@ -6,7 +6,7 @@ RUTA_CARRERAS = "datos/carreras.json"
 RUTA_CARGOS_OFICIALES = "datos/cargos_oficiales.json"
 
 
-# --- FUNCIONES DE VALIDACIÓN  ---
+# --- FUNCIONES DE VALIDACIÓN---
 
 def pedir_entero(mensaje):
     while True:

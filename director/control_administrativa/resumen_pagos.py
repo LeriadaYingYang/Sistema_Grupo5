@@ -11,7 +11,7 @@ RUTA_CARGOS_EXTRAS = "datos/cargos_extras.json"
 RUTA_PAGOS_REALIZADOS = "datos/pagos_realizados.json"
 
 
-# --- FUNCIONES DE VALIDACIÓN (ANTI-ERRORES) ---
+# --- FUNCIONES DE VALIDACIÓN  ---
 
 def pedir_entero(mensaje):
     """Asegura que el input sea numérico y evita que el programa colapse."""
@@ -78,7 +78,7 @@ def obtener_cargos_extras_alumno(cargos_extras, id_plantilla, id_carrera, id_sal
     for cargo in cargos_extras:
         if cargo.get("estado") != "Activo":
             continue
-        # Aplica a todo el mundo (General) o coincide la plantilla
+        # Aplica a t odo el mundo  o coincide la plantilla
         if cargo.get("aplica_a") == "General":
             resultado.append(cargo)
             continue

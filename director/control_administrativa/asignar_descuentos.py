@@ -48,9 +48,7 @@ def calcular_monto_final(monto, descuento):
     return monto
 
 
-# ====================================================================
 # --- VISUALIZACIÓN DE DATOS ---
-# ====================================================================
 
 def mostrar_plantillas(plantillas):
     imprimir_titulo("PLANTILLAS")
@@ -101,9 +99,7 @@ def mostrar_descuentos(descuentos):
             print(f"ID: {d.get('id_descuento')} | {d.get('nombre')} | {d.get('valor')} {simbolo}")
 
 
-# ====================================================================
 # --- LÓGICA DE ASIGNACIÓN ---
-# ====================================================================
 
 def descuento_ya_asignado(asignaciones, id_alumno, id_cargo_oficial):
     for a in asignaciones:
@@ -291,9 +287,7 @@ def eliminar_descuento_asignado():
     print("Error: No se encontró la asignación.")
 
 
-# ====================================================================
 # --- INTERFAZ PRINCIPAL DEL MÓDULO ---
-# ====================================================================
 
 def menu_asignar_descuentos():
     while True:

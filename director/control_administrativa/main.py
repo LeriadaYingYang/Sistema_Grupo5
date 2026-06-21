@@ -21,7 +21,7 @@ def menu_pagos():  # muestra el menú principal de gestión de pagos
             "Volver Al Menú Director"
         ])
 
-        opcion = input("Seleccione una opción: ")  # solicita una opción al usuario
+        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
 
         if opcion == "1":       # crea un cargo oficial
             crear_cargo_oficial()

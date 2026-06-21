@@ -4,9 +4,7 @@ from director.utilidades import imprimir_titulo
 RUTA_DESCUENTOS = "datos/descuentos_convenios.json"
 
 
-# ====================================================================
-# FUNCIONES DE VALIDACIÓN (A PRUEBA DE ERRORES)
-# ====================================================================
+# FUNCIONES DE VALIDACIÓN
 
 def pedir_texto(mensaje):
     while True:
@@ -29,9 +27,7 @@ def pedir_monto(mensaje):
             print("Error: Debe ingresar un valor numérico válido.")
 
 
-# ====================================================================
 # LÓGICA DEL MÓDULO
-# ====================================================================
 
 def pedir_tipo_descuento():
     while True:
