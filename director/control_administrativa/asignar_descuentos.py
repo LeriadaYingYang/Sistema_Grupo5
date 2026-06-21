@@ -10,9 +10,7 @@ RUTA_DESCUENTOS = "datos/descuentos_convenios.json"
 RUTA_DESCUENTOS_ALUMNOS = "datos/descuentos_alumnos.json"
 
 
-# ====================================================================
 # --- FUNCIONES DE VALIDACIÓN---
-# ====================================================================
 
 def pedir_entero(mensaje):
     """Asegura que el ID ingresado sea un número válido y no letras."""
