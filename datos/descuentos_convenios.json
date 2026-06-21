@@ -7,5 +7,14 @@
         "motivo": "se decunta por descuento",
         "aplica_a": "Cargo oficial",
         "estado": "Activo"
+    },
+    {
+        "id_descuento": 2,
+        "nombre": "mesas",
+        "tipo": "Porcentaje",
+        "valor": -110.0,
+        "motivo": "",
+        "aplica_a": "Cargo oficial",
+        "estado": "Activo"
     }
 ]

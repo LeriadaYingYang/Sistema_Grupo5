@@ -22,5 +22,13 @@
         "nombre_plantilla": "malla 2026",
         "descripcion": "malla recien creada",
         "estado": "Activo"
+    },
+    {
+        "id_plantilla": 4,
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_plantilla": "@",
+        "descripcion": "",
+        "estado": "Activo"
     }
 ]

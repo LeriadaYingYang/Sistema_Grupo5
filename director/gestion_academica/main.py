@@ -1,4 +1,4 @@
-from director.gestion_academica.carreras import registrar_carrera, editar_carrera, buscar_carrera, ver_carreras, desactivar_carrera
+from director.gestion_academica.carreras import registrar_carrera, editar_carrera, buscar_carrera, ver_carreras, desactivar_carrera, activar_carrera
 from director.gestion_academica.plantillas import crear_plantilla, editar_plantilla, asignar_carrera_plantilla, ver_plantillas, desactivar_plantilla
 from director.gestion_academica.salones import registrar_salon, editar_salon, asignar_plantilla_salon, ver_salones, cerrar_salon
 from director.gestion_academica.unidades import registrar_unidad, editar_unidad, asignar_unidad_salon, ver_unidades, desactivar_unidad
@@ -6,38 +6,45 @@ from director.gestion_academica.modulos import registrar_modulo, editar_modulo, 
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 
-def menu_academico():
+def leer_opcion(maximo):  #valida que la opción ingresada sea numérica y esté dentro del rango
+    while True:
+        try:
+            opcion = int(input("Seleccione una opción: "))
+
+            if 1 <= opcion <= maximo:
+                return opcion
+
+            print("Opción fuera de rango.")
+        except ValueError:
+            print("Debe ingresar un número válido.")
+
+def menu_academico():  #muestra el menú principal académico
     while True:
         imprimir_titulo("GESTIÓN ACADÉMICA")
         imprimir_menu([
             "Gestionar Carreras",
             "Gestionar Plantillas Académicas",
             "Gestionar Salones",
-            "Gestionar Unidades / Ciclos",
+            "Gestionar Unidades",
             "Gestionar Módulos",
-            "Volver"
-        ])
+            "Volver"])
 
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = leer_opcion(6)
+        if opcion == 1:
             menu_carreras()
-        elif opcion == "2":
+        elif opcion == 2:
             menu_plantillas()
-        elif opcion == "3":
+        elif opcion == 3:
             menu_salones()
-        elif opcion == "4":
+        elif opcion == 4:
             menu_unidades()
-        elif opcion == "5":
+        elif opcion == 5:
             menu_modulos()
-        elif opcion == "6":
+        elif opcion == 6:
             print("\nVolviendo al menú director")
             break
-        else:
-            print("Opción inválida.")
 
-
-def menu_carreras():
+def menu_carreras():  #muestra el menú de carreras
     while True:
         imprimir_titulo("GESTIONAR CARRERAS")
         imprimir_menu([
@@ -45,29 +52,28 @@ def menu_carreras():
             "Editar carrera",
             "Buscar carrera",
             "Ver carreras",
-            "Desactivar carrera",
-            "Volver"
-        ])
+            "Ocultar carrera",
+            "Activar carrera",
+            "Volver"])
 
-        opcion = input("Seleccione una opción: ")
+        opcion = leer_opcion(7)
 
-        if opcion == "1":
+        if opcion == 1:
             registrar_carrera()
-        elif opcion == "2":
+        elif opcion == 2:
             editar_carrera()
-        elif opcion == "3":
+        elif opcion == 3:
             buscar_carrera()
-        elif opcion == "4":
+        elif opcion == 4:
             ver_carreras()
-        elif opcion == "5":
+        elif opcion == 5:
             desactivar_carrera()
-        elif opcion == "6":
+        elif opcion == 6:
+            activar_carrera()
+        elif opcion == 7:
             break
-        else:
-            print("Opción inválida.")
 
-
-def menu_plantillas():
+def menu_plantillas():  #muestra el menú de plantillas académicas
     while True:
         imprimir_titulo("GESTIONAR PLANTILLAS ACADÉMICAS")
         imprimir_menu([
@@ -76,28 +82,24 @@ def menu_plantillas():
             "Asignar carrera a plantilla",
             "Ver plantillas",
             "Desactivar plantilla",
-            "Volver"
-        ])
+            "Volver"])
 
-        opcion = input("Seleccione una opción: ")
+        opcion = leer_opcion(6)
 
-        if opcion == "1":
+        if opcion == 1:
             crear_plantilla()
-        elif opcion == "2":
+        elif opcion == 2:
             editar_plantilla()
-        elif opcion == "3":
+        elif opcion == 3:
             asignar_carrera_plantilla()
-        elif opcion == "4":
+        elif opcion == 4:
             ver_plantillas()
-        elif opcion == "5":
+        elif opcion == 5:
             desactivar_plantilla()
-        elif opcion == "6":
+        elif opcion == 6:
             break
-        else:
-            print("Opción inválida.")
 
-
-def menu_salones():
+def menu_salones():  #muestra el menú de salones
     while True:
         imprimir_titulo("GESTIONAR SALONES")
         imprimir_menu([
@@ -106,58 +108,47 @@ def menu_salones():
             "Asignar plantilla al salón",
             "Ver salones",
             "Cerrar salón",
-            "Volver"
-        ])
+            "Volver"])
 
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = leer_opcion(6)
+        if opcion == 1:
             registrar_salon()
-        elif opcion == "2":
+        elif opcion == 2:
             editar_salon()
-        elif opcion == "3":
+        elif opcion == 3:
             asignar_plantilla_salon()
-        elif opcion == "4":
+        elif opcion == 4:
             ver_salones()
-        elif opcion == "5":
+        elif opcion == 5:
             cerrar_salon()
-        elif opcion == "6":
+        elif opcion == 6:
             break
-        else:
-            print("Opción inválida.")
 
-
-def menu_unidades():
+def menu_unidades():  #muestra el menú de unidades
     while True:
-        imprimir_titulo("GESTIONAR UNIDADES / CICLOS")
+        imprimir_titulo("GESTIONAR UNIDADES")
         imprimir_menu([
             "Crear unidad",
             "Editar unidad",
-            "Asignar unidad a salón",
+            "Asignar unidad a módulo",
             "Ver unidades",
             "Desactivar unidad",
-            "Volver"
-        ])
-
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+            "Volver"])
+        opcion = leer_opcion(6)
+        if opcion == 1:
             registrar_unidad()
-        elif opcion == "2":
+        elif opcion == 2:
             editar_unidad()
-        elif opcion == "3":
+        elif opcion == 3:
             asignar_unidad_salon()
-        elif opcion == "4":
+        elif opcion == 4:
             ver_unidades()
-        elif opcion == "5":
+        elif opcion == 5:
             desactivar_unidad()
-        elif opcion == "6":
+        elif opcion == 6:
             break
-        else:
-            print("Opción inválida.")
 
-
-def menu_modulos():
+def menu_modulos():  #muestra el menú de módulos
     while True:
         imprimir_titulo("GESTIONAR MÓDULOS")
         imprimir_menu([
@@ -166,22 +157,18 @@ def menu_modulos():
             "Asignar módulo a unidad",
             "Ver módulos",
             "Desactivar módulo",
-            "Volver"
-        ])
+            "Volver"])
 
-        opcion = input("Seleccione una opción: ")
-
-        if opcion == "1":
+        opcion = leer_opcion(6)
+        if opcion == 1:
             registrar_modulo()
-        elif opcion == "2":
+        elif opcion == 2:
             editar_modulo()
-        elif opcion == "3":
+        elif opcion == 3:
             asignar_modulo_unidad()
-        elif opcion == "4":
+        elif opcion == 4:
             ver_modulos()
-        elif opcion == "5":
+        elif opcion == 5:
             desactivar_modulo()
-        elif opcion == "6":
+        elif opcion == 6:
             break
-        else:
-            print("Opción inválida.")
