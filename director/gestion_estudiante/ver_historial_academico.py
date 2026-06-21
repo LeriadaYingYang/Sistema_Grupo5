@@ -11,7 +11,7 @@ def ver_historial_academico():
         print("No hay alumnos registrados.")
         pausa()
         return
-    
+
     # Se pide el DNI porque es la clave más directa para encontrar al alumno.
     dni = input("Ingrese DNI del alumno: ").strip()
     alumno = None
@@ -24,7 +24,7 @@ def ver_historial_academico():
         print("Alumno no encontrado.")
         pausa()
         return
-    
+
     # Se muestran primero los datos básicos del estudiante.
     print("\n ------ DATOS DEL ALUMNO ------")
     print(f"Alumno : {alumno['nombres']} {alumno['apellidos']}")
@@ -57,13 +57,13 @@ def ver_historial_academico():
         print("\nNo tiene notas registradas.")
         pausa()
         return
-    
+
     # Se obtiene una lista de unidades sin repetir para mostrarlas en orden.
     ids_unidad = []
     for r in notas_alumno:
         if r["id_unidad"] not in ids_unidad:
             ids_unidad.append(r["id_unidad"])
-    
+
     # Se ordenan las unidades según el campo orden de cada registro.
     unidades_ordenadas = []
     for id_u in ids_unidad:
@@ -83,7 +83,7 @@ def ver_historial_academico():
             if u["id_unidad"] == id_u and u["estado"] == "Activo":
                 nombre_unidad = u["nombre_unidad"]
                 break
-        
+
         print(f"\n=== {nombre_unidad} ===")
 
         # Dentro de cada unidad, los módulos también se ordenan antes de mostrarlos.
@@ -105,7 +105,7 @@ def ver_historial_academico():
                 if m["id_modulo"] == reg["id_modulo"] and m["estado"] == "Activo":
                     nombre_modulo = m["nombre_modulo"]
                     break
-            
+
             print(f"\n Modulo: {nombre_modulo}")
             # Cada nota se imprime con su nombre y su valor; si está vacía, se muestra como pendiente.
             for n in reg["notas"]:
@@ -115,7 +115,7 @@ def ver_historial_academico():
             # Los promedios válidos se guardan para calcular la condición final.
             if reg["promedio_modulo"] is not None:
                 todos_promedios.append(reg["promedio_modulo"])
-            
+
     if todos_promedios:
         # El promedio final se redondea y luego se convierte en una condición académica.
         promedio_final = round(sum(todos_promedios) / len(todos_promedios))
