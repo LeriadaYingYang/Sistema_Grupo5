@@ -15,7 +15,6 @@
         "descripcion": "Normas y medidas de seguridad en trabajos eléctricos.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 3,
         "id_modulo": 2,
@@ -32,7 +31,6 @@
         "descripcion": "Diagnóstico y corrección de fallas.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 5,
         "id_modulo": 3,
@@ -49,7 +47,6 @@
         "descripcion": "Registro de operaciones contables.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 7,
         "id_modulo": 4,
@@ -66,7 +63,6 @@
         "descripcion": "Presentación de declaraciones y pagos.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 9,
         "id_modulo": 5,
@@ -83,7 +79,6 @@
         "descripcion": "Cortes básicos de cocina profesional.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 11,
         "id_modulo": 6,
@@ -100,7 +95,6 @@
         "descripcion": "Preparación de platos principales peruanos.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 13,
         "id_modulo": 7,
@@ -117,7 +111,6 @@
         "descripcion": "Técnicas de horneado profesional.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 15,
         "id_modulo": 8,
@@ -134,7 +127,6 @@
         "descripcion": "Decoración básica y avanzada.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 17,
         "id_modulo": 9,
@@ -151,7 +143,6 @@
         "descripcion": "Uso correcto de herramientas de bar.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 19,
         "id_modulo": 10,
@@ -168,7 +159,6 @@
         "descripcion": "Métodos profesionales de preparación.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 21,
         "id_modulo": 11,
@@ -185,7 +175,6 @@
         "descripcion": "Aplicación de tratamientos profesionales.",
         "estado": "Activo"
     },
-
     {
         "id_unidad": 23,
         "id_modulo": 12,
@@ -200,6 +189,21 @@
         "nombre_modulo": "Corte y Peinado",
         "nombre_unidad": "Peinados Profesionales",
         "descripcion": "Diseño y elaboración de peinados.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 25,
+        "id_modulo": 14,
+        "nombre_modulo": "Sistemas de conexion tierra",
+        "id_salon": 2,
+        "nombre_salon": "Aula SE-02",
+        "turno": "Noche",
+        "id_plantilla": 1,
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "nombre_unidad": "colores",
+        "descripcion": "colores de vista",
         "estado": "Activo"
     }
 ]

@@ -2,7 +2,7 @@ from director.gestion_academica.carreras import registrar_carrera, editar_carrer
 from director.gestion_academica.plantillas import crear_plantilla, editar_plantilla, asignar_carrera_plantilla, ver_plantillas, desactivar_plantilla,activar_plantilla
 from director.gestion_academica.salones import registrar_salon, editar_salon, asignar_plantilla_salon, ver_salones, desactivar_salon, activar_salon
 from director.gestion_academica.unidades import registrar_unidad, editar_unidad, ver_unidades, desactivar_unidad, activar_unidad
-from director.gestion_academica.modulos import registrar_modulo, editar_modulo, ver_modulos, desactivar_modulo
+from director.gestion_academica.modulos import registrar_modulo, editar_modulo, ver_modulos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 
@@ -162,10 +162,9 @@ def menu_modulos():  #muestra el menú de módulos
             "Crear módulo",
             "Editar módulo",
             "Ver módulos",
-            "Desactivar módulo",
             "Volver"])
 
-        opcion = leer_opcion(5)
+        opcion = leer_opcion(4)
 
         if opcion == 1:
             registrar_modulo()
@@ -174,6 +173,4 @@ def menu_modulos():  #muestra el menú de módulos
         elif opcion == 3:
             ver_modulos()
         elif opcion == 4:
-            desactivar_modulo()
-        elif opcion == 5:
             break

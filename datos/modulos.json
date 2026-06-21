@@ -166,5 +166,33 @@
         "descripcion": "Técnicas profesionales de corte y peinado.",
         "orden": 2,
         "estado": "Activo"
+    },
+    {
+        "id_modulo": 13,
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "id_plantilla": 1,
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "id_salon": 2,
+        "nombre_salon": "Aula SE-02",
+        "turno": "Noche",
+        "nombre_modulo": "Sistemas de conexion mediatica",
+        "descripcion": "sistemas de mejora",
+        "orden": 1,
+        "estado": "Activo"
+    },
+    {
+        "id_modulo": 14,
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "id_plantilla": 1,
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "id_salon": 2,
+        "nombre_salon": "Aula SE-02",
+        "turno": "Noche",
+        "nombre_modulo": "Sistemas de conexion tierra",
+        "descripcion": "Sistemas de tierra",
+        "orden": 2,
+        "estado": "Activo"
     }
 ]

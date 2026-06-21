@@ -1,3 +1,4 @@
+import re
 from basedatos_json import leer_json
 from director.utilidades import imprimir_titulo
 
@@ -9,6 +10,18 @@ RUTA_CARGOS_OFICIALES = "datos/cargos_oficiales.json"
 RUTA_DESCUENTOS_ALUMNOS = "datos/descuentos_alumnos.json"
 RUTA_CARGOS_EXTRAS = "datos/cargos_extras.json"
 RUTA_PAGOS_REALIZADOS = "datos/pagos_realizados.json"
+
+def pedir_entero(mensaje):
+    while True:
+        entrada = input(mensaje).strip()
+        if not re.fullmatch(r"\d+", entrada):
+            print("Error: ingrese solo números enteros positivos, sin letras ni símbolos.")
+            continue
+        valor = int(entrada)
+        if valor == 0:
+            print("Error: el ID debe ser mayor que 0.")
+        else:
+            return valor
 
 def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo usando su campo id
     for item in lista:
@@ -158,21 +171,13 @@ def seleccionar_plantilla_salon():  #permite elegir la plantilla y salón antes 
     plantillas = leer_json(RUTA_PLANTILLAS)
     salones = leer_json(RUTA_SALONES)
     mostrar_plantillas(plantillas)
-    try:
-        id_plantilla = int(input("\nIngrese ID de plantilla: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return None, None
+    id_plantilla = pedir_entero("\nIngrese ID de plantilla: ")
     plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)
     if plantilla is None:
         print("Plantilla no válida.")
         return None, None
     mostrar_salones(salones, plantilla["id_carrera"])
-    try:
-        id_salon = int(input("\nIngrese ID de salón: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return None, None
+    id_salon = pedir_entero("\nIngrese ID de salón: ")
     salon = buscar_por_id(salones, "id_salon", id_salon)
     if salon is None or salon["id_carrera"] != plantilla["id_carrera"]:
         print("Salón no válido.")
@@ -232,11 +237,7 @@ def resumen_por_alumno():  #genera el resumen financiero de un alumno específic
     imprimir_titulo("ALUMNOS DEL SALÓN")
     for alumno in alumnos_salon:
         print(f"ID: {alumno['id_alumno']} | {alumno['nombres']} {alumno['apellidos']} | DNI: {alumno['dni']}")
-    try:
-        id_alumno = int(input("\nIngrese ID del alumno: "))
-    except ValueError:
-        print("Debe ingresar un número.")
-        return
+    id_alumno = pedir_entero("\nIngrese ID del alumno: ")
     alumno = buscar_por_id(alumnos, "id_alumno", id_alumno)
     if alumno is None:
         print("Alumno no válido.")
