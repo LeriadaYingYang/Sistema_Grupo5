@@ -1,7 +1,6 @@
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
-from director.control_administrativa.descuentos import crear_descuento_convenio
-
+from director.control_administrativa.descuentos import crear_descuento_convenio, ver_descuentos_convenios
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"
 RUTA_SALONES = "datos/salones.json"
 RUTA_ALUMNOS = "datos/alumnos.json"
@@ -264,28 +263,6 @@ def modificar_descuento_asignado():
     print(f"El nuevo monto final a pagar es: S/ {nuevo_monto_final}")
 
 
-def eliminar_descuento_asignado():
-    imprimir_titulo("ELIMINAR / RESTAURAR ASIGNACIÓN")
-    asignaciones = leer_json(RUTA_DESCUENTOS_ALUMNOS) or []
-
-    if not ver_descuentos_asignados():
-        return
-
-    id_asignacion = pedir_entero("\nIngrese el ID de la asignación a eliminar/restaurar: ")
-
-    for a in asignaciones:
-        if a.get("id_descuento_alumno") == id_asignacion:
-            if a.get("estado") == "Activo":
-                a["estado"] = "Inactivo"
-                print(f"\nSe ha eliminado el descuento del alumno {a.get('nombre_alumno')}.")
-            else:
-                a["estado"] = "Activo"
-                print(f"\nSe ha restaurado el descuento del alumno {a.get('nombre_alumno')}.")
-            guardar_json(RUTA_DESCUENTOS_ALUMNOS, asignaciones)
-            return
-
-    print("Error: No se encontró la asignación.")
-
 
 # --- INTERFAZ PRINCIPAL DEL MÓDULO ---
 
@@ -294,11 +271,11 @@ def menu_asignar_descuentos():
         imprimir_titulo("GESTIÓN DE DESCUENTOS Y CONVENIOS")
         print("--- Catálogo Base ---")
         print("1. Crear nuevo descuento/convenio base")
+        print("2. Ver descuentos/convenios base")
         print("\n--- Operaciones sobre Alumnos ---")
-        print("2. Asignar descuento a un alumno")
-        print("3. Ver descuentos asignados")
-        print("4. Modificar descuento de un alumno")
-        print("5. Eliminar/Restaurar descuento de un alumno")
+        print("3. Asignar descuento a un alumno")
+        print("4. Ver descuentos asignados")
+        print("5. Modificar descuento de un alumno")
         print("\n6. Volver al menú anterior")
 
         opcion = input("\nSeleccione una opción: ").strip()
@@ -306,13 +283,13 @@ def menu_asignar_descuentos():
         if opcion == "1":
             crear_descuento_convenio()
         elif opcion == "2":
-            asignar_descuento_alumno()
+            ver_descuentos_convenios()
         elif opcion == "3":
-            ver_descuentos_asignados()
+            asignar_descuento_alumno()
         elif opcion == "4":
-            modificar_descuento_asignado()
+            ver_descuentos_asignados()
         elif opcion == "5":
-            eliminar_descuento_asignado()
+            modificar_descuento_asignado()
         elif opcion == "6":
             break
         else:

@@ -15,16 +15,18 @@ def pedir_texto(mensaje):
             return texto
 
 
-def pedir_monto(mensaje):
+def pedir_monto(mensaje, tipo=None):  # valida que el valor sea numérico y correcto
     while True:
         try:
             valor = float(input(mensaje))
             if valor < 0:
-                print("Error: El valor no puede ser negativo.")
+                print("Error: el valor no puede ser negativo.")
+            elif tipo == "Porcentaje" and valor > 100:
+                print("Error: el porcentaje no puede ser mayor a 100.")
             else:
                 return round(valor, 2)
         except ValueError:
-            print("Error: Debe ingresar un valor numérico válido.")
+            print("Error: debe ingresar un valor numérico válido.")
 
 
 # LÓGICA DEL MÓDULO
@@ -54,7 +56,7 @@ def crear_descuento_convenio():
 
     # Se adapta el mensaje dependiendo si es porcentaje o soles
     simbolo = "%" if tipo == "Porcentaje" else "S/"
-    valor = pedir_monto(f"Valor del descuento ({simbolo}): ")
+    valor = pedir_monto(f"Valor del descuento ({simbolo}): ", tipo)
     motivo = pedir_texto("Motivo o descripción: ")
 
     nuevo_descuento = {
@@ -72,3 +74,23 @@ def crear_descuento_convenio():
 
     print("\nDescuento/convenio creado correctamente.")
     print("Este descuento solo aplica a cargos oficiales.")
+
+def ver_descuentos_convenios():  # muestra los descuentos y convenios creados
+    imprimir_titulo("DESCUENTOS Y CONVENIOS CREADOS")
+
+    descuentos = leer_json(RUTA_DESCUENTOS) or []
+
+    if not descuentos:
+        print("No hay descuentos o convenios registrados.")
+        return False
+
+    for descuento in descuentos:
+        print("\n-----------------------------")
+        print(f"ID: {descuento.get('id_descuento')}")
+        print(f"Nombre: {descuento.get('nombre')}")
+        print(f"Tipo: {descuento.get('tipo')}")
+        print(f"Valor: {descuento.get('valor')}")
+        print(f"Motivo: {descuento.get('motivo')}")
+        print(f"Estado: {descuento.get('estado')}")
+
+    return True
