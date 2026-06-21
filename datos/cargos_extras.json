@@ -2,7 +2,7 @@
     {
         "id_cargo_extra": 1,
         "nombre": "Carné Institucional",
-        "monto": 25.00,
+        "monto": 25.0,
         "aplica_a": "General",
         "id_plantilla": null,
         "nombre_plantilla": "Todas",
@@ -12,12 +12,12 @@
         "nombre_salon": "Todos",
         "id_alumno": null,
         "nombre_alumno": "Todos",
-        "estado": "Activo"
+        "estado": "Inactivo"
     },
     {
         "id_cargo_extra": 2,
         "nombre": "Material Educativo",
-        "monto": 35.00,
+        "monto": 35.0,
         "aplica_a": "General",
         "id_plantilla": null,
         "nombre_plantilla": "Todas",
@@ -27,12 +27,12 @@
         "nombre_salon": "Todos",
         "id_alumno": null,
         "nombre_alumno": "Todos",
-        "estado": "Activo"
+        "estado": "Inactivo"
     },
     {
         "id_cargo_extra": 3,
         "nombre": "Kit de Herramientas Eléctricas",
-        "monto": 120.00,
+        "monto": 120.0,
         "aplica_a": "Carrera",
         "id_plantilla": 1,
         "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
@@ -47,7 +47,7 @@
     {
         "id_cargo_extra": 4,
         "nombre": "Prácticas de Laboratorio",
-        "monto": 80.00,
+        "monto": 80.0,
         "aplica_a": "Carrera",
         "id_plantilla": 1,
         "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
@@ -62,7 +62,7 @@
     {
         "id_cargo_extra": 5,
         "nombre": "Software Contable",
-        "monto": 60.00,
+        "monto": 60.0,
         "aplica_a": "Carrera",
         "id_plantilla": 2,
         "nombre_plantilla": "Plan Curricular 2026 - Asistente en Contabilidad",
@@ -77,7 +77,7 @@
     {
         "id_cargo_extra": 6,
         "nombre": "Uniforme de Cocina",
-        "monto": 95.00,
+        "monto": 95.0,
         "aplica_a": "Carrera",
         "id_plantilla": 3,
         "nombre_plantilla": "Plan Curricular 2026 - Gastronomía",
@@ -92,7 +92,7 @@
     {
         "id_cargo_extra": 7,
         "nombre": "Ingredientes de Práctica",
-        "monto": 70.00,
+        "monto": 70.0,
         "aplica_a": "Salón",
         "id_plantilla": 3,
         "nombre_plantilla": "Plan Curricular 2026 - Gastronomía",
@@ -107,7 +107,7 @@
     {
         "id_cargo_extra": 8,
         "nombre": "Uso de Horno Industrial",
-        "monto": 50.00,
+        "monto": 50.0,
         "aplica_a": "Salón",
         "id_plantilla": 4,
         "nombre_plantilla": "Plan Curricular 2026 - Panadería y Pastelería",
@@ -122,7 +122,7 @@
     {
         "id_cargo_extra": 9,
         "nombre": "Kit de Coctelería",
-        "monto": 85.00,
+        "monto": 85.0,
         "aplica_a": "Carrera",
         "id_plantilla": 5,
         "nombre_plantilla": "Plan Curricular 2026 - Bartender Profesional",
@@ -137,7 +137,7 @@
     {
         "id_cargo_extra": 10,
         "nombre": "Material de Estilismo",
-        "monto": 90.00,
+        "monto": 90.0,
         "aplica_a": "Carrera",
         "id_plantilla": 6,
         "nombre_plantilla": "Plan Curricular 2026 - Estilismo",
@@ -152,7 +152,7 @@
     {
         "id_cargo_extra": 11,
         "nombre": "Recuperación de Clase",
-        "monto": 40.00,
+        "monto": 40.0,
         "aplica_a": "Alumno",
         "id_plantilla": 1,
         "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
@@ -167,7 +167,7 @@
     {
         "id_cargo_extra": 12,
         "nombre": "Examen Sustitutorio",
-        "monto": 30.00,
+        "monto": 30.0,
         "aplica_a": "Alumno",
         "id_plantilla": 2,
         "nombre_plantilla": "Plan Curricular 2026 - Asistente en Contabilidad",
@@ -182,7 +182,7 @@
     {
         "id_cargo_extra": 13,
         "nombre": "Constancia Especial",
-        "monto": 20.00,
+        "monto": 20.0,
         "aplica_a": "Alumno",
         "id_plantilla": 3,
         "nombre_plantilla": "Plan Curricular 2026 - Gastronomía",
@@ -197,7 +197,7 @@
     {
         "id_cargo_extra": 14,
         "nombre": "Práctica Adicional",
-        "monto": 45.00,
+        "monto": 45.0,
         "aplica_a": "Alumno",
         "id_plantilla": 5,
         "nombre_plantilla": "Plan Curricular 2026 - Bartender Profesional",
@@ -212,7 +212,7 @@
     {
         "id_cargo_extra": 15,
         "nombre": "Material de Evaluación",
-        "monto": 25.00,
+        "monto": 25.0,
         "aplica_a": "Alumno",
         "id_plantilla": 6,
         "nombre_plantilla": "Plan Curricular 2026 - Estilismo",
@@ -222,6 +222,36 @@
         "nombre_salon": "Laboratorio E-01",
         "id_alumno": 45,
         "nombre_alumno": "Aurora Ozuma",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 16,
+        "nombre": "carnet",
+        "monto": 10.0,
+        "aplica_a": "General",
+        "id_plantilla": null,
+        "nombre_plantilla": "Todas",
+        "id_carrera": null,
+        "nombre_carrera": "Todas",
+        "id_salon": null,
+        "nombre_salon": "Todos",
+        "id_alumno": null,
+        "nombre_alumno": "Todos",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_extra": 17,
+        "nombre": "Carnet",
+        "monto": 20.0,
+        "aplica_a": "Carrera",
+        "id_plantilla": 1,
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "id_salon": null,
+        "nombre_salon": null,
+        "id_alumno": null,
+        "nombre_alumno": null,
         "estado": "Activo"
     }
 ]

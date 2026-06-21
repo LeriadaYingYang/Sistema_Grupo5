@@ -1,4 +1,3 @@
-import re
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 
@@ -8,53 +7,43 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CARGOS_EXTRAS = "datos/cargos_extras.json"
 
+
 # ====================================================================
-# FUNCIONES DE VALIDACIÓN MEJORADAS
+# FUNCIONES DE VALIDACIÓN (A PRUEBA DE ERRORES)
 # ====================================================================
 
 def pedir_entero(mensaje):
     while True:
-        entrada = input(mensaje).strip()
-        if not re.fullmatch(r"\d+", entrada):
-            print("Error: ingrese solo números enteros positivos, sin letras ni símbolos.")
-            continue
-        valor = int(entrada)
-        if valor == 0:
-            print("Error: el ID debe ser mayor que 0.")
-        else:
-            return valor
+        try:
+            valor = int(input(mensaje))
+            if valor < 0:
+                print("Error: No se permiten números negativos.")
+            else:
+                return valor
+        except ValueError:
+            print("Error: Debe ingresar un número entero válido (sin letras).")
+
 
 def pedir_monto(mensaje):
     while True:
-        entrada = input(mensaje).strip()
-        if not re.fullmatch(r"\d+(\.\d{1,2})?", entrada):
-            print("Error: ingrese un monto válido, sin negativos, letras ni símbolos. Ejemplo: 50 o 50.50")
-            continue
-        valor = float(entrada)
-        if valor <= 0:
-            print("Error: el monto debe ser mayor que 0.")
-        else:
-            return round(valor, 2)
+        try:
+            valor = float(input(mensaje))
+            if valor < 0:
+                print("Error: El monto no puede ser negativo.")
+            else:
+                return round(valor, 2)
+        except ValueError:
+            print("Error: Debe ingresar un monto numérico válido.")
 
 
 def pedir_texto(mensaje):
     while True:
         texto = input(mensaje).strip()
         if not texto:
-            print("Error: el campo no puede quedar vacío.")
-        elif not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]{3,60}", texto):
-            print("Error: use solo letras, números y espacios. No se permiten símbolos.")
+            print("Error: El campo no puede quedar vacío.")
         else:
             return texto
 
-def pedir_texto_opcional(mensaje, valor_actual):
-    texto = input(mensaje).strip()
-    if texto == "":
-        return valor_actual
-    if not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]{3,60}", texto):
-        print("Error: texto inválido, se mantuvo el dato anterior.")
-        return valor_actual
-    return texto
 
 # ====================================================================
 # LÓGICA DEL MÓDULO
@@ -95,6 +84,7 @@ def mostrar_alumnos_salon(alumnos, asignaciones, id_salon):
     if encontrados == 0:
         print("No hay alumnos asignados a este salón.")
 
+
 def crear_cargo_extra():  # 1. Crear cargo extra genérico para toda la institución
     imprimir_titulo("CREAR CARGO EXTRA GENERAL")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
@@ -121,6 +111,7 @@ def crear_cargo_extra():  # 1. Crear cargo extra genérico para toda la instituc
     cargos.append(nuevo)
     guardar_json(RUTA_CARGOS_EXTRAS, cargos)
     print("\nCargo extra general creado correctamente.")
+
 
 def asignar_cargo_extra():  # 2. Asignar cargo extra a grupo o alumno
     while True:
@@ -204,6 +195,7 @@ def asignar_cargo_extra():  # 2. Asignar cargo extra a grupo o alumno
         else:
             print("Opción inválida.")
 
+
 def ver_cargos_extras():  # 4. Ver cargos extras
     imprimir_titulo("CARGOS EXTRAS REGISTRADOS")
     cargos = leer_json(RUTA_CARGOS_EXTRAS) or []
@@ -224,6 +216,7 @@ def ver_cargos_extras():  # 4. Ver cargos extras
                 print(f"Alumno: {cargo.get('nombre_alumno')}")
         print(f"Estado: {cargo.get('estado')}")
     return True
+
 
 def editar_cargo_extra():  # 3. Editar cargo extra
     imprimir_titulo("EDITAR CARGO EXTRA")
@@ -247,21 +240,24 @@ def editar_cargo_extra():  # 3. Editar cargo extra
     print(f"\nEditando cargo: {cargo_encontrado['nombre']} | S/ {cargo_encontrado['monto']}")
     print("Deje en blanco y presione Enter si no desea cambiar un dato.")
 
-    cargo_encontrado["nombre"] = pedir_texto_opcional("Nuevo nombre del cargo: ", cargo_encontrado["nombre"])
+    nuevo_nombre = input("Nuevo nombre del cargo: ").strip()
+    if nuevo_nombre:
+        cargo_encontrado["nombre"] = nuevo_nombre
 
     nuevo_monto_str = input("Nuevo monto (S/): ").strip()
     if nuevo_monto_str:
-        if not re.fullmatch(r"\d+(\.\d{1,2})?", nuevo_monto_str):
-            print("Monto inválido ignorado, se mantuvo el anterior.")
-        else:
+        try:
             monto_val = float(nuevo_monto_str)
-            if monto_val <= 0:
-                print("El monto debe ser mayor que 0, se mantuvo el anterior.")
-            else:
+            if monto_val >= 0:
                 cargo_encontrado["monto"] = round(monto_val, 2)
+            else:
+                print("Monto negativo ignorado, se mantuvo el anterior.")
+        except ValueError:
+            print("Monto inválido ignorado, se mantuvo el anterior.")
 
     guardar_json(RUTA_CARGOS_EXTRAS, cargos)
     print("\nCargo extra actualizado correctamente.")
+
 
 def eliminar_cargo_extra():  # 5. Eliminar / Restaurar cargo extra
     imprimir_titulo("ELIMINAR / RESTAURAR CARGO EXTRA")
@@ -286,6 +282,7 @@ def eliminar_cargo_extra():  # 5. Eliminar / Restaurar cargo extra
 
     print("Error: Cargo no encontrado.")
 
+
 # ====================================================================
 # MENÚ PRINCIPAL DEL MÓDULO
 # ====================================================================
@@ -299,7 +296,9 @@ def menu_cargos_extras():
         print("4. Ver cargos extras")
         print("5. Eliminar / Restaurar cargo extra")
         print("6. Volver")
+
         opcion = input("\nSeleccione una opción: ").strip()
+
         if opcion == "1":
             crear_cargo_extra()
         elif opcion == "2":

@@ -1,4 +1,3 @@
-import re
 from basedatos_json import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 
@@ -7,41 +6,37 @@ RUTA_CARRERAS = "datos/carreras.json"
 RUTA_CARGOS_OFICIALES = "datos/cargos_oficiales.json"
 
 
-# --- FUNCIONES DE VALIDACIÓN MEJORADAS ---
+# --- FUNCIONES DE VALIDACIÓN  ---
 
 def pedir_entero(mensaje):
     while True:
-        entrada = input(mensaje).strip()
-        if not re.fullmatch(r"\d+", entrada):
-            print("Error: ingrese solo números enteros positivos, sin letras ni símbolos.")
-            continue
-        valor = int(entrada)
-        if valor == 0:
-            print("Error: el ID debe ser mayor que 0.")
-        else:
-            return valor
+        try:
+            valor = int(input(mensaje))
+            if valor < 0:
+                print("Error: No se permiten números negativos.")
+            else:
+                return valor
+        except ValueError:
+            print("Error: Debe ingresar un número entero válido (sin letras).")
 
 
 def pedir_monto(mensaje):
     while True:
-        entrada = input(mensaje).strip()
-        if not re.fullmatch(r"\d+(\.\d{1,2})?", entrada):
-            print("Error: ingrese un monto válido, sin negativos, letras ni símbolos. Ejemplo: 150 o 150.50")
-            continue
-        valor = float(entrada)
-        if valor <= 0:
-            print("Error: el monto debe ser mayor que 0.")
-        else:
-            return round(valor, 2)
+        try:
+            valor = float(input(mensaje))
+            if valor < 0:
+                print("Error: El monto no puede ser negativo.")
+            else:
+                return round(valor, 2)
+        except ValueError:
+            print("Error: Debe ingresar un monto numérico válido.")
 
 
 def pedir_texto(mensaje):
     while True:
         texto = input(mensaje).strip()
         if not texto:
-            print("Error: el campo no puede quedar vacío.")
-        elif not re.fullmatch(r"[A-Za-zÁÉÍÓÚáéíóúÑñ0-9 ]{3,60}", texto):
-            print("Error: use solo letras, números y espacios. Mínimo 3 caracteres, sin símbolos.")
+            print("Error: El campo no puede quedar vacío.")
         else:
             return texto
 
@@ -49,66 +44,59 @@ def pedir_texto(mensaje):
 def pedir_dia_limite(mensaje):
     while True:
         entrada = input(mensaje).strip()
-        if not re.fullmatch(r"\d+", entrada):
-            print("Error: ingrese solo números para el día límite, sin letras ni símbolos.")
-            continue
-        dia = int(entrada)
-        if dia < 1 or dia > 31:
-            print("Error: el día límite debe estar entre 1 y 31.")
-        else:
-            return str(dia)
+        try:
+            dia = int(entrada)
+            if dia < 1 or dia > 31:
+                print("Error: Ingrese un día válido del mes (1-31).")
+            else:
+                return str(dia)
+        except ValueError:
+            print("Error: Carácter no válido.")
 
 
-# -----------------------------------------
+# --- LÓGICA DE BÚSQUEDA Y VISUALIZACIÓN ---
 
-def buscar_por_id(lista, campo_id, valor_id):  # busca un registro activo utilizando su identificador
+def buscar_por_id(lista, campo_id, valor_id):
     for item in lista:
-        if item[campo_id] == valor_id and item["estado"] == "Activo":
+        if item.get(campo_id) == valor_id and item.get("estado") == "Activo":
             return item
     return None
 
 
-def mostrar_plantillas(plantillas):  # muestra las plantillas académicas disponibles para seleccionar
+def mostrar_plantillas(plantillas):
     imprimir_titulo("PLANTILLAS DISPONIBLES")
-
     for plantilla in plantillas:
-        if plantilla["estado"] == "Activo":
+        if plantilla.get("estado") == "Activo":
             print(
-                f"ID: {plantilla['id_plantilla']} | "
-                f"Carrera: {plantilla['nombre_carrera']} | "
-                f"Plantilla: {plantilla['nombre_plantilla']}")
+                f"ID: {plantilla.get('id_plantilla')} | Carrera: {plantilla.get('nombre_carrera')} | Plantilla: {plantilla.get('nombre_plantilla')}")
 
 
-def mostrar_carreras(carreras, id_carrera):  # muestra la carrera asociada a la plantilla elegida
+def mostrar_carreras(carreras, id_carrera):
     imprimir_titulo("CARRERA DE LA PLANTILLA")
     for carrera in carreras:
-        if carrera["estado"] == "Activo" and carrera["id_carrera"] == id_carrera:
-            print(f"ID: {carrera['id_carrera']} | {carrera['nombre']}")
+        if carrera.get("estado") == "Activo" and carrera.get("id_carrera") == id_carrera:
+            print(f"ID: {carrera.get('id_carrera')} | {carrera.get('nombre')}")
 
 
-def cargo_ya_existe(cargos, id_plantilla, id_carrera, nombre_cargo):  # valida que no exista un cargo repetido
+def cargo_ya_existe(cargos, id_plantilla, id_carrera, nombre_cargo):
     for cargo in cargos:
-        if (
-                cargo["estado"] == "Activo"
-                and cargo["id_plantilla"] == id_plantilla
-                and cargo["id_carrera"] == id_carrera
-                and cargo["nombre_cargo"].lower() == nombre_cargo.lower()):
+        if (cargo.get("estado") == "Activo"
+                and cargo.get("id_plantilla") == id_plantilla
+                and cargo.get("id_carrera") == id_carrera
+                and cargo.get("nombre_cargo", "").lower() == nombre_cargo.lower()):
             return True
     return False
 
 
-def pedir_frecuencia():  # permite seleccionar la frecuencia de cobro del cargo
+def pedir_frecuencia():
     while True:
-        print("""
---- TIPOS DE FRECUENCIA ---
+        print("\n--- TIPOS DE FRECUENCIA ---")
+        print("1. Único")
+        print("2. Mensual")
+        print("3. Por unidad")
+        print("4. Por módulo")
 
-1. Único
-2. Mensual
-3. Por unidad
-4. Por módulo
-""")
-
-        opcion = input("Seleccione frecuencia: ").strip()
+        opcion = input("\nSeleccione frecuencia: ").strip()
 
         if opcion == "1":
             return "Único"
@@ -122,128 +110,114 @@ def pedir_frecuencia():  # permite seleccionar la frecuencia de cobro del cargo
             print("Opción inválida.")
 
 
-def crear_cargo_oficial():  # registra un cargo oficial que será utilizado en los pagos de alumnos
+# --- LÓGICA PRINCIPAL DEL MÓDULO ---
+
+def crear_cargo_oficial():
     imprimir_titulo("CREAR CARGO OFICIAL")
 
-    # Se agrega "or []" como validación de persistencia por si el JSON está vacío o no existe
     plantillas = leer_json(RUTA_PLANTILLAS) or []
     carreras = leer_json(RUTA_CARRERAS) or []
     cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
 
-    if len(plantillas) == 0:
+    if not plantillas:
         print("Primero debe crear plantillas académicas.")
         return
 
     mostrar_plantillas(plantillas)
-
-    # Usando validación
     id_plantilla = pedir_entero("\nIngrese ID de plantilla: ")
 
     plantilla = buscar_por_id(plantillas, "id_plantilla", id_plantilla)
-    if plantilla is None:
-        print("Plantilla no encontrada.")
+    if not plantilla:
+        print("Plantilla no encontrada o inactiva.")
         return
 
-    mostrar_carreras(carreras, plantilla["id_carrera"])
-
-    # Usando validación
+    mostrar_carreras(carreras, plantilla.get("id_carrera"))
     id_carrera = pedir_entero("\nIngrese ID de carrera: ")
 
-    if id_carrera != plantilla["id_carrera"]:
+    if id_carrera != plantilla.get("id_carrera"):
         print("La carrera no pertenece a la plantilla seleccionada.")
         return
 
     carrera = buscar_por_id(carreras, "id_carrera", id_carrera)
-    if carrera is None:
-        print("Carrera no encontrada.")
+    if not carrera:
+        print("Carrera no encontrada o inactiva.")
         return
 
-    # Usando validación
     nombre_cargo = pedir_texto("Nombre del cargo: ")
     if cargo_ya_existe(cargos, id_plantilla, id_carrera, nombre_cargo):
         print("Este cargo oficial ya existe para esta plantilla y carrera.")
         return
 
-    # Usando validación
     monto = pedir_monto("Monto del cargo: S/ ")
     frecuencia = pedir_frecuencia()
-
-    # Usando la nueva validación exclusiva para el límite de días (0-31)
-    fecha_limite = pedir_dia_limite("Fecha límite o regla (ejemplo: Día 10 de cada mes): ")
+    fecha_limite = pedir_dia_limite("Día límite de pago cada mes (ejemplo: 10): ")
 
     nuevo_cargo = {
         "id_cargo_oficial": generar_id(cargos, "id_cargo_oficial"),
-        "id_plantilla": plantilla["id_plantilla"],
-        "nombre_plantilla": plantilla["nombre_plantilla"],
-        "id_carrera": carrera["id_carrera"],
-        "nombre_carrera": carrera["nombre"],
+        "id_plantilla": plantilla.get("id_plantilla"),
+        "nombre_plantilla": plantilla.get("nombre_plantilla"),
+        "id_carrera": carrera.get("id_carrera"),
+        "nombre_carrera": carrera.get("nombre"),
         "nombre_cargo": nombre_cargo,
         "monto": monto,
         "frecuencia": frecuencia,
         "fecha_limite": fecha_limite,
-        "estado": "Activo"}
+        "estado": "Activo"
+    }
 
-    cargos.append(nuevo_cargo)  # agrega el nuevo cargo a la lista de cargos oficiales
-    guardar_json(RUTA_CARGOS_OFICIALES, cargos)  # guarda el cargo oficial en el archivo json
+    cargos.append(nuevo_cargo)
+    guardar_json(RUTA_CARGOS_OFICIALES, cargos)
     print("\nCargo oficial creado correctamente.")
 
 
-def ver_cargos_oficiales():  # muestra todos los cargos oficiales registrados en el sistema
+def ver_cargos_oficiales():
     imprimir_titulo("CARGOS OFICIALES")
     cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
-    if len(cargos) == 0:
+
+    if not cargos:
         print("No hay cargos oficiales creados.")
-        return
+        return False
+
     for cargo in cargos:
         print("\n-----------------------------")
-        print(f"ID: {cargo['id_cargo_oficial']}")
-        print(f"Plantilla: {cargo['nombre_plantilla']}")
-        print(f"Carrera: {cargo['nombre_carrera']}")
-        print(f"Cargo: {cargo['nombre_cargo']}")
-        print(f"Monto: S/ {cargo['monto']}")
-        print(f"Frecuencia: {cargo['frecuencia']}")
-        print(f"Fecha límite: {cargo['fecha_limite']}")
-        print(f"Estado: {cargo['estado']}")
+        print(f"ID: {cargo.get('id_cargo_oficial', 'N/A')}")
+        print(f"Plantilla: {cargo.get('nombre_plantilla', 'Desconocida')}")
+        print(f"Carrera: {cargo.get('nombre_carrera', 'Desconocida')}")
+        print(f"Cargo: {cargo.get('nombre_cargo', 'Desconocido')} | Estado: {cargo.get('estado', 'N/A')}")
+        print(f"Monto: S/ {cargo.get('monto', 0.0)} | Frecuencia: {cargo.get('frecuencia', 'N/A')}")
+        print(f"Día límite: {cargo.get('fecha_limite', 'N/A')}")
+
+    return True
 
 
-def modificar_cargo_oficial():  # permite editar datos de un cargo oficial existente
+def modificar_cargo_oficial():
     imprimir_titulo("MODIFICAR CARGO OFICIAL")
     cargos = leer_json(RUTA_CARGOS_OFICIALES) or []
-    if len(cargos) == 0:
-        print("No hay cargos oficiales creados.")
+
+    if not ver_cargos_oficiales():
         return
 
-    ver_cargos_oficiales()
-
-    # Usando validación
     id_cargo = pedir_entero("\nIngrese ID del cargo que desea modificar: ")
 
-    cargo = None
-    for item in cargos:
-        if item["id_cargo_oficial"] == id_cargo:
-            cargo = item
-            break
+    cargo = next((item for item in cargos if item.get("id_cargo_oficial") == id_cargo), None)
 
-    if cargo is None:
+    if not cargo:
         print("Cargo no encontrado.")
         return
 
     while True:
-        print(f"""
-Cargo seleccionado:
-{cargo['nombre_cargo']} | S/ {cargo['monto']} | {cargo['frecuencia']}
+        print(
+            f"\nCargo seleccionado: {cargo.get('nombre_cargo')} | S/ {cargo.get('monto')} | {cargo.get('frecuencia')}")
+        print("¿Qué desea modificar?")
+        print("1. Cambiar nombre")
+        print("2. Cambiar monto")
+        print("3. Cambiar frecuencia")
+        print("4. Cambiar día límite")
+        print("5. Activar / desactivar cargo")
+        print("6. Volver")
 
-¿Qué desea modificar?
+        opcion = input("\nSeleccione una opción: ").strip()
 
-1. Cambiar nombre
-2. Cambiar monto
-3. Cambiar frecuencia
-4. Cambiar fecha límite
-5. Activar / desactivar cargo
-6. Volver
-""")
-
-        opcion = input("Seleccione una opción: ").strip()
         if opcion == "1":
             cargo["nombre_cargo"] = pedir_texto("Nuevo nombre del cargo: ")
         elif opcion == "2":
@@ -251,13 +225,9 @@ Cargo seleccionado:
         elif opcion == "3":
             cargo["frecuencia"] = pedir_frecuencia()
         elif opcion == "4":
-            # validación de fechas (0-31)
-            cargo["fecha_limite"] = pedir_dia_limite("Nueva fecha límite o regla: ")
+            cargo["fecha_limite"] = pedir_dia_limite("Nuevo día límite: ")
         elif opcion == "5":
-            if cargo["estado"] == "Activo":
-                cargo["estado"] = "Inactivo"
-            else:
-                cargo["estado"] = "Activo"
+            cargo["estado"] = "Inactivo" if cargo.get("estado") == "Activo" else "Activo"
             print(f"Nuevo estado: {cargo['estado']}")
         elif opcion == "6":
             break
@@ -265,7 +235,7 @@ Cargo seleccionado:
             print("Opción inválida.")
             continue
 
-        guardar_json(RUTA_CARGOS_OFICIALES, cargos)  # guarda inmediatamente los cambios realizados
+        guardar_json(RUTA_CARGOS_OFICIALES, cargos)
         print("\nCargo actualizado correctamente.")
 
         continuar = pedir_texto("¿Desea modificar otro dato del mismo cargo? (si/no): ").lower()

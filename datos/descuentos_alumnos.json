@@ -1,110 +1,24 @@
 [
     {
-        "id_asignacion_descuento": 1,
+        "id_descuento_alumno": 1,
         "id_alumno": 1,
         "nombre_alumno": "Daniel Ramirez",
+        "dni": "72635163",
+        "id_plantilla": 1,
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "id_salon": 1,
+        "nombre_salon": "Aula SE-01",
+        "turno": "Mañana",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Instrumentos",
+        "monto_original": 20.0,
         "id_descuento": 2,
-        "nombre_descuento": "Pronto Pago",
-        "porcentaje": 10,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 2,
-        "id_alumno": 2,
-        "nombre_alumno": "Sara Alvarez",
-        "id_descuento": 4,
-        "nombre_descuento": "Familiar Directo",
-        "porcentaje": 20,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 3,
-        "id_alumno": 11,
-        "nombre_alumno": "Fernando Saldaña",
-        "id_descuento": 3,
-        "nombre_descuento": "Excelencia Académica",
-        "porcentaje": 25,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 4,
-        "id_alumno": 12,
-        "nombre_alumno": "Marcos Juarez",
-        "id_descuento": 2,
-        "nombre_descuento": "Pronto Pago",
-        "porcentaje": 10,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 5,
-        "id_alumno": 21,
-        "nombre_alumno": "Pedro Suarez",
-        "id_descuento": 1,
-        "nombre_descuento": "Convenio Empresarial",
-        "porcentaje": 15,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 6,
-        "id_alumno": 22,
-        "nombre_alumno": "Kevin Tejada",
-        "id_descuento": 6,
-        "nombre_descuento": "Beca Social",
-        "porcentaje": 40,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 7,
-        "id_alumno": 31,
-        "nombre_alumno": "Luna Lara",
-        "id_descuento": 3,
-        "nombre_descuento": "Excelencia Académica",
-        "porcentaje": 25,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 8,
-        "id_alumno": 32,
-        "nombre_alumno": "Daniela Tucto",
-        "id_descuento": 2,
-        "nombre_descuento": "Pronto Pago",
-        "porcentaje": 10,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 9,
-        "id_alumno": 39,
-        "nombre_alumno": "Jheny Campos",
-        "id_descuento": 7,
-        "nombre_descuento": "Convenio Municipal",
-        "porcentaje": 15,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 10,
-        "id_alumno": 40,
-        "nombre_alumno": "Alejandra Mendoza",
-        "id_descuento": 2,
-        "nombre_descuento": "Pronto Pago",
-        "porcentaje": 10,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 11,
-        "id_alumno": 45,
-        "nombre_alumno": "Aurora Ozuma",
-        "id_descuento": 3,
-        "nombre_descuento": "Excelencia Académica",
-        "porcentaje": 25,
-        "estado": "Activo"
-    },
-    {
-        "id_asignacion_descuento": 12,
-        "id_alumno": 46,
-        "nombre_alumno": "Emilia Nolazco",
-        "id_descuento": 5,
-        "nombre_descuento": "Trabajador IISEM",
-        "porcentaje": 30,
+        "nombre_descuento": "Beca",
+        "tipo_descuento": "Monto fijo",
+        "valor_descuento": 20.0,
+        "monto_final": 0,
         "estado": "Activo"
     }
 ]

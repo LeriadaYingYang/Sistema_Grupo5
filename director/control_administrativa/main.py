@@ -7,37 +7,38 @@ from director.control_administrativa.resumen_pagos import menu_resumen_pagos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 
-def menu_pagos():  #muestra el menú principal de gestión de pagos
+def menu_pagos():  # muestra el menú principal de gestión de pagos
     while True:
         imprimir_titulo("GESTIÓN DE PAGOS - DIRECTOR")
         imprimir_menu([
-            "Crear cargo oficial",
-            "Ver cargos oficiales",
-            "Modificar cargo oficial",
-            "Crear descuento o convenio",
-            "Asignar descuento/convenio a alumno",
-            "Gestionar cargos extras",
-            "Ver resumen de pagos y deudas",
-            "Volver al menú director"])
+            "Crear Cargo Oficial Por Plantilla Y Carrera",
+            "Ver Cargos Oficiales Creados",
+            "Modificar Cargo Oficial",
+            "Crear Descuento O Convenio",
+            "Asignar Descuento/Convenio A Alumno",
+            "Crear Cargo Extra General",
+            "Ver Resumen De Pagos Y Deudas",
+            "Volver Al Menú Director"
+        ])
 
-        opcion = input("Seleccione una opción: ").strip()
+        opcion = input("Seleccione una opción: ")  # solicita una opción al usuario
 
-        if opcion == "1":
+        if opcion == "1":       # crea un cargo oficial
             crear_cargo_oficial()
-        elif opcion == "2":
+        elif opcion == "2":     # muestra los cargos oficiales creados
             ver_cargos_oficiales()
-        elif opcion == "3":
+        elif opcion == "3":     # modifica un cargo oficial
             modificar_cargo_oficial()
-        elif opcion == "4":
+        elif opcion == "4":     # crea un descuento o convenio
             crear_descuento_convenio()
-        elif opcion == "5":
-            asignar_descuento_alumno()
-        elif opcion == "6":
+        elif opcion == "5":     # asigna un descuento o convenio a un alumno
+            menu_asignar_descuentos()
+        elif opcion == "6":     # abre el menú de cargos extras
             menu_cargos_extras()
-        elif opcion == "7":
+        elif opcion == "7":     # abre el resumen de pagos y deudas
             menu_resumen_pagos()
-        elif opcion == "8":
+        elif opcion == "8":     # vuelve al menú del director
             print("\nVolviendo al menú director")
             break
-        else:
+        else:                   # muestra mensaje si la opción no existe
             print("Opción inválida.")
