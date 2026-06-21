@@ -249,29 +249,50 @@ def registrar_asistencia_alumnos():
         print(f"Error al guardar la asistencia: "
             f"{e}")
 
-def generar_registros_prueba_asistencia(cantidad=50): # Genera registros simulados de asistencia de alumnos
+def generar_registros_prueba_asistencia(cantidad=50):  #genera registros simulados coherentes
     try:
         asistencias = leer_json(RUTA_ASISTENCIA_ALUMNOS) or []
+        alumnos = leer_json(RUTA_ALUMNOS) or []
+        asignaciones = leer_json(RUTA_ASIGNACIONES) or []
+        horarios = leer_json(RUTA_HORARIOS) or []
     except Exception:
         asistencias = []
+        alumnos = []
+        asignaciones = []
+        horarios = []
 
-    for i in range(1, cantidad + 1):
-        registro = {
+    estados = ["Presente", "Presente", "Tardanza", "Falta", "Justificación"]
+
+    for i, asignacion in enumerate(asignaciones[:cantidad], start=1):
+        alumno = buscar_por_id(alumnos, "id_alumno", asignacion["id_alumno"])
+        if alumno is None:
+            continue
+
+        horario = obtener_horario(
+            horarios,
+            asignacion["id_plantilla"],
+            asignacion["id_salon"]
+        )
+
+        if horario is None:
+            continue
+
+        dia = horario["dias_horas"][0]
+        asistencia = {
             "id_asistencia_alumno": generar_id(asistencias, "id_asistencia_alumno"),
             "fecha": "2026-06-20",
-            "id_plantilla": 1,
-            "id_salon": 1,
-            "id_horario": 1,
-            "orden_dia": 1,
-            "id_alumno": i,
-            "nombre_alumno": f"Alumno {i}",
-            "asistencia": "Presente" if i % 3 != 0 else "Tardanza",
-            "hora_registro": "08:00",
+            "id_plantilla": asignacion["id_plantilla"],
+            "id_salon": asignacion["id_salon"],
+            "id_horario": horario["id_horario"],
+            "orden_dia": dia["orden"],
+            "id_alumno": alumno["id_alumno"],
+            "nombre_alumno": f"{alumno['nombres']} {alumno['apellidos']}",
+            "asistencia": estados[i % len(estados)],
+            "hora_registro": dia["hora_inicio"],
             "estado": "Activo"
         }
-        asistencias.append(registro)
-    try:
-        guardar_json(RUTA_ASISTENCIA_ALUMNOS, asistencias)
-        print(f"\n Se generaron {cantidad} registros de asistencia correctamente.")
-    except Exception as e:
-        print(f"Error al guardar registros: {e}")
+
+        asistencias.append(asistencia)
+
+    guardar_json(RUTA_ASISTENCIA_ALUMNOS, asistencias)
+    print(f"\nSe generaron {cantidad} registros de asistencia correctamente.")

@@ -1,101 +1,205 @@
 [
     {
         "id_unidad": 1,
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "id_plantilla": 1,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "nombre_plantilla": "malla 2025",
-        "nombre_unidad": "dsdsa",
-        "descripcion": "",
-        "orden": 1,
-        "estado": "Oculto"
-    },
-    {
-        "id_unidad": 2,
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "id_plantilla": 1,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "nombre_plantilla": "malla 2025",
-        "nombre_unidad": "unidad2",
-        "descripcion": "",
-        "orden": 2,
+        "id_modulo": 1,
+        "nombre_modulo": "Fundamentos de Electricidad",
+        "nombre_unidad": "Conceptos Básicos de Electricidad",
+        "descripcion": "Introducción a la electricidad y magnitudes eléctricas.",
         "estado": "Activo"
     },
     {
+        "id_unidad": 2,
+        "id_modulo": 1,
+        "nombre_modulo": "Fundamentos de Electricidad",
+        "nombre_unidad": "Seguridad Eléctrica",
+        "descripcion": "Normas y medidas de seguridad en trabajos eléctricos.",
+        "estado": "Activo"
+    },
+
+    {
         "id_unidad": 3,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "id_plantilla": 1,
-        "nombre_plantilla": "malla 2025",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "nombre_unidad": "1",
-        "descripcion": "1",
-        "orden": 1,
+        "id_modulo": 2,
+        "nombre_modulo": "Instalaciones Eléctricas",
+        "nombre_unidad": "Instalaciones Domiciliarias",
+        "descripcion": "Montaje de circuitos residenciales.",
         "estado": "Activo"
     },
     {
         "id_unidad": 4,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "id_plantilla": 1,
-        "nombre_plantilla": "malla 2025",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "nombre_unidad": "12",
-        "descripcion": "21",
-        "orden": 1,
+        "id_modulo": 2,
+        "nombre_modulo": "Instalaciones Eléctricas",
+        "nombre_unidad": "Mantenimiento Eléctrico",
+        "descripcion": "Diagnóstico y corrección de fallas.",
         "estado": "Activo"
     },
+
     {
         "id_unidad": 5,
-        "id_salon": 2,
-        "nombre_salon": "salon A5",
-        "turno": "NOCHE",
-        "id_plantilla": 3,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "malla 2026",
-        "nombre_unidad": "teoria",
-        "descripcion": "teorico de enseñanza",
-        "orden": 1,
+        "id_modulo": 3,
+        "nombre_modulo": "Contabilidad Básica",
+        "nombre_unidad": "Documentos Contables",
+        "descripcion": "Comprobantes y registros contables.",
         "estado": "Activo"
     },
     {
         "id_unidad": 6,
-        "id_salon": 2,
-        "nombre_salon": "salon A5",
-        "turno": "NOCHE",
-        "id_plantilla": 3,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "malla 2026",
-        "nombre_unidad": "practico",
-        "descripcion": "salida de campo",
-        "orden": 2,
+        "id_modulo": 3,
+        "nombre_modulo": "Contabilidad Básica",
+        "nombre_unidad": "Libro Diario y Mayor",
+        "descripcion": "Registro de operaciones contables.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 7,
+        "id_modulo": 4,
+        "nombre_modulo": "Gestión Tributaria",
+        "nombre_unidad": "Tributación Empresarial",
+        "descripcion": "Impuestos y obligaciones tributarias.",
         "estado": "Activo"
     },
     {
-        "id_unidad": 7,
-        "id_modulo": 1,
-        "nombre_modulo": "1",
-        "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
-        "id_plantilla": 1,
-        "nombre_plantilla": "malla 2025",
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "nombre_unidad": "2",
-        "descripcion": "2",
+        "id_unidad": 8,
+        "id_modulo": 4,
+        "nombre_modulo": "Gestión Tributaria",
+        "nombre_unidad": "Declaraciones Tributarias",
+        "descripcion": "Presentación de declaraciones y pagos.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 9,
+        "id_modulo": 5,
+        "nombre_modulo": "Cocina Básica",
+        "nombre_unidad": "Manipulación de Alimentos",
+        "descripcion": "Buenas prácticas de higiene alimentaria.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 10,
+        "id_modulo": 5,
+        "nombre_modulo": "Cocina Básica",
+        "nombre_unidad": "Técnicas de Corte",
+        "descripcion": "Cortes básicos de cocina profesional.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 11,
+        "id_modulo": 6,
+        "nombre_modulo": "Cocina Peruana",
+        "nombre_unidad": "Entradas Peruanas",
+        "descripcion": "Preparación de entradas tradicionales.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 12,
+        "id_modulo": 6,
+        "nombre_modulo": "Cocina Peruana",
+        "nombre_unidad": "Platos de Fondo",
+        "descripcion": "Preparación de platos principales peruanos.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 13,
+        "id_modulo": 7,
+        "nombre_modulo": "Panadería Básica",
+        "nombre_unidad": "Masas Básicas",
+        "descripcion": "Preparación de masas panaderas.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 14,
+        "id_modulo": 7,
+        "nombre_modulo": "Panadería Básica",
+        "nombre_unidad": "Horneado de Panes",
+        "descripcion": "Técnicas de horneado profesional.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 15,
+        "id_modulo": 8,
+        "nombre_modulo": "Pastelería Básica",
+        "nombre_unidad": "Bizcochos y Cremas",
+        "descripcion": "Preparación de bases para pastelería.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 16,
+        "id_modulo": 8,
+        "nombre_modulo": "Pastelería Básica",
+        "nombre_unidad": "Decoración de Tortas",
+        "descripcion": "Decoración básica y avanzada.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 17,
+        "id_modulo": 9,
+        "nombre_modulo": "Servicio de Bar",
+        "nombre_unidad": "Atención al Cliente",
+        "descripcion": "Protocolos de atención en barra.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 18,
+        "id_modulo": 9,
+        "nombre_modulo": "Servicio de Bar",
+        "nombre_unidad": "Manejo de Equipos",
+        "descripcion": "Uso correcto de herramientas de bar.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 19,
+        "id_modulo": 10,
+        "nombre_modulo": "Coctelería Clásica",
+        "nombre_unidad": "Cócteles Internacionales",
+        "descripcion": "Preparación de bebidas clásicas.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 20,
+        "id_modulo": 10,
+        "nombre_modulo": "Coctelería Clásica",
+        "nombre_unidad": "Técnicas de Mezcla",
+        "descripcion": "Métodos profesionales de preparación.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 21,
+        "id_modulo": 11,
+        "nombre_modulo": "Cuidado Capilar",
+        "nombre_unidad": "Diagnóstico Capilar",
+        "descripcion": "Identificación de tipos de cabello.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 22,
+        "id_modulo": 11,
+        "nombre_modulo": "Cuidado Capilar",
+        "nombre_unidad": "Tratamientos Capilares",
+        "descripcion": "Aplicación de tratamientos profesionales.",
+        "estado": "Activo"
+    },
+
+    {
+        "id_unidad": 23,
+        "id_modulo": 12,
+        "nombre_modulo": "Corte y Peinado",
+        "nombre_unidad": "Cortes Básicos",
+        "descripcion": "Técnicas iniciales de corte.",
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 24,
+        "id_modulo": 12,
+        "nombre_modulo": "Corte y Peinado",
+        "nombre_unidad": "Peinados Profesionales",
+        "descripcion": "Diseño y elaboración de peinados.",
         "estado": "Activo"
     }
 ]

@@ -28,29 +28,20 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
         if item[campo_id] == valor_id and item["estado"] == "Activo":
             return item
     return None
-
-def modulo_ya_tiene_unidad(unidades, id_modulo):  #verifica si el módulo ya tiene una unidad
-    for unidad in unidades:
-        if unidad.get("estado") == "Activo" and unidad.get("id_modulo") == id_modulo:
-            return True
-    return False
-
-def mostrar_modulos_sin_unidad(modulos, unidades):  #muestra módulos que aún no tienen unidad
-    imprimir_titulo("MÓDULOS DISPONIBLES SIN UNIDAD")
+def mostrar_modulos(modulos):  #muestra todos los módulos activos
+    imprimir_titulo("MÓDULOS DISPONIBLES")
     encontrados = 0
+
     for modulo in modulos:
         if modulo["estado"] == "Activo":
-            if not modulo_ya_tiene_unidad(unidades, modulo["id_modulo"]):
-                encontrados += 1
-                print(
-                    f"ID: {modulo['id_modulo']} | "
-                    f"Módulo: {modulo['nombre_modulo']} | "
-                    f"Salón: {modulo['nombre_salon']}")
-    if encontrados == 0:
-        print("No hay módulos disponibles. Todos ya tienen unidad.")
+            encontrados += 1
+            print(
+                f"ID: {modulo['id_modulo']} | "
+                f"Módulo: {modulo['nombre_modulo']} | "
+                f"Salón: {modulo['nombre_salon']}"
+            )
 
     return encontrados
-
 def mostrar_unidades(unidades):  #muestra las unidades activas
     imprimir_titulo("UNIDADES DISPONIBLES")
     encontrados = 0
@@ -86,7 +77,9 @@ def registrar_unidad():  #crea una unidad para un módulo
         print("Primero debe registrar módulos.")
         input()
         return
-    if mostrar_modulos_sin_unidad(modulos, unidades) == 0:
+
+    if mostrar_modulos(modulos) == 0:
+        print("No hay módulos activos.")
         input()
         return
 
@@ -97,12 +90,19 @@ def registrar_unidad():  #crea una unidad para un módulo
         print("Módulo no encontrado.")
         input()
         return
-    if modulo_ya_tiene_unidad(unidades, id_modulo):
-        print("Este módulo ya tiene una unidad registrada.")
-        input()
-        return
 
     nombre_unidad = leer_texto("Nombre de la unidad: ")
+
+    for unidad in unidades:
+        if (
+            unidad["estado"] == "Activo"
+            and unidad["id_modulo"] == id_modulo
+            and unidad["nombre_unidad"].lower() == nombre_unidad.lower()
+        ):
+            print("Ya existe una unidad activa con ese nombre en este módulo.")
+            input()
+            return
+
     descripcion = leer_texto("Descripción: ")
 
     nueva_unidad = {
@@ -118,10 +118,13 @@ def registrar_unidad():  #crea una unidad para un módulo
         "nombre_carrera": modulo["nombre_carrera"],
         "nombre_unidad": nombre_unidad,
         "descripcion": descripcion,
-        "estado": "Activo"}
+        "estado": "Activo"
+    }
 
     unidades.append(nueva_unidad)
+
     guardar_json(RUTA_UNIDADES, unidades)
+
     print("\nUnidad registrada correctamente.")
     print(f"ID generado: {nueva_unidad['id_unidad']}")
     input()

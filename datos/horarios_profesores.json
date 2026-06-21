@@ -1,16 +1,14 @@
 [
-    {
-        "id_asignacion_horario": 1,
-        "id_profesor": 1,
-        "nombre_profesor": "jose robert",
-        "id_horario": 2,
-        "id_plantilla": 3,
-        "nombre_plantilla": "malla 2026",
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "id_salon": 2,
-        "nombre_salon": "salon A5",
-        "turno": "NOCHE",
-        "estado": "Activo"
-    }
+  {"id_asignacion_horario": 1, "id_profesor": 1, "nombre_profesor": "Carlos Alberto Vásquez Rojas", "id_horario": 1, "id_plantilla": 1, "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos", "id_carrera": 1, "nombre_carrera": "Sistemas Eléctricos", "id_salon": 1, "nombre_salon": "Aula SE-01", "turno": "Mañana", "estado": "Activo"},
+  {"id_asignacion_horario": 2, "id_profesor": 2, "nombre_profesor": "Luis Fernando Ramírez Díaz", "id_horario": 2, "id_plantilla": 1, "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos", "id_carrera": 1, "nombre_carrera": "Sistemas Eléctricos", "id_salon": 2, "nombre_salon": "Aula SE-02", "turno": "Noche", "estado": "Activo"},
+  {"id_asignacion_horario": 3, "id_profesor": 3, "nombre_profesor": "María Elena Torres Gutiérrez", "id_horario": 3, "id_plantilla": 2, "nombre_plantilla": "Plan Curricular 2026 - Asistente en Contabilidad", "id_carrera": 2, "nombre_carrera": "Asistente en Contabilidad", "id_salon": 3, "nombre_salon": "Aula AC-01", "turno": "Mañana", "estado": "Activo"},
+  {"id_asignacion_horario": 4, "id_profesor": 4, "nombre_profesor": "Ricardo Andrés Pérez Salazar", "id_horario": 4, "id_plantilla": 2, "nombre_plantilla": "Plan Curricular 2026 - Asistente en Contabilidad", "id_carrera": 2, "nombre_carrera": "Asistente en Contabilidad", "id_salon": 4, "nombre_salon": "Aula AC-02", "turno": "Noche", "estado": "Activo"},
+  {"id_asignacion_horario": 5, "id_profesor": 5, "nombre_profesor": "Carmen Rosa Villanueva Flores", "id_horario": 5, "id_plantilla": 3, "nombre_plantilla": "Plan Curricular 2026 - Gastronomía", "id_carrera": 3, "nombre_carrera": "Gastronomía", "id_salon": 5, "nombre_salon": "Laboratorio G-01", "turno": "Mañana", "estado": "Activo"},
+  {"id_asignacion_horario": 6, "id_profesor": 6, "nombre_profesor": "Miguel Ángel Sánchez Cueva", "id_horario": 6, "id_plantilla": 3, "nombre_plantilla": "Plan Curricular 2026 - Gastronomía", "id_carrera": 3, "nombre_carrera": "Gastronomía", "id_salon": 6, "nombre_salon": "Laboratorio G-02", "turno": "Tarde", "estado": "Activo"},
+  {"id_asignacion_horario": 7, "id_profesor": 7, "nombre_profesor": "Patricia Elena Díaz Mendoza", "id_horario": 7, "id_plantilla": 4, "nombre_plantilla": "Plan Curricular 2026 - Panadería y Pastelería", "id_carrera": 4, "nombre_carrera": "Panadería y Pastelería", "id_salon": 7, "nombre_salon": "Taller PP-01", "turno": "Mañana", "estado": "Activo"},
+  {"id_asignacion_horario": 8, "id_profesor": 8, "nombre_profesor": "Jorge Luis Campos Herrera", "id_horario": 8, "id_plantilla": 4, "nombre_plantilla": "Plan Curricular 2026 - Panadería y Pastelería", "id_carrera": 4, "nombre_carrera": "Panadería y Pastelería", "id_salon": 8, "nombre_salon": "Taller PP-02", "turno": "Tarde", "estado": "Activo"},
+  {"id_asignacion_horario": 9, "id_profesor": 9, "nombre_profesor": "Andrea Sofía Morales Ruiz", "id_horario": 9, "id_plantilla": 5, "nombre_plantilla": "Plan Curricular 2026 - Bartender Profesional", "id_carrera": 5, "nombre_carrera": "Bartender Profesional", "id_salon": 9, "nombre_salon": "Bar Escuela B-01", "turno": "Noche", "estado": "Activo"},
+  {"id_asignacion_horario": 10, "id_profesor": 10, "nombre_profesor": "Diego Alonso Fernández Silva", "id_horario": 10, "id_plantilla": 5, "nombre_plantilla": "Plan Curricular 2026 - Bartender Profesional", "id_carrera": 5, "nombre_carrera": "Bartender Profesional", "id_salon": 10, "nombre_salon": "Bar Escuela B-02", "turno": "Fin de Semana", "estado": "Activo"},
+  {"id_asignacion_horario": 11, "id_profesor": 11, "nombre_profesor": "Valeria Isabel Castañeda López", "id_horario": 11, "id_plantilla": 6, "nombre_plantilla": "Plan Curricular 2026 - Estilismo", "id_carrera": 6, "nombre_carrera": "Estilismo", "id_salon": 11, "nombre_salon": "Laboratorio E-01", "turno": "Mañana", "estado": "Activo"},
+  {"id_asignacion_horario": 12, "id_profesor": 12, "nombre_profesor": "Katherine Milagros Navarro Chávez", "id_horario": 12, "id_plantilla": 6, "nombre_plantilla": "Plan Curricular 2026 - Estilismo", "id_carrera": 6, "nombre_carrera": "Estilismo", "id_salon": 12, "nombre_salon": "Laboratorio E-02", "turno": "Tarde", "estado": "Activo"}
 ]

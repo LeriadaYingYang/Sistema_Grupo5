@@ -10,30 +10,34 @@ from director.utilidades import imprimir_titulo, imprimir_menu
 def menu_pagos():  #muestra el menú principal de gestión de pagos
     while True:
         imprimir_titulo("GESTIÓN DE PAGOS - DIRECTOR")
-        imprimir_menu(["Crear Cargo Oficial Por Plantilla Y Carrera", "Ver Cargos Oficiales Creados",
-                      "Modificar Cargo Oficial", "Crear Descuento O Convenio", "Asignar Descuento/Convenio A Alumno",
-                      "Crear Cargo Extra General", "Ver Resumen De Pagos Y Deudas", "Volver Al Menú Director"])
-        imprimir_menu([])
+        imprimir_menu([
+            "Crear cargo oficial",
+            "Ver cargos oficiales",
+            "Modificar cargo oficial",
+            "Crear descuento o convenio",
+            "Asignar descuento/convenio a alumno",
+            "Gestionar cargos extras",
+            "Ver resumen de pagos y deudas",
+            "Volver al menú director"])
 
-        opcion = input("Seleccione una opción: ")  #solicita una opción al usuario
-        if opcion == "1":  #crea un cargo oficial
+        opcion = input("Seleccione una opción: ").strip()
+
+        if opcion == "1":
             crear_cargo_oficial()
         elif opcion == "2":
-            menu_asignar_descuentos()
-        elif opcion == "3":  #muestra los cargos oficiales creados
             ver_cargos_oficiales()
-        elif opcion == "4":  #modifica un cargo oficial
+        elif opcion == "3":
             modificar_cargo_oficial()
-        elif opcion == "5":  #crea un descuento o convenio
+        elif opcion == "4":
             crear_descuento_convenio()
-        elif opcion == "6":  #asigna un descuento o convenio a un alumno
+        elif opcion == "5":
             asignar_descuento_alumno()
-        elif opcion == "7":  #abre el menú de cargos extras
+        elif opcion == "6":
             menu_cargos_extras()
-        elif opcion == "8":  #abre el resumen de pagos y deudas
+        elif opcion == "7":
             menu_resumen_pagos()
-        elif opcion == "9":  #vuelve al menú del director
+        elif opcion == "8":
             print("\nVolviendo al menú director")
             break
-        else:  #muestra mensaje si la opción no existe
+        else:
             print("Opción inválida.")

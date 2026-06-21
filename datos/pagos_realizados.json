@@ -1,1 +1,222 @@
-[]
+[
+    {
+        "id_pago": 1,
+        "id_alumno": 1,
+        "nombre_alumno": "Daniel Ramirez",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-10",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 2,
+        "id_alumno": 1,
+        "nombre_alumno": "Daniel Ramirez",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-15",
+        "metodo_pago": "Transferencia",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 3,
+        "id_alumno": 2,
+        "nombre_alumno": "Sara Alvarez",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-08",
+        "metodo_pago": "Efectivo",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 4,
+        "id_alumno": 2,
+        "nombre_alumno": "Sara Alvarez",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-16",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 5,
+        "id_alumno": 11,
+        "nombre_alumno": "Fernando Saldaña",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-12",
+        "metodo_pago": "Plin",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 6,
+        "id_alumno": 11,
+        "nombre_alumno": "Fernando Saldaña",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-18",
+        "metodo_pago": "Transferencia",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 7,
+        "id_alumno": 12,
+        "nombre_alumno": "Marcos Juarez",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-09",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 8,
+        "id_alumno": 21,
+        "nombre_alumno": "Pedro Suarez",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-05",
+        "metodo_pago": "Efectivo",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 9,
+        "id_alumno": 21,
+        "nombre_alumno": "Pedro Suarez",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-20",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 10,
+        "id_alumno": 22,
+        "nombre_alumno": "Kevin Tejada",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-11",
+        "metodo_pago": "Transferencia",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 11,
+        "id_alumno": 31,
+        "nombre_alumno": "Luna Lara",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-07",
+        "metodo_pago": "Plin",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 12,
+        "id_alumno": 31,
+        "nombre_alumno": "Luna Lara",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-14",
+        "metodo_pago": "Plin",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 13,
+        "id_alumno": 39,
+        "nombre_alumno": "Jheny Campos",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-10",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 14,
+        "id_alumno": 39,
+        "nombre_alumno": "Jheny Campos",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-17",
+        "metodo_pago": "Efectivo",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 15,
+        "id_alumno": 45,
+        "nombre_alumno": "Aurora Ozuma",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-06",
+        "metodo_pago": "Transferencia",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 16,
+        "id_alumno": 45,
+        "nombre_alumno": "Aurora Ozuma",
+        "id_cargo_oficial": 2,
+        "nombre_cargo": "Pensión Enero",
+        "monto": 180.00,
+        "fecha_pago": "2026-01-13",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 17,
+        "id_alumno": 46,
+        "nombre_alumno": "Emilia Nolazco",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-08",
+        "metodo_pago": "Efectivo",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 18,
+        "id_alumno": 48,
+        "nombre_alumno": "Milagros Portal",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-09",
+        "metodo_pago": "Yape",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 19,
+        "id_alumno": 49,
+        "nombre_alumno": "Dominga Cameron",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-15",
+        "metodo_pago": "Transferencia",
+        "estado": "Activo"
+    },
+    {
+        "id_pago": 20,
+        "id_alumno": 50,
+        "nombre_alumno": "Becky Trujillo",
+        "id_cargo_oficial": 1,
+        "nombre_cargo": "Matrícula 2026",
+        "monto": 150.00,
+        "fecha_pago": "2026-01-16",
+        "metodo_pago": "Plin",
+        "estado": "Activo"
+    }
+]

@@ -1,26 +1,82 @@
 [
     {
         "id_cargo_oficial": 1,
-        "id_plantilla": 1,
-        "nombre_plantilla": "malla 2025",
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "nombre_cargo": "mesnualidad",
-        "monto": 350.0,
-        "frecuencia": "Mensual",
-        "fecha_limite": "1",
+        "nombre": "Matrícula 2026",
+        "descripcion": "Pago único de matrícula para el periodo académico 2026.",
+        "monto": 150.00,
+        "tipo": "Matrícula",
         "estado": "Activo"
     },
     {
         "id_cargo_oficial": 2,
-        "id_plantilla": 3,
-        "nombre_plantilla": "malla 2026",
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_cargo": "matricula",
-        "monto": 200.0,
-        "frecuencia": "Único",
-        "fecha_limite": "20 de junio",
+        "nombre": "Pensión Enero",
+        "descripcion": "Primera mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 3,
+        "nombre": "Pensión Febrero",
+        "descripcion": "Segunda mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 4,
+        "nombre": "Pensión Marzo",
+        "descripcion": "Tercera mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 5,
+        "nombre": "Pensión Abril",
+        "descripcion": "Cuarta mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 6,
+        "nombre": "Pensión Mayo",
+        "descripcion": "Quinta mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 7,
+        "nombre": "Pensión Junio",
+        "descripcion": "Sexta mensualidad del periodo académico.",
+        "monto": 180.00,
+        "tipo": "Pensión",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 8,
+        "nombre": "Certificado de Estudios",
+        "descripcion": "Emisión de certificado académico.",
+        "monto": 35.00,
+        "tipo": "Trámite",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 9,
+        "nombre": "Constancia de Matrícula",
+        "descripcion": "Emisión de constancia de matrícula.",
+        "monto": 20.00,
+        "tipo": "Trámite",
+        "estado": "Activo"
+    },
+    {
+        "id_cargo_oficial": 10,
+        "nombre": "Derecho de Examen Sustitutorio",
+        "descripcion": "Pago por evaluación de recuperación.",
+        "monto": 40.00,
+        "tipo": "Evaluación",
         "estado": "Activo"
     }
 ]
