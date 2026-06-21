@@ -22,6 +22,16 @@ def leer_entero_positivo(mensaje):  #valida que el número sea entero positivo
         except ValueError:
             print("Ingrese un número válido.")
 
+def leer_entero_no_negativo(mensaje):  #permite ingresar 0 para volver
+    while True:
+        try:
+            numero = int(input(mensaje))
+            if numero >= 0:
+                return numero
+            print("El número debe ser 0 o mayor.")
+        except ValueError:
+            print("Ingrese un número válido.")
+
 def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su id
     for item in lista:
         if item[campo_id] == valor_id and item["estado"] == "Activo":
@@ -214,8 +224,8 @@ def ver_salones():  #muestra los salones registrados
         print("No hay salones activos.")
     input()
 
-def cerrar_salon():  #cierra un salón activo
-    imprimir_titulo("CERRAR SALON")
+def desactivar_salon():  #oculta un salón activo
+    imprimir_titulo("DESACTIVAR SALON")
 
     salones = leer_json(RUTA_SALONES)
 
@@ -223,30 +233,35 @@ def cerrar_salon():  #cierra un salón activo
         print("No hay salones registrados.")
         input()
         return
-    if mostrar_salones() == 0:
-        print("No hay salones activos para cerrar.")
-        input()
-        return
-    print("0. Volver")
-    id_salon = leer_entero_positivo("\nIngrese ID del salón a cerrar: ")
 
-    if id_salon == 0:
-        return
-    salon = buscar_por_id(salones, "id_salon", id_salon)
-    if salon is None:
-        print("Salón no encontrado.")
-        input()
-        return
-    confirmar = input(f"¿Desea cerrar el salón {salon['nombre_salon']}? (s/n): ").lower()
-    if confirmar != "s":
+    while True:
+        if mostrar_salones() == 0:
+            print("No hay salones activos para desactivar.")
+            input()
+            return
+
+        print("0. Volver")
+        id_salon = leer_entero_no_negativo("\nIngrese ID del salón a desactivar: ")
+
+        if id_salon == 0:
+            break
+
+        salon = buscar_por_id(salones, "id_salon", id_salon)
+
+        if salon is None:
+            print("Salón no encontrado.")
+            continue
+
+        confirmar = input(f"¿Desea desactivar el salón {salon['nombre_salon']}? (s/n): ").lower()
+
+        if confirmar == "s":
+            salon["estado"] = "Oculto"
+            guardar_json(RUTA_SALONES, salones)
+            print("\nSalón desactivado correctamente.")
+            input()
+            break
+
         print("Operación cancelada.")
-        input()
-        return
-
-    salon["estado"] = "Cerrado"
-    guardar_json(RUTA_SALONES, salones)
-    print("\nSalón cerrado correctamente.")
-    input()
 
 def mostrar_carreras():  #muestra las carreras activas para seleccionar
     carreras = leer_json(RUTA_CARRERAS)
@@ -288,3 +303,65 @@ def mostrar_plantillas_por_carrera(id_carrera):  #muestra las plantillas de una 
     if encontrados == 0:
         print("No hay plantillas para la carrera del salón.")
     return encontrados
+
+def mostrar_salones_ocultos():  #muestra los salones ocultos
+    salones = leer_json(RUTA_SALONES)
+    imprimir_titulo("SALONES OCULTOS")
+    encontrados = 0
+
+    for salon in salones:
+        if salon.get("estado") == "Oculto":
+            encontrados += 1
+            print(
+                f"ID: {salon.get('id_salon', 'Sin ID')} | "
+                f"Salón: {salon.get('nombre_salon', 'Sin salón')} | "
+                f"Carrera: {salon.get('nombre_carrera', 'Sin carrera')}"
+            )
+
+    return encontrados
+
+def activar_salon():  #activa un salón oculto
+    imprimir_titulo("ACTIVAR SALON")
+
+    salones = leer_json(RUTA_SALONES)
+
+    if len(salones) == 0:
+        print("No hay salones registrados.")
+        input()
+        return
+
+    while True:
+        if mostrar_salones_ocultos() == 0:
+            print("No hay salones ocultos para activar.")
+            input()
+            return
+
+        print("0. Volver")
+        id_salon = leer_entero_no_negativo("\nIngrese ID del salón a activar: ")
+
+        if id_salon == 0:
+            break
+
+        salon_encontrado = None
+
+        for salon in salones:
+            if salon.get("id_salon") == id_salon and salon.get("estado") == "Oculto":
+                salon_encontrado = salon
+                break
+
+        if salon_encontrado is None:
+            print("Salón oculto no encontrado.")
+            continue
+
+        confirmar = input(
+            f"¿Desea activar el salón {salon_encontrado.get('nombre_salon', 'Sin salón')}? (s/n): "
+        ).lower()
+
+        if confirmar == "s":
+            salon_encontrado["estado"] = "Activo"
+            guardar_json(RUTA_SALONES, salones)
+            print("\nSalón activado correctamente.")
+            input()
+            break
+
+        print("Operación cancelada.")

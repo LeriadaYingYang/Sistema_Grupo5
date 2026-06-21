@@ -8,10 +8,10 @@
         "id_carrera": 1,
         "nombre_carrera": "sistemas",
         "nombre_plantilla": "malla 2025",
-        "nombre_unidad": "unidad1",
+        "nombre_unidad": "dsdsa",
         "descripcion": "",
         "orden": 1,
-        "estado": "Activo"
+        "estado": "Oculto"
     },
     {
         "id_unidad": 2,
@@ -81,6 +81,21 @@
         "nombre_unidad": "practico",
         "descripcion": "salida de campo",
         "orden": 2,
+        "estado": "Activo"
+    },
+    {
+        "id_unidad": 7,
+        "id_modulo": 1,
+        "nombre_modulo": "1",
+        "id_salon": 1,
+        "nombre_salon": "s2",
+        "turno": "mañana",
+        "id_plantilla": 1,
+        "nombre_plantilla": "malla 2025",
+        "id_carrera": 1,
+        "nombre_carrera": "sistemas",
+        "nombre_unidad": "2",
+        "descripcion": "2",
         "estado": "Activo"
     }
 ]

@@ -31,7 +31,7 @@ def buscar_por_id(lista, campo_id, valor_id):  #busca un registro activo por su 
 
 def modulo_ya_tiene_unidad(unidades, id_modulo):  #verifica si el módulo ya tiene una unidad
     for unidad in unidades:
-        if unidad["estado"] == "Activo" and unidad["id_modulo"] == id_modulo:
+        if unidad.get("estado") == "Activo" and unidad.get("id_modulo") == id_modulo:
             return True
     return False
 
@@ -54,15 +54,27 @@ def mostrar_modulos_sin_unidad(modulos, unidades):  #muestra módulos que aún n
 def mostrar_unidades(unidades):  #muestra las unidades activas
     imprimir_titulo("UNIDADES DISPONIBLES")
     encontrados = 0
+
     for unidad in unidades:
-        if unidad["estado"] == "Activo":
+        if unidad.get("estado") == "Activo":
             encontrados += 1
             print(
-                f"ID: {unidad['id_unidad']} | "
-                f"Unidad: {unidad['nombre_unidad']} | "
-                f"Módulo: {unidad['nombre_modulo']}")
+                f"ID: {unidad.get('id_unidad', 'Sin ID')} | "
+                f"Unidad: {unidad.get('nombre_unidad', 'Sin nombre')} | "
+                f"Módulo: {unidad.get('nombre_modulo', 'Sin módulo')}"
+            )
 
     return encontrados
+
+def leer_entero_no_negativo(mensaje):  #permite ingresar 0 para volver
+    while True:
+        try:
+            numero = int(input(mensaje))
+            if numero >= 0:
+                return numero
+            print("El número debe ser 0 o mayor.")
+        except ValueError:
+            print("Ingrese un número válido.")
 
 def registrar_unidad():  #crea una unidad para un módulo
     imprimir_titulo("CREAR UNIDAD")
@@ -136,13 +148,13 @@ def editar_unidad():  #edita una unidad registrada por opciones
         return
     while True:
         imprimir_titulo("DATOS DE LA UNIDAD")
-        print(f"ID: {unidad['id_unidad']}")
-        print(f"Carrera: {unidad['nombre_carrera']}")
-        print(f"Plantilla: {unidad['nombre_plantilla']}")
-        print(f"Salón: {unidad['nombre_salon']}")
-        print(f"Módulo: {unidad['nombre_modulo']}")
-        print(f"Unidad: {unidad['nombre_unidad']}")
-        print(f"Descripción: {unidad['descripcion']}")
+        print(f"ID: {unidad.get('id_unidad', 'Sin ID')}")
+        print(f"Carrera: {unidad.get('nombre_carrera', 'Sin carrera')}")
+        print(f"Plantilla: {unidad.get('nombre_plantilla', 'Sin plantilla')}")
+        print(f"Salón: {unidad.get('nombre_salon', 'Sin salón')}")
+        print(f"Módulo: {unidad.get('nombre_modulo', 'Sin módulo')}")
+        print(f"Unidad: {unidad.get('nombre_unidad', 'Sin nombre')}")
+        print(f"Descripción: {unidad.get('descripcion', 'Sin descripción')}")
 
         print("\n¿Qué desea editar?")
         print("1. Nombre")
@@ -181,18 +193,20 @@ def ver_unidades():  #muestra las unidades registradas
     encontrados = 0
 
     for unidad in unidades:
-        if unidad["estado"] == "Activo":
+        if unidad.get("estado") == "Activo":
             encontrados += 1
             print("\n-----------------------------")
-            print(f"ID: {unidad['id_unidad']}")
-            print(f"Carrera: {unidad['nombre_carrera']}")
-            print(f"Plantilla: {unidad['nombre_plantilla']}")
-            print(f"Salón: {unidad['nombre_salon']}")
-            print(f"Módulo: {unidad['nombre_modulo']}")
-            print(f"Unidad: {unidad['nombre_unidad']}")
-            print(f"Descripción: {unidad['descripcion']}")
+            print(f"ID: {unidad.get('id_unidad', 'Sin ID')}")
+            print(f"Carrera: {unidad.get('nombre_carrera', 'Sin carrera')}")
+            print(f"Plantilla: {unidad.get('nombre_plantilla', 'Sin plantilla')}")
+            print(f"Salón: {unidad.get('nombre_salon', 'Sin salón')}")
+            print(f"Módulo: {unidad.get('nombre_modulo', 'Sin módulo')}")
+            print(f"Unidad: {unidad.get('nombre_unidad', 'Sin nombre')}")
+            print(f"Descripción: {unidad.get('descripcion', 'Sin descripción')}")
+
     if encontrados == 0:
         print("No hay unidades activas.")
+
     input()
 
 def desactivar_unidad():  #oculta una unidad activa
@@ -209,7 +223,7 @@ def desactivar_unidad():  #oculta una unidad activa
             input()
             return
         print("0. Volver")
-        id_unidad = leer_entero_positivo("\nIngrese ID de la unidad a ocultar: ")
+        id_unidad = leer_entero_no_negativo("\nIngrese ID de la unidad a ocultar: ")
 
         if id_unidad == 0:
             break
@@ -228,4 +242,69 @@ def desactivar_unidad():  #oculta una unidad activa
             print("\nUnidad ocultada correctamente.")
             input()
             break
+        print("Operación cancelada.")
+
+def mostrar_unidades_ocultas():  #muestra las unidades ocultas
+    unidades = leer_json(RUTA_UNIDADES)
+    imprimir_titulo("UNIDADES OCULTAS")
+    encontrados = 0
+
+    for unidad in unidades:
+        if unidad.get("estado") == "Oculto":
+            encontrados += 1
+            print(
+                f"ID: {unidad.get('id_unidad', 'Sin ID')} | "
+                f"Unidad: {unidad.get('nombre_unidad', 'Sin nombre')} | "
+                f"Módulo: {unidad.get('nombre_modulo', 'Sin módulo')}"
+            )
+
+    return encontrados
+
+def activar_unidad():  #activa una unidad oculta
+    imprimir_titulo("ACTIVAR UNIDAD")
+
+    unidades = leer_json(RUTA_UNIDADES)
+
+    if len(unidades) == 0:
+        print("No hay unidades registradas.")
+        input()
+        return
+
+    while True:
+        if mostrar_unidades_ocultas() == 0:
+            print("No hay unidades ocultas para activar.")
+            input()
+            return
+
+        print("0. Volver")
+        id_unidad = leer_entero_no_negativo("\nIngrese ID de la unidad a activar: ")
+
+        if id_unidad == 0:
+            break
+
+        unidad_encontrada = None
+
+        for unidad in unidades:
+            if (
+                unidad.get("id_unidad") == id_unidad
+                and unidad.get("estado") == "Oculto"
+            ):
+                unidad_encontrada = unidad
+                break
+
+        if unidad_encontrada is None:
+            print("Unidad oculta no encontrada.")
+            continue
+
+        confirmar = input(
+            f"¿Desea activar {unidad_encontrada.get('nombre_unidad', 'Sin nombre')}? (s/n): "
+        ).lower()
+
+        if confirmar == "s":
+            unidad_encontrada["estado"] = "Activo"
+            guardar_json(RUTA_UNIDADES, unidades)
+            print("\nUnidad activada correctamente.")
+            input()
+            break
+
         print("Operación cancelada.")

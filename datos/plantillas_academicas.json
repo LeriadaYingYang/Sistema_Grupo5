@@ -30,5 +30,13 @@
         "nombre_plantilla": "@",
         "descripcion": "",
         "estado": "Activo"
+    },
+    {
+        "id_plantilla": 5,
+        "id_carrera": 2,
+        "nombre_carrera": "Administracion ",
+        "nombre_plantilla": "sdsasadq3we2",
+        "descripcion": "dsadsa",
+        "estado": "Activo"
     }
 ]
