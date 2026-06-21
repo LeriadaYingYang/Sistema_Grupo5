@@ -1,18 +1,98 @@
 [
     {
         "id_salon": 1,
-        "nombre_salon": "s2",
-        "turno": "mañana",
+        "nombre_salon": "Aula SE-01",
+        "turno": "Mañana",
         "id_carrera": 1,
-        "nombre_carrera": "sistemas",
+        "nombre_carrera": "Sistemas Eléctricos",
         "estado": "Activo"
     },
     {
         "id_salon": 2,
-        "nombre_salon": "salon A5",
-        "turno": "NOCHE",
+        "nombre_salon": "Aula SE-02",
+        "turno": "Noche",
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 3,
+        "nombre_salon": "Aula AC-01",
+        "turno": "Mañana",
         "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
+        "nombre_carrera": "Asistente en Contabilidad",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 4,
+        "nombre_salon": "Aula AC-02",
+        "turno": "Noche",
+        "id_carrera": 2,
+        "nombre_carrera": "Asistente en Contabilidad",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 5,
+        "nombre_salon": "Laboratorio G-01",
+        "turno": "Mañana",
+        "id_carrera": 3,
+        "nombre_carrera": "Gastronomía",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 6,
+        "nombre_salon": "Laboratorio G-02",
+        "turno": "Tarde",
+        "id_carrera": 3,
+        "nombre_carrera": "Gastronomía",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 7,
+        "nombre_salon": "Taller PP-01",
+        "turno": "Mañana",
+        "id_carrera": 4,
+        "nombre_carrera": "Panadería y Pastelería",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 8,
+        "nombre_salon": "Taller PP-02",
+        "turno": "Tarde",
+        "id_carrera": 4,
+        "nombre_carrera": "Panadería y Pastelería",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 9,
+        "nombre_salon": "Bar Escuela B-01",
+        "turno": "Noche",
+        "id_carrera": 5,
+        "nombre_carrera": "Bartender Profesional",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 10,
+        "nombre_salon": "Bar Escuela B-02",
+        "turno": "Fin de Semana",
+        "id_carrera": 5,
+        "nombre_carrera": "Bartender Profesional",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 11,
+        "nombre_salon": "Laboratorio E-01",
+        "turno": "Mañana",
+        "id_carrera": 6,
+        "nombre_carrera": "Estilismo",
+        "estado": "Activo"
+    },
+    {
+        "id_salon": 12,
+        "nombre_salon": "Laboratorio E-02",
+        "turno": "Tarde",
+        "id_carrera": 6,
+        "nombre_carrera": "Estilismo",
         "estado": "Activo"
     }
 ]

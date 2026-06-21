@@ -1,47 +1,66 @@
 [
     {
         "id_descuento": 1,
-        "nombre": "conveio con upn",
-        "tipo": "Monto fijo",
-        "valor": 20.0,
-        "motivo": "se decunta por descuento",
-        "aplica_a": "Cargo oficial",
+        "nombre": "Convenio Empresarial",
+        "descripcion": "Descuento para estudiantes provenientes de empresas con convenio.",
+        "tipo": "Convenio",
+        "porcentaje": 15,
         "estado": "Activo"
     },
     {
         "id_descuento": 2,
-        "nombre": "mesas",
-        "tipo": "Porcentaje",
-        "valor": -110.0,
-        "motivo": "",
-        "aplica_a": "Cargo oficial",
+        "nombre": "Pronto Pago",
+        "descripcion": "Descuento por pago realizado antes de la fecha de vencimiento.",
+        "tipo": "Descuento",
+        "porcentaje": 10,
         "estado": "Activo"
     },
     {
         "id_descuento": 3,
-        "nombre": "sald",
-        "tipo": "Monto fijo",
-        "valor": -200.0,
-        "motivo": "dsdsa",
-        "aplica_a": "Cargo oficial",
+        "nombre": "Excelencia Académica",
+        "descripcion": "Beneficio para alumnos con alto rendimiento académico.",
+        "tipo": "Beca",
+        "porcentaje": 25,
         "estado": "Activo"
     },
     {
         "id_descuento": 4,
-        "nombre": "sali",
-        "tipo": "Monto fijo",
-        "valor": -200.0,
-        "motivo": "1",
-        "aplica_a": "Cargo oficial",
+        "nombre": "Familiar Directo",
+        "descripcion": "Beneficio para hermanos o familiares matriculados.",
+        "tipo": "Descuento",
+        "porcentaje": 20,
         "estado": "Activo"
     },
     {
         "id_descuento": 5,
-        "nombre": "sdsa",
-        "tipo": "Monto fijo",
-        "valor": -20.0,
-        "motivo": "sda",
-        "aplica_a": "Cargo oficial",
+        "nombre": "Trabajador IISEM",
+        "descripcion": "Beneficio para trabajadores y colaboradores de la institución.",
+        "tipo": "Convenio",
+        "porcentaje": 30,
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 6,
+        "nombre": "Beca Social",
+        "descripcion": "Apoyo económico para estudiantes de bajos recursos.",
+        "tipo": "Beca",
+        "porcentaje": 40,
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 7,
+        "nombre": "Convenio Municipal",
+        "descripcion": "Convenio con municipalidades y entidades públicas.",
+        "tipo": "Convenio",
+        "porcentaje": 15,
+        "estado": "Activo"
+    },
+    {
+        "id_descuento": 8,
+        "nombre": "Alumno Reincorporado",
+        "descripcion": "Beneficio especial para estudiantes reincorporados.",
+        "tipo": "Descuento",
+        "porcentaje": 10,
         "estado": "Activo"
     }
 ]

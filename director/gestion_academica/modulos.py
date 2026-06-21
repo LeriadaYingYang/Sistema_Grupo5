@@ -174,12 +174,11 @@ def registrar_modulo():  #registra módulos después de seleccionar carrera, pla
             "id_salon": salon["id_salon"],
             "nombre_salon": salon["nombre_salon"],
             "turno": salon["turno"],
-            "id_unidad": None,
-            "nombre_unidad": "",
             "nombre_modulo": nombre,
             "descripcion": descripcion,
             "orden": i,
-            "estado": "Activo"}
+            "estado": "Activo"
+        }
 
         modulos.append(nuevo_modulo)
         print(f"Módulo agregado: {nombre}")
@@ -250,68 +249,6 @@ def editar_modulo():  #edita los datos de un módulo por opciones
         else:
             print("Opción inválida.")
 
-def asignar_modulo_unidad():  #asigna una unidad a un módulo
-    imprimir_titulo("ASIGNAR MÓDULO A UNIDAD")
-
-    modulos = leer_json(RUTA_MODULOS)
-    unidades = leer_json(RUTA_UNIDADES)
-
-    if len(modulos) == 0:
-        print("No hay módulos registrados.")
-        input()
-        return
-
-    if len(unidades) == 0:
-        print("No hay unidades registradas.")
-        input()
-        return
-
-    if mostrar_modulos(modulos) == 0:
-        print("No hay módulos activos.")
-        input()
-        return
-
-    id_modulo = leer_entero_positivo("\nIngrese ID del módulo: ")
-    modulo = buscar_por_id(modulos, "id_modulo", id_modulo)
-
-    if modulo is None:
-        print("Módulo no encontrado.")
-        input()
-        return
-
-    imprimir_titulo("UNIDADES DISPONIBLES")
-    encontrados = 0
-
-    for unidad in unidades:
-        if unidad["estado"] == "Activo":
-            encontrados += 1
-            print(f"ID: {unidad['id_unidad']} | {unidad['nombre_unidad']}")
-
-    if encontrados == 0:
-        print("No hay unidades activas.")
-        input()
-        return
-
-    id_unidad = leer_entero_positivo("\nIngrese ID de unidad: ")
-    unidad = buscar_por_id(unidades, "id_unidad", id_unidad)
-
-    if unidad is None:
-        print("Unidad no encontrada.")
-        input()
-        return
-
-    if modulo.get("id_unidad") == unidad["id_unidad"]:
-        print("Este módulo ya tiene asignada esta unidad.")
-        input()
-        return
-
-    modulo["id_unidad"] = unidad["id_unidad"]
-    modulo["nombre_unidad"] = unidad["nombre_unidad"]
-
-    guardar_json(RUTA_MODULOS, modulos)
-
-    print("\nUnidad asignada correctamente al módulo.")
-    input()
 
 def ver_modulos():  #muestra los módulos registrados
     imprimir_titulo("VER MÓDULOS")
@@ -336,7 +273,6 @@ def ver_modulos():  #muestra los módulos registrados
             print(f"Salón: {modulo['nombre_salon']}")
             print(f"Turno: {modulo['turno']}")
             print(f"Módulo: {modulo['nombre_modulo']}")
-            print(f"Unidad: {modulo['nombre_unidad']}")
             print(f"Descripción: {modulo['descripcion']}")
 
     if encontrados == 0:

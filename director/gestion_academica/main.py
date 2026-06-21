@@ -1,8 +1,8 @@
 from director.gestion_academica.carreras import registrar_carrera, editar_carrera, buscar_carrera, ver_carreras, desactivar_carrera, activar_carrera
 from director.gestion_academica.plantillas import crear_plantilla, editar_plantilla, asignar_carrera_plantilla, ver_plantillas, desactivar_plantilla,activar_plantilla
 from director.gestion_academica.salones import registrar_salon, editar_salon, asignar_plantilla_salon, ver_salones, desactivar_salon, activar_salon
-from director.gestion_academica.unidades import registrar_unidad, editar_unidad, asignar_unidad_salon, ver_unidades, desactivar_unidad, activar_unidad
-from director.gestion_academica.modulos import registrar_modulo, editar_modulo, asignar_modulo_unidad, ver_modulos, desactivar_modulo
+from director.gestion_academica.unidades import registrar_unidad, editar_unidad, ver_unidades, desactivar_unidad, activar_unidad
+from director.gestion_academica.modulos import registrar_modulo, editar_modulo, ver_modulos, desactivar_modulo
 from director.utilidades import imprimir_titulo, imprimir_menu
 
 
@@ -25,8 +25,8 @@ def menu_academico():  #muestra el menú principal académico
             "Gestionar Carreras",
             "Gestionar Plantillas Académicas",
             "Gestionar Salones",
-            "Gestionar Unidades",
             "Gestionar Módulos",
+            "Gestionar Unidades",
             "Volver"])
 
         opcion = leer_opcion(6)
@@ -37,9 +37,9 @@ def menu_academico():  #muestra el menú principal académico
         elif opcion == 3:
             menu_salones()
         elif opcion == 4:
-            menu_unidades()
-        elif opcion == 5:
             menu_modulos()
+        elif opcion == 5:
+            menu_unidades()
         elif opcion == 6:
             print("\nVolviendo al menú director")
             break
@@ -135,25 +135,24 @@ def menu_unidades():  #muestra el menú de unidades
         imprimir_menu([
             "Crear unidad",
             "Editar unidad",
-            "Asignar unidad a módulo",
             "Ver unidades",
             "Desactivar unidad",
             "Activar unidad",
             "Volver"])
-        opcion = leer_opcion(7)
+
+        opcion = leer_opcion(6)
+
         if opcion == 1:
             registrar_unidad()
         elif opcion == 2:
             editar_unidad()
         elif opcion == 3:
-            asignar_unidad_salon()
-        elif opcion == 4:
             ver_unidades()
-        elif opcion == 5:
+        elif opcion == 4:
             desactivar_unidad()
-        elif opcion == 6:
+        elif opcion == 5:
             activar_unidad()
-        elif opcion == 7:
+        elif opcion == 6:
             break
 
 def menu_modulos():  #muestra el menú de módulos
@@ -162,21 +161,19 @@ def menu_modulos():  #muestra el menú de módulos
         imprimir_menu([
             "Crear módulo",
             "Editar módulo",
-            "Asignar módulo a unidad",
             "Ver módulos",
             "Desactivar módulo",
             "Volver"])
 
-        opcion = leer_opcion(6)
+        opcion = leer_opcion(5)
+
         if opcion == 1:
             registrar_modulo()
         elif opcion == 2:
             editar_modulo()
         elif opcion == 3:
-            asignar_modulo_unidad()
-        elif opcion == 4:
             ver_modulos()
-        elif opcion == 5:
+        elif opcion == 4:
             desactivar_modulo()
-        elif opcion == 6:
+        elif opcion == 5:
             break

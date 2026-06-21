@@ -1,42 +1,50 @@
 [
     {
         "id_plantilla": 1,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "malla 2025",
-        "descripcion": "",
+        "id_carrera": 1,
+        "nombre_carrera": "Sistemas Eléctricos",
+        "nombre_plantilla": "Plan Curricular 2026 - Sistemas Eléctricos",
+        "descripcion": "Malla académica oficial para la carrera de Sistemas Eléctricos.",
         "estado": "Activo"
     },
     {
         "id_plantilla": 2,
-        "id_carrera": 1,
-        "nombre_carrera": "sistemas",
-        "nombre_plantilla": "2026",
-        "descripcion": "ds",
+        "id_carrera": 2,
+        "nombre_carrera": "Asistente en Contabilidad",
+        "nombre_plantilla": "Plan Curricular 2026 - Asistente en Contabilidad",
+        "descripcion": "Malla académica oficial para la carrera de Asistente en Contabilidad.",
         "estado": "Activo"
     },
     {
         "id_plantilla": 3,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "malla 2026",
-        "descripcion": "malla recien creada",
+        "id_carrera": 3,
+        "nombre_carrera": "Gastronomía",
+        "nombre_plantilla": "Plan Curricular 2026 - Gastronomía",
+        "descripcion": "Malla académica oficial para la carrera de Gastronomía.",
         "estado": "Activo"
     },
     {
         "id_plantilla": 4,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "@",
-        "descripcion": "",
+        "id_carrera": 4,
+        "nombre_carrera": "Panadería y Pastelería",
+        "nombre_plantilla": "Plan Curricular 2026 - Panadería y Pastelería",
+        "descripcion": "Malla académica oficial para la carrera de Panadería y Pastelería.",
         "estado": "Activo"
     },
     {
         "id_plantilla": 5,
-        "id_carrera": 2,
-        "nombre_carrera": "Administracion ",
-        "nombre_plantilla": "sdsasadq3we2",
-        "descripcion": "dsadsa",
+        "id_carrera": 5,
+        "nombre_carrera": "Bartender Profesional",
+        "nombre_plantilla": "Plan Curricular 2026 - Bartender Profesional",
+        "descripcion": "Malla académica oficial para la carrera de Bartender Profesional.",
+        "estado": "Activo"
+    },
+    {
+        "id_plantilla": 6,
+        "id_carrera": 6,
+        "nombre_carrera": "Estilismo",
+        "nombre_plantilla": "Plan Curricular 2026 - Estilismo",
+        "descripcion": "Malla académica oficial para la carrera de Estilismo.",
         "estado": "Activo"
     }
 ]

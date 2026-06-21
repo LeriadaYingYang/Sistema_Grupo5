@@ -64,7 +64,10 @@ def obtener_cargos_extras_alumno(cargos_extras, id_plantilla, id_carrera, id_sal
     for cargo in cargos_extras:
         if cargo["estado"] != "Activo":
             continue
-        if cargo["id_plantilla"] != id_plantilla:
+        if cargo.get("aplica_a") == "General":
+            resultado.append(cargo)
+            continue
+        if cargo.get("id_plantilla") != id_plantilla:
             continue
         if cargo["aplica_a"] == "Carrera" and cargo["id_carrera"] == id_carrera:
             resultado.append(cargo)

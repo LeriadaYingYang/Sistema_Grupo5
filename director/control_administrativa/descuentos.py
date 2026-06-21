@@ -22,10 +22,10 @@ def crear_descuento_convenio():  #registra un descuento o convenio para aplicar 
     imprimir_titulo("CREAR DESCUENTO O CONVENIO")
 
     descuentos = leer_json(RUTA_DESCUENTOS)
-    nombre = input("Nombre del descuento/convenio: ")
+    nombre = pedir_texto("Nombre del descuento/convenio: ")
     tipo = pedir_tipo_descuento()
     try:
-        valor = float(input("Valor del descuento: "))
+        valor = pedir_valor_descuento(tipo)
     except ValueError:
         print("Debe ingresar un valor válido.")
         return
@@ -43,3 +43,24 @@ def crear_descuento_convenio():  #registra un descuento o convenio para aplicar 
 
     print("\nDescuento/convenio creado correctamente.")
     print("Este descuento solo aplica a cargos oficiales.")
+
+def pedir_texto(mensaje):
+    while True:
+        texto = input(mensaje).strip()
+        if texto:
+            return texto
+        print("El campo no puede estar vacío.")
+
+
+def pedir_valor_descuento(tipo):
+    while True:
+        try:
+            valor = float(input("Valor del descuento: "))
+            if valor < 0:
+                print("El valor no puede ser negativo.")
+            elif tipo == "Porcentaje" and valor > 100:
+                print("El porcentaje no puede ser mayor a 100.")
+            else:
+                return round(valor, 2)
+        except ValueError:
+            print("Debe ingresar un valor numérico.")
