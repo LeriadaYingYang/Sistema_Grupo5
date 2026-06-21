@@ -7,10 +7,7 @@ RUTA_ALUMNOS = "datos/alumnos.json"
 RUTA_ASIGNACIONES = "datos/alumnos_asignaciones.json"
 RUTA_CARGOS_EXTRAS = "datos/cargos_extras.json"
 
-
-# ====================================================================
-# FUNCIONES DE VALIDACIÓN (A PRUEBA DE ERRORES)
-# ====================================================================
+# FUNCIONES DE VALIDACIÓN
 
 def pedir_entero(mensaje):
     while True:
