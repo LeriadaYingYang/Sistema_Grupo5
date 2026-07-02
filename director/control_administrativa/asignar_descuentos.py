@@ -1,4 +1,4 @@
-from basedatos_json import leer_json, guardar_json, generar_id
+from database.basedatos import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 from director.control_administrativa.descuentos import crear_descuento_convenio, ver_descuentos_convenios
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"

@@ -1,6 +1,6 @@
 from director.main import menu_director
 from director.utilidades import limpiar_pantalla
-from basedatos_json import leer_json
+from database.basedatos import leer_json
 
 RUTA_LOGIN = "datos/login_director.json"
 

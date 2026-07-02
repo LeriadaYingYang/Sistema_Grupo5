@@ -1,4 +1,4 @@
-from basedatos_json import leer_json
+from database.basedatos import leer_json
 from director.utilidades import imprimir_titulo
 
 RUTA_PLANTILLAS = "datos/plantillas_academicas.json"

@@ -1,7 +1,4 @@
-from director.gestion_docente.main import menu_profesores
-from director.gestion_estudiante.main import menu_alumnos
 from director.gestion_academica.main import menu_academico
-from director.control_academica.main import menu_control_academico
 from director.control_administrativa.main import menu_pagos
 from director.utilidades import imprimir_titulo, imprimir_menu
 
@@ -21,14 +18,6 @@ def menu_director():
         if opcion == "1":
             menu_academico()
 
-        elif opcion == "2":
-            menu_control_academico()
-
-        elif opcion == "3":
-            menu_profesores()
-
-        elif opcion == "4":
-            menu_alumnos()
 
         elif opcion == "5":
             menu_pagos()

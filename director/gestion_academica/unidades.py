@@ -1,4 +1,4 @@
-from basedatos_json import leer_json, guardar_json, generar_id
+from database.basedatos import leer_json, guardar_json, generar_id
 from director.utilidades import imprimir_titulo
 
 RUTA_SALONES = "datos/salones.json"
